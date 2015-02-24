@@ -1,0 +1,18 @@
+{
+  "name": "boundless-sdk-template",
+  "version": "1.0.0",
+  "description": "Base template for boundless sdk",
+  "main": "index.js",
+  "scripts": {
+    "start": "browserify index.js --debug > build/app.js && node utils/debug.js",
+    "package": "node utils/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Boundless",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "http-proxy": "^1.8.1",
+    "node-static": "^0.7.6"
+  }
+}
