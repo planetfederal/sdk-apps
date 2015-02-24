@@ -14,5 +14,8 @@
     "browserify": "^9.0.3",
     "http-proxy": "^1.8.1",
     "node-static": "^0.7.6"
+  },
+  "dependencies": {
+    "openlayers": "^3.2.1"
   }
 }
