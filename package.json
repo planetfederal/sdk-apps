@@ -4,16 +4,19 @@
   "description": "Base template for boundless sdk",
   "main": "index.js",
   "scripts": {
-    "start": "browserify index.js --debug > build/app.js && node utils/debug.js",
+    "start": "npm run watch-js & npm run serve",
     "package": "node utils/build.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch-js": "node_modules/.bin/watchify index.js -o build/app.js -dv",
+    "serve": "node utils/debug.js"
   },
   "author": "Boundless",
   "license": "ISC",
   "devDependencies": {
     "browserify": "^9.0.3",
     "http-proxy": "^1.8.1",
-    "node-static": "^0.7.6"
+    "node-static": "^0.7.6",
+    "watchify": "^2.4.0"
   },
   "dependencies": {
     "openlayers": "^3.2.1"
