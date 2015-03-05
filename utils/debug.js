@@ -1,9 +1,18 @@
-var http      = require('http'),  
-    httpProxy = require('http-proxy'),
-    staticServer = require('node-static');
+/**
+ * Starts a debug server and proxy for /geoserver requests
+ * Arguments
+ *   --port  Port to start debug server on. Defaults to 8001
+ *   --proxy Host which to proxy /geoserver requests to.
+ *           Defaults to http://localhost:8080
+ */
 
-var PORT = 8001;
-var GEOSERVER_PATH = 'http://localhost:8080';
+var http = require('http'),
+    httpProxy = require('http-proxy'),
+    staticServer = require('node-static'),
+    argv = require('minimist')(process.argv);
+
+var PORT = argv.port || 8001;
+var GEOSERVER_PATH = argv.proxy || 'http://localhost:8080';
 
 var proxy = httpProxy.createProxy();
 var file = new staticServer.Server('./');
@@ -14,15 +23,9 @@ var proxyServer = http.createServer(function(req, res) {
       target: GEOSERVER_PATH
     });
   } else {
-    console.log('Request: ', req.url);
-    if (req.url.indexOf('ol.js')) {
-      console.log('serve debug');
-      res.setHeader('X-SourceMap', '/node_modules/openlayers/build/ol.js.map');
-      req.url = req.url.replace('ol.js', 'ol-debug.js');
-    }
     file.serve(req, res);
   }
 }).listen(PORT);
 
+console.log('Proxying /geoserver requests to ' + GEOSERVER_PATH);
 console.log("Serving on localhost:" + PORT);
-
