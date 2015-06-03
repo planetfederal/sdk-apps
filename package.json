@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Base template for boundless sdk",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/boundlessgeo/sdk-template.git"
+  },
   "scripts": {
     "start": "npm run watch-js & npm run serve",
     "package": "node utils/build.js",
