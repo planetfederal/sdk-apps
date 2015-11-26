@@ -1,19 +1,17 @@
 {
-  "name": "sdk-app-tabbed-i18n",
+  "name": "sdk-app-simple",
   "version": "1.0.0",
-  "description": "SDK Example for a tabbed layout with i18n",
+  "description": "Most simple example of an SDK application",
   "scripts": {
     "start": "node debug-server.js",
     "build": "node_modules/.bin/browserify -g [envify --NODE_ENV production] -p [minifyify --no-map --exclude node_modules/openlayers/dist/ol.js] app.jsx -o build/app.js"
   },
-  "author": "Boundless Spatial, Inc.",
+  "author": "Boundless Spatial, Inc",
   "license": "Apache-2.0",
   "dependencies": {
     "boundless-sdk": "git+https://github.com/boundlessgeo/sdk.git",
     "react": "0.14.3",
     "react-dom": "0.14.3",
-    "pui-react-buttons": "3.0.0-alpha.1",
-    "pui-react-tabs": "3.0.0-alpha.1",
     "openlayers": "3.11.1",
     "react-intl": "2.0.0-beta-1"
   },
