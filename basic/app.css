@@ -14,18 +14,6 @@
   max-width: 50%;
   z-index: 1111;
 }
-#timeline {
-  background-color: rgba(255,255,255,.4);
-  border-radius: 4px;
-  position: absolute;
-  top: 10px;
-  left: 100px;
-  padding-top: 7px;
-  padding-left: 12px;
-  height: 50px;
-  width: 600px;
-  z-index: 1001;
-}
 .toolbar ul {
   margin-top: 12px; 
 }

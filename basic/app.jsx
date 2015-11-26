@@ -221,7 +221,7 @@ var bookmarks = [{
 
 var selectedLayer = map.getLayers().item(2);
 
-export default class BasicApp extends React.Component {
+export default class App extends React.Component {
   componentDidMount() {
     map.setTarget(ReactDOM.findDOMNode(this.refs.map));
   }
@@ -278,4 +278,4 @@ export default class BasicApp extends React.Component {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en'><BasicApp /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en'><App /></IntlProvider>, document.getElementById('main'));
