@@ -21,7 +21,7 @@ var b = browserify({
   plugin: [watchify],
   cache: {},
   packageCache: {}
-}).transform(globalOl);
+}).transform(globalOl, {global: true});
 
 var outFile = './build/app-debug.js';
 
