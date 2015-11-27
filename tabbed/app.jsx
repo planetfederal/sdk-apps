@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
-import LayerActions from './node_modules/boundless-sdk/js/actions/LayerActions.js';
+import ToolActions from './node_modules/boundless-sdk/js/actions/ToolActions.js';
 import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
 import Geocoding from './node_modules/boundless-sdk/js/components/Geocoding.jsx';
 import GeocodingResults from './node_modules/boundless-sdk/js/components/GeocodingResults.jsx';
@@ -351,7 +351,7 @@ class TabbedApp extends React.Component {
     map.setTarget(ReactDOM.findDOMNode(this.refs.map));
   }
   _navigationFunc() {
-    LayerActions.activateTool(null, 'navigation');
+    ToolActions.activateTool(null, 'navigation');
   }
   render() {
     const {formatMessage} = this.props.intl;
