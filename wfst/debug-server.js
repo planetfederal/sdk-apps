@@ -24,12 +24,14 @@ var b = browserify({
 }).transform(globalOl, {global: true});
 
 var outFile = './build/app-debug.js';
+var childProcess;
 
 b.on('update', function bundle(onError) {
   var stream = b.bundle();
   if (onError) {
     stream.on('error', function(err) {
       console.log(err.message);
+      childProcess.kill('SIGINT');
       process.exit(1);
     });
   }
@@ -42,7 +44,7 @@ b.bundle(function(err, buf) {
     process.exit(1);
   } else {
     fs.writeFile(outFile, buf, 'utf-8');
-    cp.fork(path.join(path.dirname(require.resolve('openlayers')),
+    childProcess = cp.fork(path.join(path.dirname(require.resolve('openlayers')),
         '../tasks/serve-lib.js'), []);
   }
 });
