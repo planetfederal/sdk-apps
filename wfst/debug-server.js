@@ -9,7 +9,7 @@ function globalOl(file) {
   var data = '';
   function write(buf) { data += buf; }
   function end() {
-    this.queue(data.replace("import ol from 'openlayers'", "var ol = window.ol;"));
+    this.queue(data.replace(/require\(["']openlayers['"]\)/g, 'window.ol'));
     this.queue(null);
   }
   return through(write, end);
