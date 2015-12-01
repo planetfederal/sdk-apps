@@ -1,0 +1,36 @@
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.toolbar ul {
+  margin-top: 12px;
+}
+.toolbar {
+  height: 60px;
+}
+#wfst {
+  display: none;
+  position: absolute;
+  background:rgba(255,255,255, 1);
+  padding: 5px;
+  border: 1px solid #000000;
+  top: 0px;
+  right: 0px;
+  max-width: 50%;
+  z-index: 1111;
+}
+#content {
+  width: 100%;
+  height:  calc(100% - 60px);
+  position:fixed;
+  bottom: 0px;
+}
+#map {
+  width: 100%;
+  height: 100%;
+}
+#main {
+  width: 100%;
+  height: 100%;
+}
