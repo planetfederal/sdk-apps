@@ -16,12 +16,15 @@ http://localhost:3000/app-production.html will show the production version of th
 
 # Linking to a github directory of the sdk
 Go to the directory of your sdk git checkout and type:
+
     npm link
 
 Go to the node_modules/react directory of that git checkout and type:
+
     npm link
 
 In your sdk app type:
+
     npm link boundless-sdk
     npm link react
 
