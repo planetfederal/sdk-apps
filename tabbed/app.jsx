@@ -166,6 +166,11 @@ var map = new ol.Map({
           visible: false,
           title: 'Aerial',
           source: new ol.source.MapQuest({layer: 'sat'})
+        }),
+        new ol.layer.Tile({
+          type: 'base',
+          visible: false,
+          title: 'None'
         })
       ]
     }),

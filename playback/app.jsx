@@ -25,6 +25,11 @@ var map = new ol.Map({
       layers: [
         new ol.layer.Tile({
           type: 'base',
+          visible: false,
+          title: 'None'
+        }),
+        new ol.layer.Tile({
+          type: 'base',
           title: 'Streets',
           source: new ol.source.MapQuest({layer: 'osm'})
         }),
