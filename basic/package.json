@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "SDK application with a basic non-tabbed layout",
   "scripts": {
-    "start": "node debug-server.js",
-    "build": "node_modules/.bin/browserify -g [envify --NODE_ENV production] -p [minifyify --no-map --exclude node_modules/openlayers/dist/ol.js] app.jsx -o build/app.js"
+    "createdir": "node scripts/createbuild.js",
+    "start:debug": "node debug-server.js",
+    "start": "node_modules/.bin/npm-run-all --parallel createdir start:debug",   
+    "build:js": "node_modules/.bin/browserify -g [envify --NODE_ENV production] -p [minifyify --no-map --exclude node_modules/openlayers/dist/ol.js] app.jsx -o build/app.js",
+    "build": "node_modules/.bin/npm-run-all --parallel createdir build:js"
   },
   "author": "Boundless Spatial, Inc",
   "license": "Apache-2.0",
@@ -25,7 +28,9 @@
     "browserify": "^11.2.0",
     "cssify": "^0.8.0",
     "envify": "^3.4.0",
+    "fs-extra": "0.26.2",
     "minifyify": "^7.1.0",
+    "npm-run-all": "1.3.1",
     "through": "^2.3.8",
     "watchify": "^3.2.0"
   },
