@@ -4,7 +4,7 @@
   "description": "Most simple example of an SDK application",
   "scripts": {
     "start": "node debug-server.js",
-    "build": "mkdir build; node_modules/.bin/browserify -g [envify --NODE_ENV production] -p [minifyify --no-map --exclude node_modules/openlayers/dist/ol.js] app.jsx -o build/app.js"
+    "build": "node_modules/.bin/browserify -g [envify --NODE_ENV production] -p [minifyify --no-map --exclude node_modules/openlayers/dist/ol.js] app.jsx -o build/app.js"
   },
   "author": "Boundless Spatial, Inc",
   "license": "Apache-2.0",
