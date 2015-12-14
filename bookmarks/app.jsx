@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
-import {IntlProvider} from 'react-intl';
+import {addLocaleData, IntlProvider} from 'react-intl';
 import Bookmarks from './node_modules/boundless-sdk/js/components/Bookmarks.jsx';
+import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
+import enMessages from './node_modules/boundless-sdk/locale/en.js';
+
+addLocaleData(
+  enLocaleData
+);
 
 var map = new ol.Map({
   layers: [
@@ -74,4 +80,4 @@ export default class App extends React.Component {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en'><App /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><App /></IntlProvider>, document.getElementById('main'));

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
-import {IntlProvider} from 'react-intl';
+import {addLocaleData, IntlProvider} from 'react-intl';
 import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
 import Geocoding from './node_modules/boundless-sdk/js/components/Geocoding.jsx';
 import GeocodingResults from './node_modules/boundless-sdk/js/components/GeocodingResults.jsx';
@@ -14,6 +14,12 @@ import Icon from 'pui-react-iconography';
 import Edit from './node_modules/boundless-sdk/js/components/Edit.jsx';
 import Globe from './node_modules/boundless-sdk/js/components/Globe.jsx';
 import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
+import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
+import enMessages from './node_modules/boundless-sdk/locale/en.js';
+
+addLocaleData(
+  enLocaleData
+);
 
 var styleFires = new ol.style.Style({
   image: new ol.style.Icon({
@@ -239,7 +245,7 @@ export default class App extends React.Component {
   }
   _toggleTable() {
     this._toggle(ReactDOM.findDOMNode(this.refs.tablePanel));
-    this.refs.table.refs.wrappedElement.setDimensionsOnState();
+    this.refs.table.getWrappedInstance().setDimensionsOnState();
   }
   _toggleQuery() {
     this._toggle(ReactDOM.findDOMNode(this.refs.queryPanel));
@@ -283,4 +289,4 @@ export default class App extends React.Component {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en'><App /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><App /></IntlProvider>, document.getElementById('main'));

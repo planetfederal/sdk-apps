@@ -1,9 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
-import {IntlProvider} from 'react-intl';
+import {addLocaleData, IntlProvider} from 'react-intl';
 import UI from 'pui-react-buttons';
 import WFST from './node_modules/boundless-sdk/js/components/WFST.jsx';
+import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
+import enMessages from './node_modules/boundless-sdk/locale/en.js';
+
+addLocaleData(
+  enLocaleData
+);
 
 var vectorSource = new ol.source.Vector({
   format: new ol.format.GeoJSON(),
@@ -102,4 +108,4 @@ export default class App extends React.Component {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en'><App /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><App /></IntlProvider>, document.getElementById('main'));

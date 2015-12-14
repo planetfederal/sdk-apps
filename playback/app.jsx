@@ -1,9 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
-import {IntlProvider} from 'react-intl';
+import {addLocaleData, IntlProvider} from 'react-intl';
 import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
 import Playback from './node_modules/boundless-sdk/js/components/Playback.jsx';
+import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
+import enMessages from './node_modules/boundless-sdk/locale/en.js';
+
+addLocaleData(
+  enLocaleData
+);
 
 var styleFires = new ol.style.Style({
   image: new ol.style.Icon({
@@ -105,4 +111,4 @@ export default class PlaybackApp extends React.Component {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en'><PlaybackApp /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><PlaybackApp /></IntlProvider>, document.getElementById('main'));

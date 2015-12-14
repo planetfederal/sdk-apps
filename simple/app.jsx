@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
-import {IntlProvider} from 'react-intl';
+import {addLocaleData, IntlProvider} from 'react-intl';
 import FeatureTable from './node_modules/boundless-sdk/js/components/FeatureTable.jsx';
+import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
+import enMessages from './node_modules/boundless-sdk/locale/en.js';
+
+addLocaleData(
+  enLocaleData
+);
 
 var styleTrees = new ol.style.Style({
   fill: new ol.style.Fill({
@@ -191,4 +197,4 @@ export default class BasicApp extends React.Component {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en'><BasicApp /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><BasicApp /></IntlProvider>, document.getElementById('main'));
