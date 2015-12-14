@@ -79,12 +79,12 @@ var stylePopp = function(feature) {
     }
   }
   if (size === 0) {
-    return undefined;
+    return null;
   }
   if (size !== 1) {
     style = clusterStyleCachePopp[size];
     if (!style) {
-      style = [new ol.style.Style({
+      style = new ol.style.Style({
         image: new ol.style.Circle({
           radius: 10,
           stroke: new ol.style.Stroke({
@@ -100,7 +100,7 @@ var stylePopp = function(feature) {
             color: '#fff'
           })
         })
-      })];
+      });
       clusterStyleCachePopp[size] = style;
     }
     return style;

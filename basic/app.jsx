@@ -77,19 +77,19 @@ var stylePopp = function(feature) {
   var size = 0;
   for (var i = 0, ii = features.length; i < ii; ++i) {
     if (features[i].selected) {
-      return undefined;
+      return null;
     }
     if (features[i].hide !== true) {
       size++;
     }
   }
   if (size === 0) {
-    return undefined;
+    return null;
   }
   if (size !== 1) {
     style = clusterStyleCachePopp[size];
     if (!style) {
-      style = [new ol.style.Style({
+      style = new ol.style.Style({
         image: new ol.style.Circle({
           radius: 10,
           stroke: new ol.style.Stroke({
@@ -105,7 +105,7 @@ var stylePopp = function(feature) {
             color: '#fff'
           })
         })
-      })];
+      });
       clusterStyleCachePopp[size] = style;
     }
     return style;
