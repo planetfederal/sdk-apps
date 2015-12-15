@@ -20,10 +20,16 @@ import QGISPrint from './node_modules/boundless-sdk/js/components/QGISPrint.jsx'
 import BUTTON from 'pui-react-buttons';
 import UI from 'pui-react-tabs';
 import nlLocaleData from './node_modules/react-intl/dist/locale-data/nl.js';
+import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
 import nlMessages from './node_modules/boundless-sdk/locale/nl.js';
+import enMessages from './node_modules/boundless-sdk/locale/en.js';
 
 addLocaleData(
   nlLocaleData
+);
+
+addLocaleData(
+  enLocaleData
 );
 
 var styleTrees = new ol.style.Style({
@@ -348,8 +354,17 @@ nlMessages['app.chart2'] = 'Totaal oppervlakte bos';
 nlMessages['app.navigationbutton'] = 'Navigatie';
 nlMessages['app.navigationbuttontitle'] = 'Schakel naar kaart navigatie (verschuif en zoom)';
 
+enMessages['app.geocodingtab'] = 'Find place';
+enMessages['app.attributestab'] = 'Feature table';
+enMessages['app.querytab'] = 'Query';
+enMessages['app.charttab'] = 'Charts';
+enMessages['app.chart1'] = 'Number of airports per usage category';
+enMessages['app.chart2'] = 'Total area of forest';
+enMessages['app.navigationbutton'] = 'Navigation';
+enMessages['app.navigationbuttontitle'] = 'Go to map navigation (zoom and pan)';
+
 var locale = window.location.search.indexOf('nl') !== -1 ? 'nl' : 'en';
-var i18n = locale === 'nl' ? nlMessages : undefined;
+var i18n = locale === 'nl' ? nlMessages : enMessages;
 
 class TabbedApp extends React.Component {
   componentDidMount() {
