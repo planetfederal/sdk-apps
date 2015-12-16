@@ -13,8 +13,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "boundless-sdk": "git+https://github.com/boundlessgeo/sdk.git",
-    "pui-react-buttons": "3.0.0-alpha.1",
-    "pui-react-iconography": "3.0.0-alpha.1",
+    "pui-react-buttons": "3.0.0-alpha.2",
+    "pui-react-iconography": "3.0.0-alpha.2",
     "react": "0.14.3",
     "react-dom": "0.14.3",
     "ol3-cesium": "3.9.2",
