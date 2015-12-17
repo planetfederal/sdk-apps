@@ -366,7 +366,7 @@ enMessages['app.navigationbuttontitle'] = 'Go to map navigation (zoom and pan)';
 var locale = window.location.search.indexOf('nl') !== -1 ? 'nl' : 'en';
 var i18n = locale === 'nl' ? nlMessages : enMessages;
 
-class TabbedApp extends React.Component {
+class App extends React.Component {
   componentDidMount() {
     map.setTarget(ReactDOM.findDOMNode(this.refs.map));
   }
@@ -426,7 +426,7 @@ class TabbedApp extends React.Component {
   }
 }
 
-TabbedApp.propTypes = {
+App.propTypes = {
   /**
    * i18n message strings. Provided through the application through context.
    */
@@ -434,6 +434,6 @@ TabbedApp.propTypes = {
 };
 
 
-TabbedApp = injectIntl(TabbedApp);
+App = injectIntl(App);
 
-ReactDOM.render(<IntlProvider locale={locale} messages={i18n}><TabbedApp /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale={locale} messages={i18n}><App /></IntlProvider>, document.getElementById('main'));

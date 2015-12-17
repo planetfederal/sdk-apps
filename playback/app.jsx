@@ -71,29 +71,9 @@ var map = new ol.Map({
 
 var selectedLayer = map.getLayers().item(2);
 
-export default class PlaybackApp extends React.Component {
+export default class App extends React.Component {
   componentDidMount() {
     map.setTarget(ReactDOM.findDOMNode(this.refs.map));
-  }
-  _toggle(el) {
-    if (el.style.display === 'block') {
-      el.style.display = 'none';
-    } else {
-      el.style.display = 'block';
-    }
-  }
-  _toggleTable() {
-    this._toggle(ReactDOM.findDOMNode(this.refs.tablePanel));
-    this.refs.table.refs.wrappedElement.setDimensionsOnState();
-  }
-  _toggleQuery() {
-    this._toggle(ReactDOM.findDOMNode(this.refs.queryPanel));
-  }
-  _toggleEdit() {
-    this._toggle(ReactDOM.findDOMNode(this.refs.editToolPanel));
-  }
-  _navigationFunc() {
-    this.refs.info.refs.wrappedElement.activate([]);
   }
   render() {
     return (
@@ -111,4 +91,4 @@ export default class PlaybackApp extends React.Component {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><PlaybackApp /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><App /></IntlProvider>, document.getElementById('main'));

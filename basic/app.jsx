@@ -14,6 +14,7 @@ import Icon from 'pui-react-iconography';
 import Edit from './node_modules/boundless-sdk/js/components/Edit.jsx';
 import Globe from './node_modules/boundless-sdk/js/components/Globe.jsx';
 import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
+import ToolActions from './node_modules/boundless-sdk/js/actions/ToolActions.js';
 import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
 
@@ -254,7 +255,7 @@ export default class App extends React.Component {
     this._toggle(ReactDOM.findDOMNode(this.refs.editToolPanel));
   }
   _navigationFunc() {
-    this.refs.info.refs.wrappedElement.activate([]);
+    ToolActions.activateTool(null, 'navigation');
   }
   render() {
     return (
@@ -282,7 +283,7 @@ export default class App extends React.Component {
           </div>
           <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable ref='table' resizeTo='table-panel' offset={[30, 30]} layer={selectedLayer} map={map} /></div>
           <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
-          <div id='popup' className='ol-popup'><InfoPopup ref='info' toggleGroup='navigation' map={map} /></div>
+          <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' map={map} /></div>
         </div>
       </article>
     );
