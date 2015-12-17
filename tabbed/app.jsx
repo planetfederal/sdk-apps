@@ -176,7 +176,14 @@ var map = new ol.Map({
         new ol.layer.Tile({
           type: 'base',
           visible: false,
-          title: 'None'
+          title: 'None', 
+          source: new ol.source.XYZ({
+            attributions: [
+              new ol.Attribution({
+                html: 'Blank tiles: No attribution'
+              }),
+            ],
+          })
         })
       ]
     }),
