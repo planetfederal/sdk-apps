@@ -16,7 +16,7 @@
     "ole": "git+https://github.com/boundlessgeo/ole.git",
     "react": "0.14.3",
     "react-dom": "0.14.3",
-    "openlayers": "3.12.0",
+    "openlayers": "3.12.1",
     "react-intl": "2.0.0-beta-2"
   },
   "devDependencies": {
