@@ -243,11 +243,11 @@ var legendData = {
 };
 
 var printLayouts = [{
-  name: 'foo',
-  thumbnail: 'foo_thumbnail.png',
+  name: 'Layout 1',
+  thumbnail: 'layout1_thumbnail.png',
   width: 420.0,
   elements: [{
-    name: 'XYZ',
+    name: 'Title',
     height: 40.825440467359044,
     width: 51.98353115727002,
     y: 39.25222551928783,
@@ -272,11 +272,11 @@ var printLayouts = [{
   }],
   height: 297.0
 }, {
-  name: 'Composer 1',
-  thumbnail: 'composer1_thumbnail.png',
+  name: 'Layout 2',
+  thumbnail: 'layout2_thumbnail.png',
   width: 297.0,
   elements: [{
-    name: 'BART',
+    name: 'Title',
     height: 11.7757,
     width: 185.957,
     y: 1.96261,
