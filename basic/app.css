@@ -10,12 +10,12 @@
   padding: 5px;
   border: 1px solid #000000;
   top: 0px;
-  right: 0px;
+  right: 498px;
   max-width: 50%;
   z-index: 1111;
 }
 .toolbar ul {
-  margin-top: 12px; 
+  margin-top: 12px;
 }
 #geocoding {
   margin-left: 10px;
@@ -58,7 +58,7 @@ html, body {
   padding: 15px;
   border: 1px solid #000000;
   top: 0px;
-  right: 0px;
+  right: 174px;
   max-width: 50%;
   z-index: 1111;
 }

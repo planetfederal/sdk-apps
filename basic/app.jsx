@@ -141,7 +141,7 @@ var map = new ol.Map({
         new ol.layer.Tile({
           type: 'base',
           visible: false,
-          title: 'None', 
+          title: 'None',
           source: new ol.source.XYZ({
             attributions: [
               new ol.Attribution({
@@ -240,6 +240,8 @@ var bookmarks = [{
 
 var selectedLayer = map.getLayers().item(2);
 
+var queryLayout = 'dropdown';
+
 export default class App extends React.Component {
   componentDidMount() {
     map.setTarget(ReactDOM.findDOMNode(this.refs.map));
@@ -280,7 +282,7 @@ export default class App extends React.Component {
         </nav>
         <div id='content'>
           <div ref='map' id='map'>
-            <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
+            <div ref='queryPanel' className='query-panel'><QueryBuilder queryLayout={queryLayout} map={map} /></div>
             <div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div>
             <div ref='editToolPanel' className='edit-tool-panel'><Edit toggleGroup='navigation' map={map} /></div>
             <div id='globe-button' className='ol-unselectable ol-control'><Globe map={map} /></div>
