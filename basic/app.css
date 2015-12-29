@@ -9,7 +9,7 @@
   background:rgba(255,255,255, 1);
   padding: 5px;
   border: 1px solid #000000;
-  top: 0px;
+  top: 5px;
   right: 498px;
   max-width: 50%;
   z-index: 1111;
@@ -57,7 +57,7 @@ html, body {
   background: rgba(255,255,255, 1);
   padding: 15px;
   border: 1px solid #000000;
-  top: 0px;
+  top: 5px;
   right: 174px;
   max-width: 50%;
   z-index: 1111;
