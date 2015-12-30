@@ -372,7 +372,6 @@ enMessages['app.navigationbuttontitle'] = 'Go to map navigation (zoom and pan)';
 
 var locale = window.location.search.indexOf('nl') !== -1 ? 'nl' : 'en';
 var i18n = locale === 'nl' ? nlMessages : enMessages;
-var queryLayout = 'tabbed';
 
 class App extends React.Component {
   componentDidMount() {
@@ -416,7 +415,7 @@ class App extends React.Component {
               <UI.SimpleTabs defaultActiveKey={2}>
                 <UI.Tab eventKey={1} title={formatMessage(messages.geocodingtab)}><div id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></UI.Tab>
                 <UI.Tab eventKey={2} title={formatMessage(messages.attributestab)}><div id="attributes-table-tab"><FeatureTable resizeTo='tabs-panel' offset={[50, 60]} layer={selectedLayer} map={map} /></div></UI.Tab>
-                <UI.Tab eventKey={3} title={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} queryLayout={queryLayout} /></div></UI.Tab>
+                <UI.Tab eventKey={3} title={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></UI.Tab>
                 <UI.Tab eventKey={4} title={formatMessage(messages.charttab)}><div id='charts-tab'><Chart combo={true} charts={charts}/></div></UI.Tab>
               </UI.SimpleTabs>
             </div>
