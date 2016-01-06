@@ -19,6 +19,7 @@ import AddLayer from './node_modules/boundless-sdk/js/components/AddLayer.jsx';
 import QGISPrint from './node_modules/boundless-sdk/js/components/QGISPrint.jsx';
 import BUTTON from 'pui-react-buttons';
 import UI from 'pui-react-tabs';
+import Icon from 'pui-react-iconography';
 import nlLocaleData from './node_modules/react-intl/dist/locale-data/nl.js';
 import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
 import nlMessages from './node_modules/boundless-sdk/locale/nl.js';
@@ -403,10 +404,10 @@ class App extends React.Component {
           <div className='toolbar'>
             <ul className='pull-right' id='toolbar-export'><ImageExport map={map} /></ul>
             <ul className='pull-right' id='toolbar-measure'><Measure toggleGroup='navigation' map={map}/></ul>
-            <ul className='pull-right' id='toolbar-select'><Select toggleGroup='navigation' map={map}/></ul>
             <ul className='pull-right' id='toolbar-add-layer'><AddLayer map={map} /></ul>
             <ul className='pull-right' id='toolbar-print'><QGISPrint map={map} layouts={printLayouts} /></ul>
-            <ul className='pull-right' id='toolbar-navigation'><BUTTON.DefaultButton title={formatMessage(messages.navigationbuttontitle)} onClick={this._navigationFunc.bind(this)}>{formatMessage(messages.navigationbutton)}</BUTTON.DefaultButton></ul>
+            <ul className='pull-right' id='toolbar-select'><Select toggleGroup='navigation' map={map}/></ul>
+            <ul className='pull-right' id='toolbar-navigation'><BUTTON.DefaultButton title={formatMessage(messages.navigationbuttontitle)} onClick={this._navigationFunc.bind(this)}> <Icon.Icon name="hand-paper-o" /> {formatMessage(messages.navigationbutton)}</BUTTON.DefaultButton></ul>
           </div>
         </nav>
         <div id='content'>

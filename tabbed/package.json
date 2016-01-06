@@ -17,6 +17,7 @@
     "react-dom": "0.14.3",
     "pui-react-buttons": "3.0.0-alpha.2",
     "pui-react-tabs": "3.0.0-alpha.2",
+    "pui-react-iconography": "3.0.0-alpha.2",
     "openlayers": "3.12.1",
     "react-intl": "2.0.0-beta-2"
   },
