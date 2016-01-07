@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
+import App from './node_modules/boundless-sdk/js/App.js';
 import ToolActions from './node_modules/boundless-sdk/js/actions/ToolActions.js';
 import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
 import Geocoding from './node_modules/boundless-sdk/js/components/Geocoding.jsx';
@@ -374,10 +375,7 @@ enMessages['app.navigationbuttontitle'] = 'Go to map navigation (zoom and pan)';
 var locale = window.location.search.indexOf('nl') !== -1 ? 'nl' : 'en';
 var i18n = locale === 'nl' ? nlMessages : enMessages;
 
-class App extends React.Component {
-  componentDidMount() {
-    map.setTarget(ReactDOM.findDOMNode(this.refs.map));
-  }
+class TabbedApp extends App {
   _navigationFunc() {
     ToolActions.activateTool(null, 'navigation');
   }
@@ -444,4 +442,4 @@ App.propTypes = {
 
 App = injectIntl(App);
 
-ReactDOM.render(<IntlProvider locale={locale} messages={i18n}><App /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale={locale} messages={i18n}><TabbedApp map={map} /></IntlProvider>, document.getElementById('main'));

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
+import App from './node_modules/boundless-sdk/js/components/App.js';
 import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
 import Playback from './node_modules/boundless-sdk/js/components/Playback.jsx';
 import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
@@ -78,10 +79,7 @@ var map = new ol.Map({
 
 var selectedLayer = map.getLayers().item(2);
 
-export default class App extends React.Component {
-  componentDidMount() {
-    map.setTarget(ReactDOM.findDOMNode(this.refs.map));
-  }
+class PlaybackApp extends App {
   render() {
     return (
       <article>
@@ -98,4 +96,4 @@ export default class App extends React.Component {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><App /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><PlaybackApp map={map} /></IntlProvider>, document.getElementById('main'));

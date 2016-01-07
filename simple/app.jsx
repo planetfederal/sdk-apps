@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
+import App from './node_modules/boundless-sdk/js/components/app.js';
 import FeatureTable from './node_modules/boundless-sdk/js/components/FeatureTable.jsx';
 import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
@@ -169,10 +170,7 @@ var map = new ol.Map({
 
 var selectedLayer = map.getLayers().item(2);
 
-export default class App extends React.Component {
-  componentDidMount() {
-    map.setTarget(ReactDOM.findDOMNode(this.refs.map));
-  }
+class SimpleApp extends React.Component {
   render() {
     return (
       <article>
@@ -184,4 +182,4 @@ export default class App extends React.Component {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><App /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><SimpleApp map={map} /></IntlProvider>, document.getElementById('main'));

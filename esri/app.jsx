@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import ole from 'ole';
 import {addLocaleData, IntlProvider} from 'react-intl';
+import App from './node_modules/boundless-sdk/js/components/App.js';
 import FeatureTable from './node_modules/boundless-sdk/js/components/FeatureTable.jsx';
 import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
@@ -80,10 +81,7 @@ map = new ol.Map({
   })
 });
 
-export default class App extends React.Component {
-  componentDidMount() {
-    map.setTarget(ReactDOM.findDOMNode(this.refs.map));
-  }
+class EsriApp extends App {
   render() {
     return (
       <article>
@@ -97,4 +95,4 @@ export default class App extends React.Component {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><App /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><EsriApp map={map} /></IntlProvider>, document.getElementById('main'));

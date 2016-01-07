@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
+import App from './node_modules/boundless-sdk/js/components/App.js';
 import Bookmarks from './node_modules/boundless-sdk/js/components/Bookmarks.jsx';
 import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
@@ -72,10 +73,7 @@ var bookmarks = [{
   extent: [262926.7298190316, 6249251.010162451, 264039.9247269643, 6250942.841574115]
 }];
 
-export default class App extends React.Component {
-  componentDidMount() {
-    map.setTarget(ReactDOM.findDOMNode(this.refs.map));
-  }
+class BookmarkApp extends App {
   render() {
     return (
       <div id='content'>
@@ -87,4 +85,4 @@ export default class App extends React.Component {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><App /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><BookmarkApp map={map} /></IntlProvider>, document.getElementById('main'));

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import UI from 'pui-react-buttons';
+import App from './node_modules/boundless-sdk/js/components/app.js';
 import WFST from './node_modules/boundless-sdk/js/components/WFST.jsx';
 import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
@@ -84,10 +85,7 @@ var map = new ol.Map({
   })
 });
 
-export default class App extends React.Component {
-  componentDidMount() {
-    map.setTarget(ReactDOM.findDOMNode(this.refs.map));
-  }
+class WFSTApp extends App {
   _toggle(el) {
     if (el.style.display === 'block') {
       el.style.display = 'none';
@@ -115,4 +113,4 @@ export default class App extends React.Component {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><App /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><WFSTApp map={map} /></IntlProvider>, document.getElementById('main'));
