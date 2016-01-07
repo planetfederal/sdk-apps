@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
-import App from './node_modules/boundless-sdk/js/App.js';
+import App from './node_modules/boundless-sdk/js/components/App.js';
 import ToolActions from './node_modules/boundless-sdk/js/actions/ToolActions.js';
 import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
 import Geocoding from './node_modules/boundless-sdk/js/components/Geocoding.jsx';
