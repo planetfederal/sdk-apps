@@ -432,7 +432,7 @@ class TabbedApp extends App {
   }
 }
 
-App.propTypes = {
+TabbedApp.propTypes = {
   /**
    * i18n message strings. Provided through the application through context.
    */
@@ -440,6 +440,6 @@ App.propTypes = {
 };
 
 
-App = injectIntl(App);
+TabbedApp = injectIntl(TabbedApp);
 
 ReactDOM.render(<IntlProvider locale={locale} messages={i18n}><TabbedApp map={map} /></IntlProvider>, document.getElementById('main'));
