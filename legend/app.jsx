@@ -840,7 +840,7 @@ class LegendApp extends App {
             <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>
           </div>
           <div id='layerlist'><LayerList showOpacity={false} showDownload={false}showGroupContent={true} showZoomTo={false} allowReordering={false} allowFiltering={true} map={map}/></div>
-<div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} pullRight/></div>
+          <div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} pullRight/></div>
         </div>
       </article>
     );
