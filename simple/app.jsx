@@ -170,7 +170,7 @@ var map = new ol.Map({
 
 var selectedLayer = map.getLayers().item(2);
 
-class SimpleApp extends React.Component {
+class SimpleApp extends App {
   render() {
     return (
       <article>
