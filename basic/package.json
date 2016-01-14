@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "SDK application with a basic non-tabbed layout",
   "scripts": {
-    "createdir": "node scripts/createbuild.js",
+    "createdir": "node createbuild.js",
     "start:debug": "node debug-server.js",
     "start": "node_modules/.bin/npm-run-all --parallel createdir start:debug",
     "build:js": "node_modules/.bin/browserify -g [envify --NODE_ENV production] -p [minifyify --no-map --exclude node_modules/openlayers/dist/ol.js] app.jsx -o build/app.js",
@@ -24,7 +24,7 @@
     "react-intl": "2.0.0-beta-2"
   },
   "devDependencies": {
-    "sdk-debug-server": "git+https://github.com/bartvde/sdk-debug-server.git",
+    "sdk-tools": "git+https://github.com/bartvde/sdk-tools.git",
     "babel-plugin-react-intl": "1.0.0-beta-5",
     "babelify": "^6.0.2",
     "browserify": "^11.2.0",

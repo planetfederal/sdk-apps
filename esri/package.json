@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Example of an SDK application against Esri ArcGIS",
   "scripts": {
-    "createdir": "node scripts/createbuild.js",
+    "createdir": "node createbuild.js",
     "start:debug": "node debug-server.js",
     "start": "node_modules/.bin/npm-run-all --parallel createdir start:debug",
     "build:js": "node_modules/.bin/browserify -g [envify --NODE_ENV production] -p [minifyify --no-map --exclude node_modules/openlayers/dist/ol.js] app.jsx -o build/app.js",

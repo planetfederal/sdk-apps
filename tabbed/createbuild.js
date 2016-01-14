@@ -1,0 +1,1 @@
+require('sdk-tools').createBuildDir();
