@@ -1,3 +1,3 @@
-var debug = require('sdk-debug-server');
+var debug = require('sdk-tools');
 
 debug.startServer();
