@@ -24,7 +24,7 @@
     "react-intl": "2.0.0-beta-2"
   },
   "devDependencies": {
-    "sdk-tools": "git+https://github.com/bartvde/sdk-tools.git",
+    "sdk-tools": "git+https://github.com/boundlessgeo/sdk-tools.git",
     "babel-plugin-react-intl": "1.0.0-beta-5",
     "babelify": "^6.0.2",
     "browserify": "^11.2.0",
