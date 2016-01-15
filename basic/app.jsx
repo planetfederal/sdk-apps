@@ -257,6 +257,9 @@ class BasicApp extends App {
   _toggleQuery() {
     this._toggle(ReactDOM.findDOMNode(this.refs.queryPanel));
   }
+  _toggleChart(){
+    this._toggle(ReactDOM.findDOMNode(this.refs.chartPanel));
+  }
   _toggleEdit() {
     this._toggle(ReactDOM.findDOMNode(this.refs.editToolPanel));
   }
@@ -271,7 +274,7 @@ class BasicApp extends App {
             <div id='geocoding' className='pull-right'><Geocoding /></div>
             <ul className='pull-right' id='toolbar-table'><UI.DefaultButton onClick={this._toggleTable.bind(this)} title="Attributes table"><Icon.Icon name="list-alt" /> Table</UI.DefaultButton></ul>
             <ul className='pull-right' id='toolbar-query'><UI.DefaultButton onClick={this._toggleQuery.bind(this)}><Icon.Icon name="filter" /> Query</UI.DefaultButton></ul>
-            <ul className='pull-right' id='toolbar-chart'><Chart container='chart-panel' charts={charts} /></ul>
+            <ul className='pull-right' id='toolbar-chart'><UI.DefaultButton onClick={this._toggleChart.bind(this)}> Chart</UI.DefaultButton></ul>
             <ul className='pull-right' id='toolbar-edit'><UI.DefaultButton onClick={this._toggleEdit.bind(this)}><Icon.Icon name="pencil" /> Edit</UI.DefaultButton></ul>
             <ul className='pull-right' id='toolbar-select'><Select toggleGroup='navigation' map={map}/></ul>
             <ul className='pull-right' id='toolbar-navigation'><BUTTON.DefaultButton onClick={this._navigationFunc.bind(this)}> <Icon.Icon name="hand-paper-o" /> Navigation</BUTTON.DefaultButton></ul>
@@ -285,11 +288,11 @@ class BasicApp extends App {
             <div id='globe-button' className='ol-unselectable ol-control'><Globe map={map} /></div>
           </div>
           <div id='chart-panel' className='chart-panel'>
-            <div id='chart'></div>
           </div>
           <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable ref='table' resizeTo='table-panel' offset={[30, 30]} layer={selectedLayer} map={map} /></div>
           <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
           <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' map={map} /></div>
+          <div  id='chart-panel'><Chart ref='chartPanel' combo={true} charts={charts}/></div>
         </div>
       </article>
     );

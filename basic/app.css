@@ -82,9 +82,12 @@ html, body {
   border: 1px solid #000000;
   bottom: 0px;
   left: 0;
-  height: 50%;
   width: 100%;
   z-index: 101;
+}
+#chart-selector{
+  width: 300px;
+  left: 50px;
 }
 #main {
   width: 100%;
