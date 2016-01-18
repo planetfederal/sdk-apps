@@ -9,6 +9,7 @@ import Geocoding from './node_modules/boundless-sdk/js/components/Geocoding.jsx'
 import GeocodingResults from './node_modules/boundless-sdk/js/components/GeocodingResults.jsx';
 import FeatureTable from './node_modules/boundless-sdk/js/components/FeatureTable.jsx';
 import Measure from './node_modules/boundless-sdk/js/components/Measure.jsx';
+import LoadingPanel from './node_modules/boundless-sdk/js/components/LoadingPanel.jsx';
 import Select from './node_modules/boundless-sdk/js/components/Select.jsx';
 import QueryBuilder from './node_modules/boundless-sdk/js/components/QueryBuilder.jsx';
 import Chart from './node_modules/boundless-sdk/js/components/Chart.jsx';
@@ -420,6 +421,7 @@ class TabbedApp extends App {
             </div>
             <div className='col-md-15 full-height'>
               <div id='map' ref='map'></div>
+              <LoadingPanel map={map} />
               <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
               <div id='legend'><QGISLegend map={map} legendBasePath='../../resources/legend/' legendData={legendData} /></div>
               <div id='geolocation-control' className='ol-unselectable ol-control'><Geolocation map={map} /></div>
