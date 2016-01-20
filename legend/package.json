@@ -17,7 +17,7 @@
     "pui-react-iconography": "3.0.0-alpha.2",
     "react": "0.14.3",
     "react-dom": "0.14.3",
-    "openlayers": "3.12.1",
+    "openlayers": "~3.13.0",
     "react-intl": "2.0.0-beta-2"
   },
   "devDependencies": {
