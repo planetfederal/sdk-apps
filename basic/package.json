@@ -2,6 +2,10 @@
   "name": "sdk-app-basic",
   "version": "1.0.0",
   "description": "SDK application with a basic non-tabbed layout",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boundlessgeo/sdk-apps.git"
+  },
   "scripts": {
     "createdir": "node createbuild.js",
     "start:debug": "node debug-server.js",

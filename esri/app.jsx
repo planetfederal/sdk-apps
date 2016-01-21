@@ -34,7 +34,7 @@ var vectorSource;
 window.fsCallback = function(jsonData) {
   vectorSource.addFeatures(esrijsonFormat.readFeatures(jsonData));
 };
-var vectorSource = new ol.source.Vector({
+vectorSource = new ol.source.Vector({
   format: esrijsonFormat,
   loader: function(extent, resolution, projection) {
     var script = document.createElement('script');
