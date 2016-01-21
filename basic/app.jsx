@@ -24,18 +24,6 @@ addLocaleData(
   enLocaleData
 );
 
-var styleFires = new ol.style.Style({
-  image: new ol.style.Icon({
-    scale: 0.030000,
-    anchorOrigin: 'top-left',
-    anchorXUnits: 'fraction',
-    anchorYUnits: 'fraction',
-    anchor: [0.5, 0.5],
-    src: '../../data/styles/amenity=fire_station2321243910.svg',
-    rotation: 0.000000
-  })
-});
-
 var styleTrees = new ol.style.Style({
   fill: new ol.style.Fill({
     color: 'rgba(186,221,105,0.505882)'
@@ -148,8 +136,8 @@ var map = new ol.Map({
             attributions: [
               new ol.Attribution({
                 html: 'Blank tiles: No attribution'
-              }),
-            ],
+              })
+            ]
           })
         })
       ]
@@ -227,7 +215,7 @@ class BasicApp extends App {
   _toggleQuery() {
     this._toggle(ReactDOM.findDOMNode(this.refs.queryPanel));
   }
-  _toggleChart(){
+  _toggleChart() {
     this._toggle(ReactDOM.findDOMNode(this.refs.chartPanel));
   }
   _toggleEdit() {
