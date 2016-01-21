@@ -2,12 +2,17 @@
   "name": "sdk-app-tabbed-i18n",
   "version": "1.0.0",
   "description": "SDK Example for a tabbed layout with i18n",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boundlessgeo/sdk-apps.git"
+  },
   "scripts": {
     "createdir": "node createbuild.js",
     "start:debug": "node debug-server.js",
     "start": "node_modules/.bin/npm-run-all --parallel createdir start:debug",
     "build:js": "node_modules/.bin/browserify -g [envify --NODE_ENV production] -p [minifyify --no-map --exclude node_modules/openlayers/dist/ol.js] app.jsx -o build/app.js",
-    "build": "node_modules/.bin/npm-run-all --parallel createdir build:js"
+    "build": "node_modules/.bin/npm-run-all --parallel createdir build:js",
+    "test": "eslint app.jsx --ext .jsx,.js"
   },
   "author": "Boundless Spatial, Inc.",
   "license": "Apache-2.0",
@@ -23,11 +28,14 @@
   },
   "devDependencies": {
     "sdk-tools": "git+https://github.com/boundlessgeo/sdk-tools.git",
+    "babel-eslint": "^4.1.6",
     "babel-plugin-react-intl": "1.0.0-beta-5",
     "babelify": "^6.0.2",
     "browserify": "^11.2.0",
     "cssify": "^0.8.0",
     "envify": "^3.4.0",
+    "eslint": "1.9.0",
+    "eslint-plugin-react": "3.9.0",
     "fs-extra": "0.26.2",
     "minifyify": "^7.1.0",
     "npm-run-all": "1.3.1",

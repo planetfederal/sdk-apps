@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {IntlProvider} from 'react-intl';
-import UI from 'pui-react-buttons';
-import Icon from 'pui-react-iconography';
 import proj4 from 'proj4';
 import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
 import App from './node_modules/boundless-sdk/js/components/App.js';
@@ -17,26 +15,20 @@ var projection = new ol.proj.Projection({
   extent: [-285401.92,22598.08,595401.9199999999,903401.9199999999]
 });
 
-var overlayLayers = [];
-var overlaysGroup = new ol.layer.Group({
-    showContent: true,
-    'title': 'Overlays',
-    layers: overlayLayers
-});
 var lyr_cbsprovincies212 = new ol.layer.Tile({
   opacity: 1.0,
   timeInfo: null,
   source: new ol.source.TileWMS({
-    url: "http://geodata.nationaalgeoregister.nl/cbsprovincies/wms?",
+    url: 'http://geodata.nationaalgeoregister.nl/cbsprovincies/wms?',
     params: {
-      "LAYERS": "cbsprovincies2012",
-      "TILED": "true",
-      "STYLES": ""
+      'LAYERS': 'cbsprovincies2012',
+      'TILED': 'true',
+      'STYLES': ''
     }
   }),
-  title: "cbsprovincies2012",
-  id: "cbsprovincies201220160108113901332",
-  popupInfo: ""
+  title: 'cbsprovincies2012',
+  id: 'cbsprovincies201220160108113901332',
+  popupInfo: ''
 });
 
 var layersList = [lyr_cbsprovincies212];
@@ -50,7 +42,7 @@ var map = new ol.Map({
   layers: layersList,
   view: view,
   renderer: 'dom',
-  controls: [new ol.control.MousePosition({"projection": "EPSG:4326", "undefinedHTML": "&nbsp;", "coordinateFormat": ol.coordinate.createStringXY(4)})]
+  controls: [new ol.control.MousePosition({'projection': 'EPSG:4326', 'undefinedHTML': '&nbsp;', 'coordinateFormat': ol.coordinate.createStringXY(4)})]
 });
 
 class ProjectionApp extends App {
@@ -69,7 +61,7 @@ class ProjectionApp extends App {
       <article>
         <nav role='navigation'>
           <div className='toolbar'>
-            <a className="navbar-brand" href="#">My Web App</a>
+            <a className='navbar-brand' href='#'>My Web App</a>
           </div>
         </nav>
         <div id='content'>

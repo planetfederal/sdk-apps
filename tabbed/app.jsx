@@ -184,8 +184,8 @@ var map = new ol.Map({
             attributions: [
               new ol.Attribution({
                 html: 'Blank tiles: No attribution'
-              }),
-            ],
+              })
+            ]
           })
         })
       ]
