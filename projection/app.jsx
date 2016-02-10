@@ -4,6 +4,7 @@ import ol from 'openlayers';
 import {IntlProvider} from 'react-intl';
 import proj4 from 'proj4';
 import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
+import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
 import App from './node_modules/boundless-sdk/js/components/App.js';
 
 ol.proj.setProj4(proj4);
@@ -57,13 +58,12 @@ class ProjectionApp extends App {
     }));
   }
   render() {
+    var options = [{
+      jsx: (<a key='brand' className='navbar-brand' href='#'>My Web App</a>)
+    }];
     return (
       <article>
-        <nav role='navigation'>
-          <div className='toolbar'>
-            <a className='navbar-brand' href='#'>My Web App</a>
-          </div>
-        </nav>
+        <Toolbar options={options} /> 
         <div id='content'>
           <div id='map' ref='map'>
             <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>
