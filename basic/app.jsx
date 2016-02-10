@@ -226,26 +226,27 @@ class BasicApp extends App {
   }
   render() {
     var options = [{
-      jsx: (<div key='geocoding' id='geocoding' className='pull-right'><Geocoding /></div>)
+      jsx: (<div id='geocoding' className='pull-right'><Geocoding /></div>),
+      exclude: true
     }, {
-      title: 'Table',
+      text: 'Table',
       icon: 'list-alt',
       onClick: this._toggleTable.bind(this)
     }, {
-      title: 'Query',
+      text: 'Query',
       icon: 'filter',
       onClick: this._toggleQuery.bind(this)
     }, {
-      title: 'Chart',
+      text: 'Chart',
       onClick: this._toggleChart.bind(this)
     }, {
-      title: 'Edit',
+      text: 'Edit',
       icon: 'pencil',
       onClick: this._toggleEdit.bind(this)
     }, {
-      jsx: (<ul key='select' className='pull-right' id='toolbar-select'><Select toggleGroup='navigation' map={map}/></ul>)
+      jsx: (<Select toggleGroup='navigation' map={map}/>)
     }, {
-      title: 'Navigation',
+      text: 'Navigation',
       icon: 'hand-paper-o',
       onClick: this._navigationFunc.bind(this)
     }];
