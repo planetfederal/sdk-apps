@@ -6,6 +6,7 @@ import App from './node_modules/boundless-sdk/js/components/App.js';
 import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
 import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
 import QGISLegend from './node_modules/boundless-sdk/js/components/QGISLegend.jsx';
+import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
 import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
 
@@ -796,13 +797,12 @@ var map = new ol.Map({
 
 class LegendApp extends App {
   render() {
+    var options = [{
+      jsx: (<a key='brand' className='navbar-brand' href='#'>My Web App</a>)
+    }];
     return (
       <article>
-        <nav role='navigation'>
-          <div className='toolbar'>
-            <a className='navbar-brand' href='#'>My Web App</a>
-          </div>
-        </nav>
+        <Toolbar options={options} />
         <div id='content'>
           <div id='map' ref='map'>
             <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>
