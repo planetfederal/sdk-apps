@@ -59,7 +59,8 @@ class ProjectionApp extends App {
   }
   render() {
     var options = [{
-      jsx: (<a key='brand' className='navbar-brand' href='#'>My Web App</a>)
+      exclude: true,
+      jsx: (<a className='navbar-brand' href='#'>My Web App</a>)
     }];
     return (
       <article>
