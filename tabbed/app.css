@@ -1,7 +1,7 @@
 .modal-title {
   text-transform: none !important;
 }
-.toolbar ul {
+.toolbar button {
   margin-right: 12px;
   margin-top: 12px;
 }

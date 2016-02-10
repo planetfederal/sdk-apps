@@ -19,6 +19,7 @@ import ImageExport from './node_modules/boundless-sdk/js/components/ImageExport.
 import HomeButton from './node_modules/boundless-sdk/js/components/HomeButton.jsx';
 import AddLayer from './node_modules/boundless-sdk/js/components/AddLayer.jsx';
 import QGISPrint from './node_modules/boundless-sdk/js/components/QGISPrint.jsx';
+import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
 import BUTTON from 'pui-react-buttons';
 import UI from 'pui-react-tabs';
 import Icon from 'pui-react-iconography';
@@ -397,18 +398,25 @@ class TabbedApp extends App {
       displayMode: 1,
       operation: 2
     }];
+    var options = [{
+      jsx: (<ImageExport map={map} />)
+    }, {
+      jsx: (<Measure toggleGroup='navigation' map={map}/>)
+    }, {
+      jsx: (<AddLayer map={map} />)
+    }, {
+      jsx: (<QGISPrint map={map} layouts={printLayouts} />)
+    }, {
+      jsx: (<Select toggleGroup='navigation' map={map}/>)
+    }, {
+      text: formatMessage(messages.navigationbutton),
+      title: formatMessage(messages.navigationbuttontitle),
+      onClick: this._navigationFunc.bind(this),
+      icon: 'hand-paper-o'
+    }];
     return (
       <article>
-        <nav role='navigation'>
-          <div className='toolbar'>
-            <ul className='pull-right' id='toolbar-export'><ImageExport map={map} /></ul>
-            <ul className='pull-right' id='toolbar-measure'><Measure toggleGroup='navigation' map={map}/></ul>
-            <ul className='pull-right' id='toolbar-add-layer'><AddLayer map={map} /></ul>
-            <ul className='pull-right' id='toolbar-print'><QGISPrint map={map} layouts={printLayouts} /></ul>
-            <ul className='pull-right' id='toolbar-select'><Select toggleGroup='navigation' map={map}/></ul>
-            <ul className='pull-right' id='toolbar-navigation'><BUTTON.DefaultButton title={formatMessage(messages.navigationbuttontitle)} onClick={this._navigationFunc.bind(this)}> <Icon.Icon name="hand-paper-o" /> {formatMessage(messages.navigationbutton)}</BUTTON.DefaultButton></ul>
-          </div>
-        </nav>
+        <Toolbar options={options} />
         <div id='content'>
           <div className='row full-height'>
             <div className='col-md-9 full-height' id='tabs-panel'>
