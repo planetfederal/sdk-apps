@@ -10,9 +10,9 @@ import Select from './node_modules/boundless-sdk/js/components/Select.jsx';
 import QueryBuilder from './node_modules/boundless-sdk/js/components/QueryBuilder.jsx';
 import FeatureTable from './node_modules/boundless-sdk/js/components/FeatureTable.jsx';
 import Chart from './node_modules/boundless-sdk/js/components/Chart.jsx';
+import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
 import UI from 'pui-react-buttons';
 import Icon from 'pui-react-iconography';
-import BUTTON from 'pui-react-buttons';
 import Edit from './node_modules/boundless-sdk/js/components/Edit.jsx';
 import Globe from './node_modules/boundless-sdk/js/components/Globe.jsx';
 import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
@@ -225,19 +225,33 @@ class BasicApp extends App {
     ToolActions.activateTool(null, 'navigation');
   }
   render() {
+    var options = [{
+      jsx: (<div key='geocoding' id='geocoding' className='pull-right'><Geocoding /></div>)
+    }, {
+      title: 'Table',
+      icon: 'list-alt',
+      onClick: this._toggleTable.bind(this)
+    }, {
+      title: 'Query',
+      icon: 'filter',
+      onClick: this._toggleQuery.bind(this)
+    }, {
+      title: 'Chart',
+      onClick: this._toggleChart.bind(this)
+    }, {
+      title: 'Edit',
+      icon: 'pencil',
+      onClick: this._toggleEdit.bind(this)
+    }, {
+      jsx: (<ul key='select' className='pull-right' id='toolbar-select'><Select toggleGroup='navigation' map={map}/></ul>)
+    }, {
+      title: 'Navigation',
+      icon: 'hand-paper-o',
+      onClick: this._navigationFunc.bind(this)
+    }];
     return (
       <article>
-        <nav role='navigation'>
-          <div className='toolbar'>
-            <div id='geocoding' className='pull-right'><Geocoding /></div>
-            <ul className='pull-right' id='toolbar-table'><UI.DefaultButton onClick={this._toggleTable.bind(this)} title="Attributes table"><Icon.Icon name="list-alt" /> Table</UI.DefaultButton></ul>
-            <ul className='pull-right' id='toolbar-query'><UI.DefaultButton onClick={this._toggleQuery.bind(this)}><Icon.Icon name="filter" /> Query</UI.DefaultButton></ul>
-            <ul className='pull-right' id='toolbar-chart'><UI.DefaultButton onClick={this._toggleChart.bind(this)}> Chart</UI.DefaultButton></ul>
-            <ul className='pull-right' id='toolbar-edit'><UI.DefaultButton onClick={this._toggleEdit.bind(this)}><Icon.Icon name="pencil" /> Edit</UI.DefaultButton></ul>
-            <ul className='pull-right' id='toolbar-select'><Select toggleGroup='navigation' map={map}/></ul>
-            <ul className='pull-right' id='toolbar-navigation'><BUTTON.DefaultButton onClick={this._navigationFunc.bind(this)}> <Icon.Icon name="hand-paper-o" /> Navigation</BUTTON.DefaultButton></ul>
-          </div>
-        </nav>
+        <Toolbar options={options} />
         <div id='content'>
           <div ref='map' id='map'>
             <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>

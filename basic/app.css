@@ -14,7 +14,7 @@
   max-width: 50%;
   z-index: 1111;
 }
-.toolbar ul {
+.toolbar button {
   margin-top: 12px;
 }
 #geocoding {
