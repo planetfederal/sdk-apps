@@ -42,7 +42,7 @@ class MyApp extends App {
     return (
       <article>
         <div ref='map' id='map'></div>
-        <div><LayerList expandOnHover={false} map={map} /></div>
+        <div><LayerList wmsUrl='http://localhost:8080/geoserver/wms?' addWMS={true} expandOnHover={false} map={map} /></div>
         <div id='home-button' className='ol-unselectable ol-control'><HomeButton map={map} /></div>
       </article>
     );
