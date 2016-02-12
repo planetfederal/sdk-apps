@@ -5,6 +5,7 @@ import {addLocaleData, IntlProvider} from 'react-intl';
 import App from './node_modules/boundless-sdk/js/components/app.js';
 import HomeButton from './node_modules/boundless-sdk/js/components/HomeButton.jsx';
 import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
+import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
 import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
 
@@ -39,8 +40,14 @@ var map = new ol.Map({
 
 class MyApp extends App {
   render() {
+    var options = [{
+      exclude: true,
+      pullRight: false,
+      jsx: (<article><img src="logo.svg" width="30" height="30"></img><span className='app-title'>Basemaps</span></article>)
+    }];
     return (
       <article>
+        <Toolbar options={options} />
         <div ref='map' id='map'></div>
         <div><LayerList wmsUrl='http://localhost:8080/geoserver/wms?' addWMS={true} expandOnHover={false} map={map} /></div>
         <div id='home-button' className='ol-unselectable ol-control'><HomeButton map={map} /></div>
