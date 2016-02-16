@@ -238,6 +238,7 @@ class BasicApp extends App {
       onClick: this._toggleQuery.bind(this)
     }, {
       text: 'Chart',
+      icon: 'bar-chart',
       onClick: this._toggleChart.bind(this)
     }, {
       text: 'Edit',
