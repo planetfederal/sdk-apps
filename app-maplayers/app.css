@@ -29,3 +29,16 @@ html, body, article {
   font-size: 25px;
   color: white;
 }
+.btn-default, .btn-default:hover {
+  color: #00A78D;
+}
+.open .btn-default.dropdown-toggle {
+  color: #00A78D;
+}
+.dropdown-menu>li>a:hover {
+  color: #00A78D;
+}
+.toolbar button {
+  margin-top: 5px;
+  margin-right: 5px;
+}
