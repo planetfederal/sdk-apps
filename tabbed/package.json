@@ -20,9 +20,9 @@
     "boundless-sdk": "git+https://github.com/boundlessgeo/sdk.git",
     "react": "0.14.3",
     "react-dom": "0.14.3",
-    "pui-react-buttons": "3.0.0-alpha.2",
-    "pui-react-tabs": "3.0.0-alpha.2",
-    "pui-react-iconography": "3.0.0-alpha.2",
+    "pui-react-buttons": "3.2.0",
+    "pui-react-tabs": "3.2.0",
+    "pui-react-iconography": "3.2.0",
     "openlayers": "~3.13.0",
     "react-intl": "2.0.0-beta-2"
   },
