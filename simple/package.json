@@ -18,8 +18,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "boundless-sdk": "git+https://github.com/boundlessgeo/sdk.git",
-    "react": "0.14.3",
-    "react-dom": "0.14.3",
+    "react": "0.14.7",
+    "react-dom": "0.14.7",
     "openlayers": "~3.13.0",
     "react-intl": "2.0.0-beta-2"
   },
