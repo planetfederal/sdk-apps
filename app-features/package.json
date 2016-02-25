@@ -1,15 +1,22 @@
 {
-  "name": "app-basemap",
-  "version": "0.0.0",
+  "name": "app-features",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boundlessgeo/sdk-apps.git"
+  },
   "scripts": {
     "createdir": "node createbuild.js",
     "start:debug": "node debug-server.js",
+    "start:proxy": "node_modules/.bin/json-http-proxy -p 4000",
     "start": "node_modules/.bin/npm-run-all createdir start:debug",
     "build:js": "node_modules/.bin/browserify -g [envify --NODE_ENV production] -p [minifyify --no-map --exclude node_modules/openlayers/dist/ol.js] app.jsx -o build/app.js",
     "build": "node_modules/.bin/npm-run-all createdir build:js",
     "createzip": "node createpackage.js",
     "package": "node_modules/.bin/npm-run-all build createzip"
   },
+  "author": "Boundless Spatial, Inc.",
+  "license": "Apache-2.0",
   "dependencies": {
     "boundless-sdk": "git+https://github.com/boundlessgeo/sdk.git",
     "openlayers": "3.13.1",
@@ -25,6 +32,7 @@
     "cssify": "^0.8.0",
     "envify": "^3.4.0",
     "fs-extra": "0.26.2",
+    "json-http-proxy": "1.0.0-ALPHA-4",
     "minifyify": "^7.1.0",
     "npm-run-all": "1.3.1",
     "readline": "1.3.0",
