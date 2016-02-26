@@ -1,6 +1,10 @@
 {
   "name": "app-basemap",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boundlessgeo/sdk-apps.git"
+  },
   "scripts": {
     "createdir": "node createbuild.js",
     "start:debug": "node debug-server.js",
@@ -11,6 +15,8 @@
     "createzip": "node createpackage.js",
     "package": "node_modules/.bin/npm-run-all build createzip"
   },
+  "author": "Boundless Spatial, Inc.",
+  "license": "Apache-2.0",
   "dependencies": {
     "boundless-sdk": "git+https://github.com/boundlessgeo/sdk.git",
     "openlayers": "3.13.1",
