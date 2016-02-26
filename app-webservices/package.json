@@ -1,16 +1,19 @@
 {
   "name": "app-webservices",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "Web Services Training Application",
   "scripts": {
     "createdir": "node createbuild.js",
     "start:debug": "node debug-server.js",
     "start:proxy": "node_modules/.bin/json-http-proxy -p 4000",
     "start": "node_modules/.bin/npm-run-all createdir start:debug",
-    "build:js": "node_modules/.bin/browserify -g [envify --NODE_ENV production] -p [minifyify --no-map --exclude node_modules/openlayers/dist/ol.js] app.jsx -o build/app.js",
+    "build:js": "node_modules/.bin/browserify -g [envify --NODE_ENV production] -p [minifyify --no-map --exclude ../../sdk/node_modules/openlayers/dist/ol.js --exclude node_modules/openlayers/dist/ol.js] app.jsx -o build/app.js",
     "build": "node_modules/.bin/npm-run-all createdir build:js",
     "createzip": "node createpackage.js",
     "package": "node_modules/.bin/npm-run-all build createzip"
   },
+  "author": "Boundless Spatial, Inc.",
+  "license": "Apache-2.0",
   "dependencies": {
     "boundless-sdk": "git+https://github.com/boundlessgeo/sdk.git",
     "openlayers": "3.13.1",

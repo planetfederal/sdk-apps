@@ -1,6 +1,7 @@
 {
   "name": "app-basemap",
   "version": "0.1.0",
+  "description": "Base Map Training Application",
   "repository": {
     "type": "git",
     "url": "https://github.com/boundlessgeo/sdk-apps.git"

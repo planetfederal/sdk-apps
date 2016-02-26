@@ -1,6 +1,7 @@
 {
   "name": "app-features",
   "version": "0.1.0",
+  "description": "Features Training Application",
   "repository": {
     "type": "git",
     "url": "https://github.com/boundlessgeo/sdk-apps.git"
