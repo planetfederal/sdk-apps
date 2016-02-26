@@ -52,13 +52,13 @@ class MyApp extends App {
     }, {
       exclude: true,
       pullRight: false,
-      jsx: (<article><img src="logo.svg" width="30" height="30"></img><span className='app-title'>Map Layers</span></article>)
+      jsx: (<article><img src="resources/logo.svg" width="30" height="30"></img><span className='app-title'>Map Layers</span></article>)
     }];
     return (
       <article>
         <Toolbar options={options} />
         <div ref='map' id='map'></div>
-        <div><LayerList showZoomTo={true} allowReordering={true} addLayer={{url: 'http://localhost:8080/geoserver/wms?'}} expandOnHover={false} map={map} /></div>
+        <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} addLayer={{url: '/geoserver/wms?'}} expandOnHover={false} map={map} /></div>
         <div id='home-button' className='ol-unselectable ol-control'><HomeButton map={map} /></div>
       </article>
     );
