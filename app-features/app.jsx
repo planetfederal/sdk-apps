@@ -7,6 +7,7 @@ import HomeButton from './node_modules/boundless-sdk/js/components/HomeButton.js
 import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
 import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
 import EditPopup from './node_modules/boundless-sdk/js/components/EditPopup.jsx';
+import WFST from './node_modules/boundless-sdk/js/components/WFST.jsx';
 import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
 
@@ -59,6 +60,7 @@ class MyApp extends App {
         <div><LayerList allowStyling={true} editingToggleGroup='navigation' showOnStart={true} showZoomTo={true} allowEditing={true} allowReordering={true} addLayer={{url: '/geoserver/wfs?', asVector: true}} expandOnHover={false} map={map} /></div>
         <div id='home-button' className='ol-unselectable ol-control'><HomeButton map={map} /></div>
         <div id='popup' className='ol-popup'><EditPopup map={map} /></div>
+        <div id='wfst'><WFST layerSelector={false} visible={false} map={map} /></div>
       </article>
     );
   }

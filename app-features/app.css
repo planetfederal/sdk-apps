@@ -29,3 +29,11 @@ html, body, article {
   font-size: 25px;
   color: white;
 }
+#wfst {
+  padding: 5px;
+  background-color: white;
+  max-width: 200px;
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+}
