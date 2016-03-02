@@ -49,7 +49,7 @@ class MyApp extends App {
       <article>
         <Toolbar options={options} />
         <div ref='map' id='map'></div>
-        <div><LayerList showZoomTo={true} allowStyling={true} allowReordering={true} addLayer={{url: '/geoserver/wfs?', asVector: true}} expandOnHover={false} map={map} /></div>
+        <div><LayerList showOnStart={true} showZoomTo={true} allowStyling={true} allowReordering={true} addLayer={{url: '/geoserver/wfs?', asVector: true}} expandOnHover={false} map={map} /></div>
         <div id='home-button' className='ol-unselectable ol-control'><HomeButton map={map} /></div>
       </article>
     );
