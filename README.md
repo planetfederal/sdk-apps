@@ -10,9 +10,9 @@ Use node version 4.2.2.
 
 ```npm run build``` will create the minified js file for production use
 
-```npm start``` will start up the debug server at http://localhost:3000/app.html
+```npm start``` will start up the debug server at http://localhost:3000/
 
-http://localhost:3000/app-production.html will show the production version of the app.
+```npm run package``` will generate a production version of the application.
 
 # Linking to a github directory of the sdk
 Go to the directory of your sdk git checkout and type:
