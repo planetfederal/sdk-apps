@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import App from './node_modules/boundless-sdk/js/components/app.js';
+import App from './node_modules/boundless-sdk/js/components/App.js';
 import HomeButton from './node_modules/boundless-sdk/js/components/HomeButton.jsx';
 import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
 import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
