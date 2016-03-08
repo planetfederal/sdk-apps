@@ -52,7 +52,7 @@ var styleAirports = function() {
       anchorXUnits: 'fraction',
       anchorYUnits: 'fraction',
       anchor: [0.5, 0.5],
-      src: '../../data/styles/plane.svg'
+      src: './data/styles/plane.svg'
     })
   })];
   var labelText = '';
@@ -198,7 +198,7 @@ var map = new ol.Map({
       style: styleTrees,
       source: new ol.source.Vector({
         format: new ol.format.GeoJSON(),
-        url: '../../data/trees.json'
+        url: './data/trees.json'
       })
     }),
     new ol.layer.Vector({
@@ -209,7 +209,7 @@ var map = new ol.Map({
       source: new ol.source.Cluster({
         source: new ol.source.Vector({
           format: new ol.format.GeoJSON(),
-          url: '../../data/popp.json'
+          url: './data/popp.json'
         })
       })
     }),
@@ -220,7 +220,7 @@ var map = new ol.Map({
       style: styleAirports,
       source: new ol.source.Vector({
         format: new ol.format.GeoJSON(),
-        url: '../../data/airports.json'
+        url: './data/airports.json'
       })
     })
   ],
