@@ -64,7 +64,7 @@ class ProjectionApp extends App {
     }];
     return (
       <article>
-        <Toolbar options={options} /> 
+        <Toolbar options={options} />
         <div id='content'>
           <div id='map' ref='map'>
             <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>

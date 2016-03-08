@@ -11,8 +11,6 @@ import QueryBuilder from './node_modules/boundless-sdk/js/components/QueryBuilde
 import FeatureTable from './node_modules/boundless-sdk/js/components/FeatureTable.jsx';
 import Chart from './node_modules/boundless-sdk/js/components/Chart.jsx';
 import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
-import UI from 'pui-react-buttons';
-import Icon from 'pui-react-iconography';
 import Edit from './node_modules/boundless-sdk/js/components/Edit.jsx';
 import Globe from './node_modules/boundless-sdk/js/components/Globe.jsx';
 import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
