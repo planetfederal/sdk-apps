@@ -15,7 +15,7 @@ addLocaleData(
 var vectorSource = new ol.source.Vector({
   format: new ol.format.GeoJSON(),
   url: function(extent, resolution, projection) {
-    return 'http://localhost:8080/geoserver/wfs?service=WFS&' +
+    return '/geoserver/wfs?service=WFS&' +
         'version=1.1.0&request=GetFeature&typename=sf:states&' +
         'outputFormat=application/json&srsname=EPSG:3857&' +
         'bbox=' + extent.join(',') + ',EPSG:3857';
@@ -34,7 +34,7 @@ var vector = new ol.layer.Vector({
     featureType: 'states',
     geometryType: 'MultiPolygon',
     geometryName: 'the_geom',
-    url: 'http://localhost:8080/geoserver/wfs'
+    url: '/geoserver/wfs'
   },
   isWFST: true,
   title: 'WFST layer',
