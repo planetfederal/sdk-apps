@@ -21,8 +21,8 @@ import AddLayer from './node_modules/boundless-sdk/js/components/AddLayer.jsx';
 import QGISPrint from './node_modules/boundless-sdk/js/components/QGISPrint.jsx';
 import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
 import UI from 'pui-react-tabs';
-import nlLocaleData from './node_modules/react-intl/dist/locale-data/nl.js';
-import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
+import nlLocaleData from './node_modules/react-intl/locale-data/nl.js';
+import enLocaleData from './node_modules/react-intl/locale-data/en.js';
 import nlMessages from './node_modules/boundless-sdk/locale/nl.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
 
