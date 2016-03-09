@@ -8,7 +8,7 @@ import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx'
 import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
 import EditPopup from './node_modules/boundless-sdk/js/components/EditPopup.jsx';
 import WFST from './node_modules/boundless-sdk/js/components/WFST.jsx';
-import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
+import enLocaleData from './node_modules/react-intl/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
 
 addLocaleData(

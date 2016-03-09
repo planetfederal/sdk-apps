@@ -5,7 +5,7 @@ import {addLocaleData, IntlProvider} from 'react-intl';
 import UI from 'pui-react-buttons';
 import App from './node_modules/boundless-sdk/js/components/app.js';
 import WFST from './node_modules/boundless-sdk/js/components/WFST.jsx';
-import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
+import enLocaleData from './node_modules/react-intl/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
 
 addLocaleData(

@@ -6,7 +6,7 @@ import App from './node_modules/boundless-sdk/js/components/app.js';
 import HomeButton from './node_modules/boundless-sdk/js/components/HomeButton.jsx';
 import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
 import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
-import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
+import enLocaleData from './node_modules/react-intl/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
 
 addLocaleData(

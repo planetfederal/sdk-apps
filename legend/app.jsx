@@ -7,7 +7,7 @@ import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx'
 import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
 import QGISLegend from './node_modules/boundless-sdk/js/components/QGISLegend.jsx';
 import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
-import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
+import enLocaleData from './node_modules/react-intl/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
 
 addLocaleData(

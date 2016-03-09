@@ -15,7 +15,7 @@ import Edit from './node_modules/boundless-sdk/js/components/Edit.jsx';
 import Globe from './node_modules/boundless-sdk/js/components/Globe.jsx';
 import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
 import ToolActions from './node_modules/boundless-sdk/js/actions/ToolActions.js';
-import enLocaleData from './node_modules/react-intl/dist/locale-data/en.js';
+import enLocaleData from './node_modules/react-intl/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
 
 addLocaleData(
