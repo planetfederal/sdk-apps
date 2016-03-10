@@ -20,6 +20,7 @@ import HomeButton from './node_modules/boundless-sdk/js/components/HomeButton.js
 import AddLayer from './node_modules/boundless-sdk/js/components/AddLayer.jsx';
 import QGISPrint from './node_modules/boundless-sdk/js/components/QGISPrint.jsx';
 import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
+import Login from './node_modules/boundless-sdk/js/components/Login.jsx';
 import UI from 'pui-react-tabs';
 import nlLocaleData from './node_modules/react-intl/locale-data/nl.js';
 import enLocaleData from './node_modules/react-intl/locale-data/en.js';
@@ -397,6 +398,8 @@ class TabbedApp extends App {
       operation: 2
     }];
     var options = [{
+      jsx: (<Login />)
+    }, {
       jsx: (<ImageExport map={map} />)
     }, {
       jsx: (<Measure toggleGroup='navigation' map={map}/>)
@@ -428,7 +431,7 @@ class TabbedApp extends App {
             <div className='col-md-15 full-height'>
               <div id='map' ref='map'></div>
               <LoadingPanel map={map} />
-              <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
+              <div id='layerlist'><LayerList addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
               <div id='legend'><QGISLegend map={map} legendBasePath='../../resources/legend/' legendData={legendData} /></div>
               <div id='geolocation-control' className='ol-unselectable ol-control'><Geolocation map={map} /></div>
               <div id='home-button' className='ol-unselectable ol-control'><HomeButton map={map} /></div>
