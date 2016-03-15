@@ -9,10 +9,10 @@
   "scripts": {
     "createdir": "node createbuild.js",
     "start:debug": "node debug-server.js",
-    "start": "node_modules/.bin/npm-run-all --parallel createdir start:debug",
+    "start": "node_modules/.bin/npm-run-all createdir start:debug",
     "start:proxy": "node_modules/.bin/json-http-proxy -p 4000",
     "build:js": "node_modules/.bin/browserify -g [envify --NODE_ENV production] -p [minifyify --no-map --exclude node_modules/openlayers/dist/ol.js] app.jsx -o build/app.js",
-    "build": "node_modules/.bin/npm-run-all --parallel createdir build:js",
+    "build": "node_modules/.bin/npm-run-all createdir build:js",
     "test": "eslint app.jsx --ext .jsx,.js",
     "createzip": "node createpackage.js",
     "package": "node_modules/.bin/npm-run-all build createzip"
