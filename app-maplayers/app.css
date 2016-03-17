@@ -18,7 +18,7 @@ html, body, article {
 }
 .toolbar {
   height: 50px;
-  background-color: #00A78D;
+  background-color: #29728C;
 }
 .toolbar article {
   padding-top: 5px;
@@ -30,10 +30,10 @@ html, body, article {
   color: white;
 }
 .btn-default, .btn-default:hover {
-  color: #00A78D;
+  color: #29728C;
 }
 .open .btn-default.dropdown-toggle {
-  color: #00A78D;
+  color: #29728C;
 }
 .dropdown-menu>li>a:hover {
   color: #00A78D;
