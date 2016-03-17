@@ -22,20 +22,6 @@
   margin-top: 12px;
   margin-right: 5px;
 }
-
-#geocoding .form-group{
-  display: inline-flex;
-}
-.fa.fa-search{
-  font-size: 20px;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-right: 10px;
-  border: 1px solid #CCCCCC;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  background-color: #CCCCCC;
-}
 html, body {
   height: 100%;
   padding: 0;

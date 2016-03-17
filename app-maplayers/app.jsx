@@ -58,7 +58,7 @@ class MyApp extends App {
       <article>
         <Toolbar options={options} />
         <div ref='map' id='map'></div>
-        <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} addLayer={{url: 'http://demo.boundlessgeo.com/geoserver/wms?'}} expandOnHover={false} map={map} /></div>
+        <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} addLayer={{url: '/geoserver/wms?'}} expandOnHover={false} map={map} /></div>
         <div id='home-button' className='ol-unselectable ol-control'><HomeButton map={map} /></div>
       </article>
     );

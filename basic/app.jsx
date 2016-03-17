@@ -224,7 +224,7 @@ class BasicApp extends App {
   }
   render() {
     var options = [{
-      jsx: (<div id='geocoding' className='geosearch'><Geocoding /></div>),
+      jsx: (<div id='geocoding' className='pull-right'><Geocoding /></div>),
       exclude: true
     }, {
       text: 'Table',
