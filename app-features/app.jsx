@@ -57,7 +57,7 @@ class MyApp extends App {
       <article>
         <Toolbar options={options} />
         <div ref='map' id='map'></div>
-        <div><LayerList allowStyling={true} showOnStart={true} showZoomTo={true} allowEditing={true} allowReordering={true} addLayer={{url: '/geoserver/wfs?', asVector: true}} expandOnHover={false} map={map} /></div>
+        <div><LayerList allowStyling={true} showOnStart={true} showZoomTo={true} allowEditing={true} allowReordering={true} addLayer={{url: 'http://demo.boundlessgeo.com/geoserver/wms?', asVector: true}} expandOnHover={false} map={map} /></div>
         <div id='home-button' className='ol-unselectable ol-control'><HomeButton map={map} /></div>
         <div id='popup' className='ol-popup'><EditPopup map={map} /></div>
         <div id='wfst'><WFST layerSelector={false} visible={false} map={map} /></div>
