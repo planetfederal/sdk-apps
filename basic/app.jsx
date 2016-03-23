@@ -10,6 +10,7 @@ import Select from './node_modules/boundless-sdk/js/components/Select.jsx';
 import QueryBuilder from './node_modules/boundless-sdk/js/components/QueryBuilder.jsx';
 import FeatureTable from './node_modules/boundless-sdk/js/components/FeatureTable.jsx';
 import Chart from './node_modules/boundless-sdk/js/components/Chart.jsx';
+import MapConfig from './node_modules/boundless-sdk/js/components/MapConfig.jsx';
 import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
 import Edit from './node_modules/boundless-sdk/js/components/Edit.jsx';
 import Globe from './node_modules/boundless-sdk/js/components/Globe.jsx';
@@ -226,6 +227,8 @@ class BasicApp extends App {
     var options = [{
       jsx: (<div id='geocoding' className='pull-right'><Geocoding /></div>),
       exclude: true
+    }, {
+      jsx: (<MapConfig map={map}/>)
     }, {
       text: 'Table',
       icon: 'list-alt',
