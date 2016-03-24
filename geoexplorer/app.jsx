@@ -15,6 +15,7 @@ import QueryBuilder from './node_modules/boundless-sdk/js/components/QueryBuilde
 import Geolocation from './node_modules/boundless-sdk/js/components/Geolocation.jsx';
 import ImageExport from './node_modules/boundless-sdk/js/components/ImageExport.jsx';
 import HomeButton from './node_modules/boundless-sdk/js/components/HomeButton.jsx';
+import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
 import AddLayer from './node_modules/boundless-sdk/js/components/AddLayer.jsx';
 import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
 import Login from './node_modules/boundless-sdk/js/components/Login.jsx';
@@ -132,7 +133,7 @@ class TabbedApp extends App {
           <div className='row full-height'>
             <div className='col-md-9 full-height' id='tabs-panel'>
               <UI.SimpleTabs defaultActiveKey={1}>
-                <UI.Tab eventKey={1} title={formatMessage(messages.layerstab)}><div id='layerlist'><LayerList expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></UI.Tab>
+                <UI.Tab eventKey={1} title={formatMessage(messages.layerstab)}><div id='layerlist'><LayerList allowStyling={true} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></UI.Tab>
                 <UI.Tab eventKey={2} title={formatMessage(messages.geocodingtab)}><div id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></UI.Tab>
                 <UI.Tab eventKey={3} title={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></UI.Tab>
               </UI.SimpleTabs>
@@ -140,6 +141,7 @@ class TabbedApp extends App {
             <div className='col-md-15 full-height'>
               <div id='map' ref='map'></div>
               <LoadingPanel map={map} />
+              <div id='popup' className='ol-popup'><InfoPopup infoFormat='application/vnd.ogc.gml' toggleGroup='navigation' map={map} /></div>
               <div id='geolocation-control' className='ol-unselectable ol-control'><Geolocation map={map} /></div>
               <div id='home-button' className='ol-unselectable ol-control'><HomeButton map={map} /></div>
             </div>
