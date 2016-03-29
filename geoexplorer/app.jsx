@@ -18,6 +18,7 @@ import HomeButton from './node_modules/boundless-sdk/js/components/HomeButton.js
 import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
 import AddLayer from './node_modules/boundless-sdk/js/components/AddLayer.jsx';
 import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
+import Legend from './node_modules/boundless-sdk/js/components/Legend.jsx';
 import Login from './node_modules/boundless-sdk/js/components/Login.jsx';
 import UI from 'pui-react-tabs';
 import enLocaleData from './node_modules/react-intl/locale-data/en.js';
@@ -66,6 +67,11 @@ var map = new ol.Map({
 });
 
 const messages = defineMessages({
+  legendtab: {
+    id: 'app.legendtab',
+    description: 'Title of the legend tab',
+    defaultMessage: 'Legend'
+  },
   geocodingtab: {
     id: 'app.geocodingtab',
     description: 'Title of the geocoding tab',
@@ -102,7 +108,7 @@ enMessages['app.navigationbuttontitle'] = 'Go to map navigation (zoom and pan)';
 var locale = 'en';
 var i18n = enMessages;
 
-class TabbedApp extends App {
+class GeoExplorer extends App {
   _navigationFunc() {
     ToolActions.activateTool(null, 'navigation');
   }
@@ -134,8 +140,9 @@ class TabbedApp extends App {
             <div className='col-md-9 full-height' id='tabs-panel'>
               <UI.SimpleTabs defaultActiveKey={1}>
                 <UI.Tab eventKey={1} title={formatMessage(messages.layerstab)}><div id='layerlist'><LayerList allowStyling={true} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></UI.Tab>
-                <UI.Tab eventKey={2} title={formatMessage(messages.geocodingtab)}><div id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></UI.Tab>
-                <UI.Tab eventKey={3} title={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></UI.Tab>
+                <UI.Tab eventKey={2} title={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></UI.Tab>
+                <UI.Tab eventKey={3} title={formatMessage(messages.geocodingtab)}><div id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></UI.Tab>
+                <UI.Tab eventKey={4} title={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></UI.Tab>
               </UI.SimpleTabs>
             </div>
             <div className='col-md-15 full-height'>
@@ -152,7 +159,7 @@ class TabbedApp extends App {
   }
 }
 
-TabbedApp.propTypes = {
+GeoExplorer.propTypes = {
   /**
    * i18n message strings. Provided through the application through context.
    */
@@ -160,6 +167,6 @@ TabbedApp.propTypes = {
 };
 
 
-TabbedApp = injectIntl(TabbedApp);
+GeoExplorer = injectIntl(GeoExplorer);
 
-ReactDOM.render(<IntlProvider locale={locale} messages={i18n}><TabbedApp map={map} /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale={locale} messages={i18n}><GeoExplorer map={map} /></IntlProvider>, document.getElementById('main'));
