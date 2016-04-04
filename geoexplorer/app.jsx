@@ -61,6 +61,7 @@ var map = new ol.Map({
       ]
     })
   ],
+  controls: ol.control.defaults().extend([new ol.control.ScaleLine()]),
   view: new ol.View({
     center: [0, 0],
     zoom: 2
