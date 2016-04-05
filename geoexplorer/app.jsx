@@ -10,6 +10,7 @@ import Measure from './node_modules/boundless-sdk/js/components/Measure.jsx';
 import LoadingPanel from './node_modules/boundless-sdk/js/components/LoadingPanel.jsx';
 import MapConfig from './node_modules/boundless-sdk/js/components/MapConfig.jsx';
 import Select from './node_modules/boundless-sdk/js/components/Select.jsx';
+import WFST from './node_modules/boundless-sdk/js/components/WFST.jsx';
 import QueryBuilder from './node_modules/boundless-sdk/js/components/QueryBuilder.jsx';
 import Geolocation from './node_modules/boundless-sdk/js/components/Geolocation.jsx';
 import HomeButton from './node_modules/boundless-sdk/js/components/HomeButton.jsx';
@@ -87,6 +88,11 @@ const messages = defineMessages({
     description: 'Title of the query tab',
     defaultMessage: 'Query'
   },
+  wfsttab: {
+    id: 'geoexplorer.wfsttab',
+    description: 'Title of the wfst tab',
+    defaultMessage: 'Edit'
+  },
   navigationbutton: {
     id: 'geoexplorer.navigationbutton',
     description: 'Text of the Navigation button',
@@ -135,6 +141,7 @@ class GeoExplorer extends App {
                 <UI.Tab eventKey={2} title={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></UI.Tab>
                 <UI.Tab eventKey={3} title={formatMessage(messages.attributestab)}><div id="attributes-table-tab"><FeatureTable resizeTo='tabs-panel' offset={[50, 60]} map={map} /></div></UI.Tab>
                 <UI.Tab eventKey={4} title={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></UI.Tab>
+                <UI.Tab eventKey={5} title={formatMessage(messages.wfsttab)}><WFST map={map} /></UI.Tab>
               </UI.SimpleTabs>
             </div>
             <div className='col-md-15 full-height'>
