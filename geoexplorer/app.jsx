@@ -6,19 +6,17 @@ import App from './node_modules/boundless-sdk/js/components/App.js';
 import ToolActions from './node_modules/boundless-sdk/js/actions/ToolActions.js';
 import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
 import FeatureTable from './node_modules/boundless-sdk/js/components/FeatureTable.jsx';
-import Geocoding from './node_modules/boundless-sdk/js/components/Geocoding.jsx';
-import GeocodingResults from './node_modules/boundless-sdk/js/components/GeocodingResults.jsx';
 import Measure from './node_modules/boundless-sdk/js/components/Measure.jsx';
 import LoadingPanel from './node_modules/boundless-sdk/js/components/LoadingPanel.jsx';
 import MapConfig from './node_modules/boundless-sdk/js/components/MapConfig.jsx';
 import Select from './node_modules/boundless-sdk/js/components/Select.jsx';
 import QueryBuilder from './node_modules/boundless-sdk/js/components/QueryBuilder.jsx';
 import Geolocation from './node_modules/boundless-sdk/js/components/Geolocation.jsx';
-import ImageExport from './node_modules/boundless-sdk/js/components/ImageExport.jsx';
 import HomeButton from './node_modules/boundless-sdk/js/components/HomeButton.jsx';
 import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
 import AddLayer from './node_modules/boundless-sdk/js/components/AddLayer.jsx';
 import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
+import Globe from './node_modules/boundless-sdk/js/components/Globe.jsx';
 import Legend from './node_modules/boundless-sdk/js/components/Legend.jsx';
 import Login from './node_modules/boundless-sdk/js/components/Login.jsx';
 import UI from 'pui-react-tabs';
@@ -77,12 +75,7 @@ const messages = defineMessages({
   attributestab: {
     id: 'geoexplorer.attributestab',
     description: 'Title of the attributes table tab',
-    defaultMessage: 'Attributes table'
-  },
-  geocodingtab: {
-    id: 'geoexplorer.geocodingtab',
-    description: 'Title of the geocoding tab',
-    defaultMessage: 'Geocoding'
+    defaultMessage: 'Table'
   },
   layerstab: {
     id: 'geoexplorer.layerstab',
@@ -118,10 +111,6 @@ class GeoExplorer extends App {
     var options = [{
       jsx: (<Login />)
     }, {
-      jsx: (<MapConfig map={map}/>)
-    }, {
-      jsx: (<ImageExport map={map} />)
-    }, {
       jsx: (<Measure toggleGroup='navigation' map={map}/>)
     }, {
       jsx: (<AddLayer map={map} />)
@@ -132,6 +121,8 @@ class GeoExplorer extends App {
       title: formatMessage(messages.navigationbuttontitle),
       onClick: this._navigationFunc.bind(this),
       icon: 'hand-paper-o'
+    }, {
+      jsx: (<MapConfig map={map}/>)
     }];
     return (
       <article>
@@ -143,13 +134,13 @@ class GeoExplorer extends App {
                 <UI.Tab eventKey={1} title={formatMessage(messages.layerstab)}><div id='layerlist'><LayerList allowStyling={true} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></UI.Tab>
                 <UI.Tab eventKey={2} title={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></UI.Tab>
                 <UI.Tab eventKey={3} title={formatMessage(messages.attributestab)}><div id="attributes-table-tab"><FeatureTable resizeTo='tabs-panel' offset={[50, 60]} map={map} /></div></UI.Tab>
-                <UI.Tab eventKey={4} title={formatMessage(messages.geocodingtab)}><div id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></UI.Tab>
-                <UI.Tab eventKey={5} title={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></UI.Tab>
+                <UI.Tab eventKey={4} title={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></UI.Tab>
               </UI.SimpleTabs>
             </div>
             <div className='col-md-15 full-height'>
               <div id='map' ref='map'></div>
               <LoadingPanel map={map} />
+              <div id='globe-button' className='ol-unselectable ol-control'><Globe map={map} /></div>
               <div id='popup' className='ol-popup'><InfoPopup infoFormat='application/vnd.ogc.gml' toggleGroup='navigation' map={map} /></div>
               <div id='geolocation-control' className='ol-unselectable ol-control'><Geolocation map={map} /></div>
               <div id='home-button' className='ol-unselectable ol-control'><HomeButton map={map} /></div>
