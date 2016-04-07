@@ -16,7 +16,7 @@ var vectorSource = new ol.source.Vector({
   format: new ol.format.GeoJSON(),
   url: function(extent, resolution, projection) {
     return '/geoserver/wfs?service=WFS&' +
-        'version=1.1.0&request=GetFeature&typename=sf:states&' +
+        'version=1.1.0&request=GetFeature&typename=usa:states&' +
         'outputFormat=application/json&srsname=EPSG:3857&' +
         'bbox=' + extent.join(',') + ',EPSG:3857';
   },
@@ -30,8 +30,9 @@ var vector = new ol.layer.Vector({
   source: vectorSource,
   id: 'wfst',
   wfsInfo: {
-    featureNS: 'http://foo',
+    featureNS: 'http://census.gov',
     featureType: 'states',
+    featurePrefix: 'usa',
     geometryType: 'MultiPolygon',
     geometryName: 'the_geom',
     url: '/geoserver/wfs'
