@@ -1,3 +1,8 @@
+.edit-form {
+  height: 300px;
+  overflow: auto;
+  padding: 15px;
+}
 #globe-button {
   top: .5em;
   left: 3em;
