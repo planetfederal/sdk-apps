@@ -16,13 +16,24 @@ import Geolocation from './node_modules/boundless-sdk/js/components/Geolocation.
 import HomeButton from './node_modules/boundless-sdk/js/components/HomeButton.jsx';
 import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
 import AddLayer from './node_modules/boundless-sdk/js/components/AddLayer.jsx';
-import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
 import Globe from './node_modules/boundless-sdk/js/components/Globe.jsx';
 import Legend from './node_modules/boundless-sdk/js/components/Legend.jsx';
 import Login from './node_modules/boundless-sdk/js/components/Login.jsx';
-import UI from 'pui-react-tabs';
+import Tabs from 'material-ui/lib/tabs/tabs';
+import Tab from 'material-ui/lib/tabs/tab';
+import Toolbar from 'material-ui/lib/toolbar/toolbar';
+import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
+import RaisedButton from 'material-ui/lib/raised-button';
 import enLocaleData from './node_modules/react-intl/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import PanIcon from 'material-ui/lib/svg-icons/action/pan-tool';
+
+// Needed for onTouchTap
+// Can go away when react 1.0 release
+// Check this repo:
+// https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
 addLocaleData(
   enLocaleData
@@ -109,52 +120,57 @@ var locale = 'en';
 var i18n = enMessages;
 
 class GeoExplorer extends App {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 1
+    };
+  }
   _navigationFunc() {
     ToolActions.activateTool(null, 'navigation');
   }
+  handleChange(value) {
+    if (value === parseInt(value, 10)) {
+      this.setState({
+        value: value,
+      });
+    }
+  }
   render() {
     const {formatMessage} = this.props.intl;
-    var options = [{
-      jsx: (<Login />)
-    }, {
-      jsx: (<Measure toggleGroup='navigation' map={map}/>)
-    }, {
-      jsx: (<AddLayer map={map} />)
-    }, {
-      jsx: (<Select toggleGroup='navigation' map={map}/>)
-    }, {
-      text: formatMessage(messages.navigationbutton),
-      title: formatMessage(messages.navigationbuttontitle),
-      onClick: this._navigationFunc.bind(this),
-      icon: 'hand-paper-o'
-    }, {
-      jsx: (<MapConfig map={map}/>)
-    }];
+    const buttonStyle = {margin: '10px 12px'};
     return (
-      <article>
-        <Toolbar options={options} />
         <div id='content'>
-          <div className='row full-height'>
-            <div className='col-md-9 full-height' id='tabs-panel'>
-              <UI.SimpleTabs defaultActiveKey={1}>
-                <UI.Tab eventKey={1} title={formatMessage(messages.layerstab)}><div id='layerlist'><LayerList allowStyling={true} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></UI.Tab>
-                <UI.Tab eventKey={2} title={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></UI.Tab>
-                <UI.Tab eventKey={3} title={formatMessage(messages.attributestab)}><div id="attributes-table-tab"><FeatureTable resizeTo='tabs-panel' offset={[50, 60]} map={map} /></div></UI.Tab>
-                <UI.Tab eventKey={4} title={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></UI.Tab>
-                <UI.Tab eventKey={5} title={formatMessage(messages.wfsttab)}><div id='wfst'><WFST showEditForm={true} map={map} /></div></UI.Tab>
-              </UI.SimpleTabs>
+          <Toolbar>
+            <ToolbarGroup float="right">
+              <Login style={buttonStyle} />
+            </ToolbarGroup>
+            <Measure style={buttonStyle} toggleGroup='navigation' map={map}/>
+            <AddLayer style={buttonStyle} map={map} />
+            <Select style={buttonStyle} toggleGroup='navigation' map={map}/>
+            <RaisedButton style={buttonStyle} icon={<PanIcon />} label={formatMessage(messages.navigationbutton)} onTouchTap={this._navigationFunc.bind(this)} />
+            <MapConfig style={buttonStyle} map={map}/>
+          </Toolbar>
+          <div className="row container">
+            <div className="col tabs" id="tabspanel">
+              <Tabs value={this.state.value} onChange={this.handleChange.bind(this)}>
+                <Tab value={1} label={formatMessage(messages.layerstab)}><div id='layerlist'><LayerList allowStyling={true} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></Tab>
+                <Tab value={2} label={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></Tab>
+                <Tab value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab"><FeatureTable resizeTo='tabspanel' offset={[50, 60]} map={map} /></div></Tab>
+                <Tab value={4} label={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></Tab>
+                <Tab value={5} label={formatMessage(messages.wfsttab)}><div id='wfst'><WFST showEditForm={true} map={map} /></div></Tab>
+              </Tabs>
             </div>
-            <div className='col-md-15 full-height'>
-              <div id='map' ref='map'></div>
+            <div className="col maps">
+              <div id='map' ref='map'className="col-8-12"></div>
               <LoadingPanel map={map} />
-              <div id='globe-button' className='ol-unselectable ol-control'><Globe map={map} /></div>
+              <div id='globe-button'><Globe map={map} /></div>
               <div id='popup' className='ol-popup'><InfoPopup infoFormat='application/vnd.ogc.gml' toggleGroup='navigation' map={map} /></div>
-              <div id='geolocation-control' className='ol-unselectable ol-control'><Geolocation map={map} /></div>
-              <div id='home-button' className='ol-unselectable ol-control'><HomeButton map={map} /></div>
+              <div id='geolocation-control'><Geolocation map={map} /></div>
+              <div id='home-button'><HomeButton map={map} /></div>
             </div>
           </div>
         </div>
-      </article>
     );
   }
 }
