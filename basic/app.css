@@ -1,47 +1,22 @@
 #globe-button {
-  top: .5em;
-  left: 2.5em;
   z-index: 1111;
+  position: absolute;
+  top: 150px;
 }
 .edit-tool-panel {
   display: none;
   position: absolute;
   background:rgba(255,255,255, 1);
   padding: 5px;
+  left: 250px;
   border: 1px solid #000000;
-  top: 5px;
-  right: 498px;
   max-width: 50%;
   z-index: 1111;
-}
-.toolbar button {
-  margin-top: 12px;
-}
-#geocoding {
-  margin-left: 10px;
-  margin-top: 12px;
-  margin-right: 5px;
-}
-#geocoding .form-group{
-  display: inline-flex;
-}
-.fa.fa-search{
-  font-size: 20px;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-right: 10px;
-  border: 1px solid #CCCCCC;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  background-color: #CCCCCC;
 }
 html, body {
   height: 100%;
   padding: 0;
   margin: 0;
-}
-.toolbar {
-  height: 60px;
 }
 #map {
   width: 100%;
@@ -49,7 +24,7 @@ html, body {
 }
 #content {
   width: 100%;
-  height:  calc(100% - 60px);
+  height: 100%;
   position:fixed;
   bottom: 0px;
 }
@@ -59,19 +34,17 @@ html, body {
   background: rgba(255,255,255, 1);
   padding: 15px;
   border: 1px solid #000000;
-  top: 0px;
   right: 0px;
   max-width: 50%;
   z-index: 1111;
 }
 .query-panel {
   display: none;
+  left: 250px;
   position: absolute;
   background: rgba(255,255,255, 1);
   padding: 15px;
   border: 1px solid #000000;
-  top: 5px;
-  right: 174px;
   max-width: 50%;
   z-index: 1111;
 }
@@ -98,11 +71,10 @@ html, body {
   width: 100%;
   z-index: 101;
 }
-#chart-selector{
-  width: 300px;
-  left: 50px;
-}
 #main {
   width: 100%;
   height: 100%;
+}
+.layerlistbutton {
+  top: 50px;
 }

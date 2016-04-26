@@ -11,13 +11,27 @@ import QueryBuilder from './node_modules/boundless-sdk/js/components/QueryBuilde
 import FeatureTable from './node_modules/boundless-sdk/js/components/FeatureTable.jsx';
 import Chart from './node_modules/boundless-sdk/js/components/Chart.jsx';
 import MapConfig from './node_modules/boundless-sdk/js/components/MapConfig.jsx';
-import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
+import Toolbar from 'material-ui/lib/toolbar/toolbar';
+import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
+import RaisedButton from 'material-ui/lib/raised-button';
+import TableIcon from 'material-ui/lib/svg-icons/action/view-list';
+import QueryIcon from 'material-ui/lib/svg-icons/action/query-builder';
+import ChartIcon from 'material-ui/lib/svg-icons/editor/insert-chart';
+import EditIcon from 'material-ui/lib/svg-icons/editor/mode-edit';
+import PanIcon from 'material-ui/lib/svg-icons/action/pan-tool';
 import Edit from './node_modules/boundless-sdk/js/components/Edit.jsx';
 import Globe from './node_modules/boundless-sdk/js/components/Globe.jsx';
 import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
 import ToolActions from './node_modules/boundless-sdk/js/actions/ToolActions.js';
 import enLocaleData from './node_modules/react-intl/locale-data/en.js';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
+
+// Needed for onTouchTap
+// Can go away when react 1.0 release
+// Check this repo:
+// https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
 addLocaleData(
   enLocaleData
@@ -224,52 +238,34 @@ class BasicApp extends App {
     ToolActions.activateTool(null, 'navigation');
   }
   render() {
-    var options = [{
-      jsx: (<div id='geocoding' className='pull-right'><Geocoding /></div>),
-      exclude: true
-    }, {
-      jsx: (<MapConfig map={map}/>)
-    }, {
-      text: 'Table',
-      icon: 'list-alt',
-      onClick: this._toggleTable.bind(this)
-    }, {
-      text: 'Query',
-      icon: 'filter',
-      onClick: this._toggleQuery.bind(this)
-    }, {
-      text: 'Chart',
-      icon: 'bar-chart',
-      onClick: this._toggleChart.bind(this)
-    }, {
-      text: 'Edit',
-      icon: 'pencil',
-      onClick: this._toggleEdit.bind(this)
-    }, {
-      jsx: (<Select toggleGroup='navigation' map={map}/>)
-    }, {
-      text: 'Navigation',
-      icon: 'hand-paper-o',
-      onClick: this._navigationFunc.bind(this)
-    }];
+    const buttonStyle = {margin: '10px 12px'};
     return (
-      <article>
-        <Toolbar options={options} />
-        <div id='content'>
-          <div ref='map' id='map'>
-            <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
-            <div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div>
-            <div ref='editToolPanel' className='edit-tool-panel'><Edit toggleGroup='navigation' map={map} /></div>
-            <div id='globe-button' className='ol-unselectable ol-control'><Globe map={map} /></div>
-          </div>
-          <div id='chart-panel' className='chart-panel'>
-          </div>
-          <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable ref='table' resizeTo='table-panel' offset={[30, 30]} layer={selectedLayer} map={map} /></div>
-          <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
-          <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' map={map} /></div>
-          <div  id='chart-panel'><Chart ref='chartPanel' combo={true} charts={charts}/></div>
+      <div id='content'>
+        <Toolbar>
+          <ToolbarGroup float="right">
+            <Geocoding style={{backgroundColor: 'white'}} />
+          </ToolbarGroup>
+          <MapConfig style={buttonStyle} map={map}/>
+          <RaisedButton style={buttonStyle} icon={<TableIcon />} label='Table' onTouchTap={this._toggleTable.bind(this)} />
+          <RaisedButton style={buttonStyle} icon={<QueryIcon />} label='Query' onTouchTap={this._toggleQuery.bind(this)} />
+          <RaisedButton style={buttonStyle} icon={<ChartIcon />} label='Chart' onTouchTap={this._toggleChart.bind(this)} />
+          <RaisedButton style={buttonStyle} icon={<EditIcon />} label='Edit' onTouchTap={this._toggleEdit.bind(this)} />
+          <Select style={buttonStyle} toggleGroup='navigation' map={map}/>
+          <RaisedButton style={buttonStyle} icon={<PanIcon />} label='Navigation' onTouchTap={this._navigationFunc.bind(this)} />
+        </Toolbar>
+        <div ref='map' id='map'>
+          <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
+          <div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div>
+          <div ref='editToolPanel' className='edit-tool-panel'><Edit toggleGroup='navigation' map={map} /></div>
+          <div id='globe-button'><Globe map={map} /></div>
         </div>
-      </article>
+        <div id='chart-panel' className='chart-panel'>
+        </div>
+        <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable ref='table' resizeTo='table-panel' offset={[30, 30]} layer={selectedLayer} map={map} /></div>
+        <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
+        <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' map={map} /></div>
+        <div  id='chart-panel'><Chart ref='chartPanel' combo={true} charts={charts}/></div>
+      </div>
     );
   }
 }
