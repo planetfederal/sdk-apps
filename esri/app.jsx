@@ -5,8 +5,15 @@ import ole from 'ole';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import App from './node_modules/boundless-sdk/js/components/App.js';
 import FeatureTable from './node_modules/boundless-sdk/js/components/FeatureTable.jsx';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import enLocaleData from './node_modules/react-intl/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
+
+// Needed for onTouchTap
+// Can go away when react 1.0 release
+// Check this repo:
+// https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
 addLocaleData(
   enLocaleData
@@ -26,7 +33,7 @@ var raster = new ol.layer.Tile({
   })
 });
 
-var serviceUrl = 'http://services.arcgis.com/rOo16HdIMeOBI4Mb/ArcGIS/rest/services/Drive%20from%20Salt%20and%20Straw_Points%20(5%2010%2015%20Minutes)/FeatureServer/';
+var serviceUrl = 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/ArcGIS/rest/services/Drive%20from%20Salt%20and%20Straw_Points%20(5%2010%2015%20Minutes)/FeatureServer/';
 var layer = '0';
 var esrijsonFormat = new ol.format.EsriJSON();
 var vectorSource;
@@ -52,6 +59,7 @@ vectorSource = new ol.source.Vector({
   }))
 });
 var vector = new ol.layer.Vector({
+  id: 'drv_time',
   title: 'Drive time',
   source: vectorSource
 });
@@ -59,6 +67,9 @@ var vector = new ol.layer.Vector({
 var map;
 
 window.styleCb = function(response) {
+  if (response.error) {
+    return;
+  }
   var srs = response.extent.spatialReference.wkid;
   var extent = [response.extent.xmin, response.extent.ymin, response.extent.xmax, response.extent.ymax];
   if (srs === 4267) {
@@ -84,13 +95,13 @@ map = new ol.Map({
 class EsriApp extends App {
   render() {
     return (
-      <article>
-        <div ref='map' id='map'>
+      <div id='content'>
+        <div ref='map' id='map' className='row'>
         </div>
-        <div ref='tablePanel' id='table-panel' className='attributes-table'>
+        <div ref='tablePanel' id='table-panel' className='row attributes-table'>
           <FeatureTable ref='table' resizeTo='table-panel' offset={[30, 30]} layer={vector} map={map} />
         </div>
-      </article>
+      </div>
     );
   }
 }

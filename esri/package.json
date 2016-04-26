@@ -23,8 +23,9 @@
     "ole": "git+https://github.com/boundlessgeo/ole.git",
     "react": "0.14.7",
     "react-dom": "0.14.7",
-    "openlayers": "~3.13.0",
-    "react-intl": "2.0.0-rc-1"
+    "openlayers": "~3.15.0",
+    "react-intl": "2.0.0-rc-1",
+    "react-tap-event-plugin": "^0.2.2"
   },
   "devDependencies": {
     "archiver": "^0.21.0",
