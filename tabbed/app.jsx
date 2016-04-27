@@ -19,13 +19,23 @@ import ImageExport from './node_modules/boundless-sdk/js/components/ImageExport.
 import HomeButton from './node_modules/boundless-sdk/js/components/HomeButton.jsx';
 import AddLayer from './node_modules/boundless-sdk/js/components/AddLayer.jsx';
 import QGISPrint from './node_modules/boundless-sdk/js/components/QGISPrint.jsx';
-import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
+import Toolbar from 'material-ui/lib/toolbar/toolbar';
+import RaisedButton from 'material-ui/lib/raised-button';
 import Login from './node_modules/boundless-sdk/js/components/Login.jsx';
-import UI from 'pui-react-tabs';
+import Tabs from 'material-ui/lib/tabs/tabs';
+import Tab from 'material-ui/lib/tabs/tab';
+import PanIcon from 'material-ui/lib/svg-icons/action/pan-tool';
 import nlLocaleData from './node_modules/react-intl/locale-data/nl.js';
 import enLocaleData from './node_modules/react-intl/locale-data/en.js';
 import nlMessages from './node_modules/boundless-sdk/locale/nl.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+// Needed for onTouchTap
+// Can go away when react 1.0 release
+// Check this repo: 
+// https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
 addLocaleData(
   nlLocaleData
@@ -377,10 +387,24 @@ var locale = window.location.search.indexOf('nl') !== -1 ? 'nl' : 'en';
 var i18n = locale === 'nl' ? nlMessages : enMessages;
 
 class TabbedApp extends App {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 2
+    };
+  }
   _navigationFunc() {
     ToolActions.activateTool(null, 'navigation');
   }
+  handleChange(value) {
+    if (value === parseInt(value, 10)) {
+      this.setState({
+        value: value,
+      });
+    }
+  }
   render() {
+    const buttonStyle = {margin: '10px 12px'};
     const {formatMessage} = this.props.intl;
     var charts = [{
       title: formatMessage(messages.chart1),
@@ -397,48 +421,36 @@ class TabbedApp extends App {
       displayMode: 1,
       operation: 2
     }];
-    var options = [{
-      jsx: (<Login />)
-    }, {
-      jsx: (<ImageExport map={map} />)
-    }, {
-      jsx: (<Measure toggleGroup='navigation' map={map}/>)
-    }, {
-      jsx: (<AddLayer map={map} />)
-    }, {
-      jsx: (<QGISPrint map={map} layouts={printLayouts} />)
-    }, {
-      jsx: (<Select toggleGroup='navigation' map={map}/>)
-    }, {
-      text: formatMessage(messages.navigationbutton),
-      title: formatMessage(messages.navigationbuttontitle),
-      onClick: this._navigationFunc.bind(this),
-      icon: 'hand-paper-o'
-    }];
     return (
-      <article>
-        <Toolbar options={options} />
-        <div id='content'>
-          <div className='row full-height'>
-            <div className='col-md-9 full-height' id='tabs-panel'>
-              <UI.SimpleTabs defaultActiveKey={2}>
-                <UI.Tab eventKey={1} title={formatMessage(messages.geocodingtab)}><div id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></UI.Tab>
-                <UI.Tab eventKey={2} title={formatMessage(messages.attributestab)}><div id="attributes-table-tab"><FeatureTable resizeTo='tabs-panel' offset={[50, 60]} layer={selectedLayer} map={map} /></div></UI.Tab>
-                <UI.Tab eventKey={3} title={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></UI.Tab>
-                <UI.Tab eventKey={4} title={formatMessage(messages.charttab)}><div id='charts-tab'><Chart combo={true} charts={charts}/></div></UI.Tab>
-              </UI.SimpleTabs>
-            </div>
-            <div className='col-md-15 full-height'>
-              <div id='map' ref='map'></div>
-              <LoadingPanel map={map} />
-              <div id='layerlist'><LayerList addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
-              <div id='legend'><QGISLegend map={map} legendBasePath='../../resources/legend/' legendData={legendData} /></div>
-              <div id='geolocation-control' className='ol-unselectable ol-control'><Geolocation map={map} /></div>
-              <div id='home-button' className='ol-unselectable ol-control'><HomeButton map={map} /></div>
-            </div>
+      <div id='content'>
+        <Toolbar>
+          <Login style={buttonStyle} />
+          <ImageExport style={buttonStyle} map={map} />
+          <Measure style={buttonStyle} toggleGroup='navigation' map={map}/>
+          <AddLayer style={buttonStyle} map={map} />
+          <QGISPrint style={buttonStyle} map={map} layouts={printLayouts} />
+          <Select style={buttonStyle} toggleGroup='navigation' map={map}/>
+          <RaisedButton style={buttonStyle} icon={<PanIcon />} label={formatMessage(messages.navigationbutton)} onTouchTap={this._navigationFunc.bind(this)} />
+        </Toolbar>
+        <div className='row container'>
+          <div className="col tabs" id="tabs-panel">
+            <Tabs value={this.state.value} onChange={this.handleChange.bind(this)}>
+              <Tab value={1} label={formatMessage(messages.geocodingtab)}><div id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></Tab>
+              <Tab value={2} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab"><FeatureTable resizeTo='tabs-panel' offset={[50, 60]} layer={selectedLayer} map={map} /></div></Tab>
+              <Tab value={3} label={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></Tab>
+              <Tab value={4} label={formatMessage(messages.charttab)}><div id='charts-tab'><Chart combo={true} charts={charts}/></div></Tab>
+            </Tabs>
+          </div>
+          <div className="col maps">
+            <div id='map' ref='map'></div>
+            <LoadingPanel map={map} />
+            <div id='layerlist'><LayerList addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
+            <div id='legend'><QGISLegend map={map} legendBasePath='../../resources/legend/' legendData={legendData} /></div>
+            <div id='geolocation-control'><Geolocation map={map} /></div>
+            <div id='home-button'><HomeButton map={map} /></div>
           </div>
         </div>
-      </article>
+      </div>
     );
   }
 }
