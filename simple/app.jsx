@@ -6,6 +6,13 @@ import App from './node_modules/boundless-sdk/js/components/App.js';
 import FeatureTable from './node_modules/boundless-sdk/js/components/FeatureTable.jsx';
 import enLocaleData from './node_modules/react-intl/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+// Needed for onTouchTap
+// Can go away when react 1.0 release
+// Check this repo:
+// https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
 addLocaleData(
   enLocaleData
@@ -173,11 +180,10 @@ var selectedLayer = map.getLayers().item(2);
 class SimpleApp extends App {
   render() {
     return (
-      <article>
-        <div ref='map' id='map'>
-        </div>
-        <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable ref='table' resizeTo='table-panel' offset={[30, 30]} layer={selectedLayer} map={map} /></div>
-      </article>
+      <div id='content'>
+        <div ref='map' id='map' className='row'></div>
+        <div ref='tablePanel' id='table-panel' className='row attributes-table'><FeatureTable ref='table' resizeTo='table-panel' offset={[5, 5]} layer={selectedLayer} map={map} /></div>
+      </div>
     );
   }
 }
