@@ -4,8 +4,15 @@ import ol from 'openlayers';
 import {IntlProvider} from 'react-intl';
 import proj4 from 'proj4';
 import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
-import Toolbar from './node_modules/boundless-sdk/js/components/Toolbar.jsx';
+import AppBar from 'material-ui/lib/app-bar';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import App from './node_modules/boundless-sdk/js/components/App.js';
+
+// Needed for onTouchTap
+// Can go away when react 1.0 release
+// Check this repo:
+// https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
 ol.proj.setProj4(proj4);
 
@@ -58,19 +65,13 @@ class ProjectionApp extends App {
     }));
   }
   render() {
-    var options = [{
-      exclude: true,
-      jsx: (<a className='navbar-brand' href='#'>My Web App</a>)
-    }];
     return (
-      <article>
-        <Toolbar options={options} />
-        <div id='content'>
-          <div id='map' ref='map'>
-            <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>
-          </div>
+      <div id='content'>
+        <AppBar showMenuIconButton={false} title="My Web App" />
+        <div id='map' ref='map'>
+          <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>
         </div>
-      </article>
+      </div>
     );
   }
 }

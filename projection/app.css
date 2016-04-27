@@ -1,34 +1,7 @@
-#globe-button {
-  top: .5em;
-  left: 2.5em;
-  z-index: 1111;
-}
-.edit-tool-panel {
-  display: none;
-  position: absolute;
-  background:rgba(255,255,255, 1);
-  padding: 5px;
-  border: 1px solid #000000;
-  top: 5px;
-  right: 498px;
-  max-width: 50%;
-  z-index: 1111;
-}
-.toolbar ul {
-  margin-top: 12px;
-}
-#geocoding {
-  margin-left: 10px;
-  margin-top: 12px;
-  margin-right: 5px;
-}
 html, body {
   height: 100%;
   padding: 0;
   margin: 0;
-}
-.toolbar {
-  height: 60px;
 }
 #map {
   width: 100%;
@@ -36,57 +9,7 @@ html, body {
 }
 #content {
   width: 100%;
-  height:  calc(100% - 60px);
+  height:  100%;
   position:fixed;
   bottom: 0px;
-}
-.geocoding-results {
-  display: none;
-  position: absolute;
-  background: rgba(255,255,255, 1);
-  padding: 15px;
-  border: 1px solid #000000;
-  top: 0px;
-  right: 0px;
-  max-width: 50%;
-  z-index: 1111;
-}
-.query-panel {
-  display: none;
-  position: absolute;
-  background: rgba(255,255,255, 1);
-  padding: 15px;
-  border: 1px solid #000000;
-  top: 5px;
-  right: 174px;
-  max-width: 50%;
-  z-index: 1111;
-}
-.attributes-table {
-  display: none;
-  position: absolute;
-  background: rgba(255,255,255,1);
-  padding: 15px;
-  border: 1px solid #000000;
-  bottom: 0px;
-  left: 0;
-  height: 50%;
-  width: 100%;
-  z-index: 101;
-}
-.chart-panel{
-  display: none;
-  position: absolute;
-  background: rgba(255,255,255,1);
-  padding: 15px;
-  border: 1px solid #000000;
-  bottom: 0px;
-  left: 0;
-  height: 50%;
-  width: 100%;
-  z-index: 101;
-}
-#main {
-  width: 100%;
-  height: 100%;
 }
