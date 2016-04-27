@@ -15,6 +15,10 @@
 }}
 /* end Dead Simple Grid */
 
+.loading-panel {
+  left: 68% !important;
+  top: 45% !important;
+}
 .container {
   height: 100%;
 }
@@ -44,6 +48,9 @@ html, body {
   height: 100%;
   padding: 0;
   margin: 0;
+}
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 #map {
   height: 100%;
