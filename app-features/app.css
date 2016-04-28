@@ -1,38 +1,30 @@
-html, body, article {
+html, body {
+  margin: 0;
   width: 100%;
   height: 100%;
 }
-#main {
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#content {
   width: 100%;
   height: 100%;
+  position: fixed;
+  bottom: 0px;
 }
 #map {
-  top: 50px;
-  position: absolute;
   width: 100%;
-  height: calc(100% - 50px);
+  height: 100%;
 }
 #home-button {
-  top: 8em;
-  left: 0.5em;
-}
-.toolbar {
-  height: 50px;
-  background-color: #29728C;
-}
-.toolbar article {
-  padding-top: 5px;
-}
-.app-title {
-  padding-left: 10px;
-  font-weight: bold;
-  font-size: 25px;
-  color: white;
+  position: absolute;
+  top: 150px;
+  left: 0px;
 }
 #wfst {
   padding: 5px;
   background-color: white;
-  max-width: 200px;
+  max-width: 450px;
   position: absolute;
   left: 5px;
   bottom: 5px;
