@@ -3,12 +3,6 @@ html, body {
   padding: 0;
   margin: 0;
 }
-.toolbar ul {
-  margin-top: 12px;
-}
-.toolbar {
-  height: 60px;
-}
 #wfst {
   display: none;
   position: absolute;
@@ -22,7 +16,7 @@ html, body {
 }
 #content {
   width: 100%;
-  height:  calc(100% - 60px);
+  height:  100%;
   position:fixed;
   bottom: 0px;
 }

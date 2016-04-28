@@ -2,11 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import UI from 'pui-react-buttons';
+import RaisedButton from 'material-ui/lib/raised-button';
 import App from './node_modules/boundless-sdk/js/components/App.js';
+import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import WFST from './node_modules/boundless-sdk/js/components/WFST.jsx';
 import enLocaleData from './node_modules/react-intl/locale-data/en.js';
 import enMessages from './node_modules/boundless-sdk/locale/en.js';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+// Needed for onTouchTap
+// Can go away when react 1.0 release
+// Check this repo: 
+// https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
+
 
 addLocaleData(
   enLocaleData
@@ -98,18 +107,13 @@ class WFSTApp extends App {
     this._toggle(ReactDOM.findDOMNode(this.refs.wfstPanel));
   }
   render() {
+    const buttonStyle = {margin: '10px 12px'};
     return (
-      <article>
-        <nav role='navigation'>
-          <div className='toolbar'>
-            <ul className='pull-right'><UI.DefaultButton onClick={this._toggleWFST.bind(this)} title="WFS-T">WFS-T</UI.DefaultButton></ul>
-          </div>
-        </nav>
-        <div id='content'>
-          <div id='wfst' ref='wfstPanel'><WFST map={map} /></div>
-          <div ref='map' id='map'></div>
-        </div>
-      </article>
+      <div id='content'>
+        <Toolbar><RaisedButton style={buttonStyle} onTouchTap={this._toggleWFST.bind(this)} label='WFS-T' /></Toolbar>
+        <div id='wfst' ref='wfstPanel'><WFST map={map} /></div>
+        <div ref='map' id='map'></div>
+      </div>
     );
   }
 }
