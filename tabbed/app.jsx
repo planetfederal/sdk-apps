@@ -424,12 +424,12 @@ class TabbedApp extends App {
     return (
       <div id='content'>
         <Toolbar>
-          <Login style={buttonStyle} />
-          <ImageExport style={buttonStyle} map={map} />
-          <Measure style={buttonStyle} toggleGroup='navigation' map={map}/>
-          <AddLayer style={buttonStyle} map={map} />
-          <QGISPrint style={buttonStyle} map={map} layouts={printLayouts} />
-          <Select style={buttonStyle} toggleGroup='navigation' map={map}/>
+          <Login />
+          <ImageExport map={map} />
+          <Measure toggleGroup='navigation' map={map}/>
+          <AddLayer map={map} />
+          <QGISPrint map={map} layouts={printLayouts} />
+          <Select toggleGroup='navigation' map={map}/>
           <RaisedButton style={buttonStyle} icon={<PanIcon />} label={formatMessage(messages.navigationbutton)} onTouchTap={this._navigationFunc.bind(this)} />
         </Toolbar>
         <div className='row container'>

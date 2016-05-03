@@ -245,12 +245,12 @@ class BasicApp extends App {
           <ToolbarGroup float="right">
             <Geocoding style={{backgroundColor: 'white'}} />
           </ToolbarGroup>
-          <MapConfig style={buttonStyle} map={map}/>
+          <MapConfig map={map}/>
           <RaisedButton style={buttonStyle} icon={<TableIcon />} label='Table' onTouchTap={this._toggleTable.bind(this)} />
           <RaisedButton style={buttonStyle} icon={<QueryIcon />} label='Query' onTouchTap={this._toggleQuery.bind(this)} />
           <RaisedButton style={buttonStyle} icon={<ChartIcon />} label='Chart' onTouchTap={this._toggleChart.bind(this)} />
           <RaisedButton style={buttonStyle} icon={<EditIcon />} label='Edit' onTouchTap={this._toggleEdit.bind(this)} />
-          <Select style={buttonStyle} toggleGroup='navigation' map={map}/>
+          <Select toggleGroup='navigation' map={map}/>
           <RaisedButton style={buttonStyle} icon={<PanIcon />} label='Navigation' onTouchTap={this._navigationFunc.bind(this)} />
         </Toolbar>
         <div ref='map' id='map'>
