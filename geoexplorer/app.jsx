@@ -138,18 +138,17 @@ class GeoExplorer extends App {
   }
   render() {
     const {formatMessage} = this.props.intl;
-    const buttonStyle = {margin: '10px 12px'};
     return (
         <div id='content'>
           <Toolbar>
             <ToolbarGroup float="right">
-              <Login style={buttonStyle} />
+              <Login />
             </ToolbarGroup>
-            <Measure style={buttonStyle} toggleGroup='navigation' map={map}/>
-            <AddLayer style={buttonStyle} map={map} />
-            <Select style={buttonStyle} toggleGroup='navigation' map={map}/>
-            <RaisedButton style={buttonStyle} icon={<PanIcon />} label={formatMessage(messages.navigationbutton)} onTouchTap={this._navigationFunc.bind(this)} />
-            <MapConfig style={buttonStyle} map={map}/>
+            <Measure toggleGroup='navigation' map={map}/>
+            <AddLayer map={map} />
+            <Select toggleGroup='navigation' map={map}/>
+            <RaisedButton style={{margin: '10px 12px'}} icon={<PanIcon />} label={formatMessage(messages.navigationbutton)} onTouchTap={this._navigationFunc.bind(this)} />
+            <MapConfig map={map}/>
           </Toolbar>
           <div className="row container">
             <div className="col tabs" id="tabspanel">
