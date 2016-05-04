@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import App from './node_modules/boundless-sdk/js/components/App.js';
-import Bookmarks from './node_modules/boundless-sdk/js/components/Bookmarks.jsx';
-import enLocaleData from './node_modules/react-intl/locale-data/en.js';
-import enMessages from './node_modules/boundless-sdk/locale/en.js';
+import App from 'boundless-sdk/js/components/App.js';
+import Bookmarks from 'boundless-sdk/js/components/Bookmarks.jsx';
+import enLocaleData from 'react-intl/locale-data/en.js';
+import enMessages from 'boundless-sdk/locale/en.js';
 
 addLocaleData(
   enLocaleData

@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import RaisedButton from 'material-ui/lib/raised-button';
-import App from './node_modules/boundless-sdk/js/components/App.js';
+import App from 'boundless-sdk/js/components/App.js';
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import WFST from './node_modules/boundless-sdk/js/components/WFST.jsx';
-import enLocaleData from './node_modules/react-intl/locale-data/en.js';
-import enMessages from './node_modules/boundless-sdk/locale/en.js';
+import WFST from 'boundless-sdk/js/components/WFST.jsx';
+import enLocaleData from 'react-intl/locale-data/en.js';
+import enMessages from 'boundless-sdk/locale/en.js';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap

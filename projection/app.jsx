@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {IntlProvider} from 'react-intl';
 import proj4 from 'proj4';
-import InfoPopup from './node_modules/boundless-sdk/js/components/InfoPopup.jsx';
+import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
 import AppBar from 'material-ui/lib/app-bar';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import App from './node_modules/boundless-sdk/js/components/App.js';
+import App from 'boundless-sdk/js/components/App.js';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release

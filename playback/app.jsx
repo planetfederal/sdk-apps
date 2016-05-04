@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import App from './node_modules/boundless-sdk/js/components/App.js';
-import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
-import Playback from './node_modules/boundless-sdk/js/components/Playback.jsx';
+import App from 'boundless-sdk/js/components/App.js';
+import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
+import Playback from 'boundless-sdk/js/components/Playback.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import enLocaleData from './node_modules/react-intl/locale-data/en.js';
-import enMessages from './node_modules/boundless-sdk/locale/en.js';
+import enLocaleData from 'react-intl/locale-data/en.js';
+import enMessages from 'boundless-sdk/locale/en.js';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release

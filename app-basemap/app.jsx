@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import App from './node_modules/boundless-sdk/js/components/App.js';
-import HomeButton from './node_modules/boundless-sdk/js/components/HomeButton.jsx';
-import LayerList from './node_modules/boundless-sdk/js/components/LayerList.jsx';
+import App from 'boundless-sdk/js/components/App.js';
+import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
+import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import AppBar from 'material-ui/lib/app-bar';
-import enLocaleData from './node_modules/react-intl/locale-data/en.js';
-import enMessages from './node_modules/boundless-sdk/locale/en.js';
+import enLocaleData from 'react-intl/locale-data/en.js';
+import enMessages from 'boundless-sdk/locale/en.js';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
