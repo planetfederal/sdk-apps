@@ -22,8 +22,8 @@
     "boundless-sdk": "git+https://github.com/boundlessgeo/sdk.git",
     "material-ui": "^0.14.4",
     "openlayers": "3.15.0",
-    "react": "0.14.7",
-    "react-dom": "0.14.7",
+    "react": "0.14.8",
+    "react-dom": "0.14.8",
     "react-intl": "2.0.0-rc-1",
     "react-tap-event-plugin": "^0.2.2"
   },
