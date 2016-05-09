@@ -32,11 +32,11 @@ body {
 /* end Dead Simple Grid */
 
 .maps {
-  height: 100%;
+  height: calc(100% - 56px);
   width: 60%;
 }
 .tabs {
-  height: 100%;
+  height: calc(100% - 56px);
   width: 40%;
 }
 .layerlistbutton {
