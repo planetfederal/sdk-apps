@@ -55,18 +55,6 @@ var map = new ol.Map({
           visible: false,
           title: 'Aerial',
           source: new ol.source.MapQuest({layer: 'sat'})
-        }),
-        new ol.layer.Tile({
-          type: 'base',
-          visible: false,
-          title: 'None',
-          source: new ol.source.XYZ({
-            attributions: [
-              new ol.Attribution({
-                html: 'Blank tiles: No attribution'
-              })
-            ]
-          })
         })
       ]
     })
