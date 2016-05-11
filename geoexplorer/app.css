@@ -45,6 +45,7 @@ body {
 .layer-tree-panel {
   margin-right: 0px !important;
   max-height: none !important;
+  padding-right: 0px !important;
 }
 .layer-switcher {
   max-width: none !important;
