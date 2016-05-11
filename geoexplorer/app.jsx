@@ -43,7 +43,7 @@ var map = new ol.Map({
   layers: [
     new ol.layer.Group({
       type: 'base-group',
-      title: 'Base maps',
+      title: 'Base Maps',
       layers: [
         new ol.layer.Tile({
           type: 'base',
@@ -157,7 +157,7 @@ class GeoExplorer extends App {
                 <Tab value={2} label={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></Tab>
                 <Tab value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab"><FeatureTable resizeTo='tabspanel' offset={[50, 60]} map={map} /></div></Tab>
                 <Tab value={4} label={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></Tab>
-                <Tab value={5} label={formatMessage(messages.wfsttab)}><div id='wfst'><WFST showEditForm={true} map={map} /></div></Tab>
+                <Tab value={5} label={formatMessage(messages.wfsttab)}><div id='wfst'><WFST toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
               </Tabs>
             </div>
             <div className="col maps">
