@@ -13,6 +13,7 @@ import Select from 'boundless-sdk/js/components/Select.jsx';
 import WFST from 'boundless-sdk/js/components/WFST.jsx';
 import QueryBuilder from 'boundless-sdk/js/components/QueryBuilder.jsx';
 import Geolocation from 'boundless-sdk/js/components/Geolocation.jsx';
+import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
 import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
 import AddLayer from 'boundless-sdk/js/components/AddLayer.jsx';
@@ -59,7 +60,7 @@ var map = new ol.Map({
       ]
     })
   ],
-  controls: ol.control.defaults().extend([new ol.control.ScaleLine()]),
+  controls: [new ol.control.ScaleLine()],
   view: new ol.View({
     center: [0, 0],
     zoom: 2
@@ -155,6 +156,7 @@ class GeoExplorer extends App {
               <div id='popup' className='ol-popup'><InfoPopup infoFormat='application/vnd.ogc.gml' toggleGroup='navigation' map={map} /></div>
               <div id='geolocation-control'><Geolocation map={map} /></div>
               <div id='home-button'><HomeButton map={map} /></div>
+              <div id='zoom-buttons'><Zoom map={map} /></div>
             </div>
           </div>
         </div>
