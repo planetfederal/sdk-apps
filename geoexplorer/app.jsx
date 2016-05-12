@@ -11,12 +11,10 @@ import LoadingPanel from 'boundless-sdk/js/components/LoadingPanel.jsx';
 import MapConfig from 'boundless-sdk/js/components/MapConfig.jsx';
 import Select from 'boundless-sdk/js/components/Select.jsx';
 import WFST from 'boundless-sdk/js/components/WFST.jsx';
-import QueryBuilder from 'boundless-sdk/js/components/QueryBuilder.jsx';
 import Geolocation from 'boundless-sdk/js/components/Geolocation.jsx';
 import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
 import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
-import AddLayer from 'boundless-sdk/js/components/AddLayer.jsx';
 import Globe from 'boundless-sdk/js/components/Globe.jsx';
 import Legend from 'boundless-sdk/js/components/Legend.jsx';
 import Login from 'boundless-sdk/js/components/Login.jsx';
@@ -83,11 +81,6 @@ const messages = defineMessages({
     description: 'Title of the layers tab',
     defaultMessage: 'Layers'
   },
-  querytab: {
-    id: 'geoexplorer.querytab',
-    description: 'Title of the query tab',
-    defaultMessage: 'Query'
-  },
   wfsttab: {
     id: 'geoexplorer.wfsttab',
     description: 'Title of the wfst tab',
@@ -134,7 +127,6 @@ class GeoExplorer extends App {
               <Login />
             </ToolbarGroup>
             <Measure toggleGroup='navigation' map={map}/>
-            <AddLayer map={map} />
             <Select toggleGroup='navigation' map={map}/>
             <RaisedButton style={{margin: '10px 12px'}} icon={<PanIcon />} label={formatMessage(messages.navigationbutton)} onTouchTap={this._navigationFunc.bind(this)} />
             <MapConfig map={map}/>
@@ -145,8 +137,7 @@ class GeoExplorer extends App {
                 <Tab value={1} label={formatMessage(messages.layerstab)}><div id='layerlist'><LayerList allowStyling={true} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></Tab>
                 <Tab value={2} label={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></Tab>
                 <Tab value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab"><FeatureTable resizeTo='tabspanel' offset={[50, 60]} map={map} /></div></Tab>
-                <Tab value={4} label={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></Tab>
-                <Tab value={5} label={formatMessage(messages.wfsttab)}><div id='wfst'><WFST toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
+                <Tab value={4} label={formatMessage(messages.wfsttab)}><div id='wfst'><WFST toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
               </Tabs>
             </div>
             <div className="col maps">
