@@ -128,7 +128,7 @@ class GeoExplorer extends App {
             </ToolbarGroup>
             <Measure toggleGroup='navigation' map={map}/>
             <Select toggleGroup='navigation' map={map}/>
-            <RaisedButton style={{margin: '10px 12px'}} icon={<PanIcon />} label={formatMessage(messages.navigationbutton)} onTouchTap={this._navigationFunc.bind(this)} />
+            <RaisedButton style={{margin: '10px 12px'}} label={formatMessage(messages.navigationbutton)} onTouchTap={this._navigationFunc.bind(this)} />
             <MapConfig map={map}/>
           </Toolbar>
           <div className="row container">
