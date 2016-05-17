@@ -55,21 +55,21 @@ body {
 }
 #geolocation-control {
   position: absolute;
-  margin-left: 10px;
+  margin-left: 20px;
   top: 185px;
 }
 #zoom-buttons {
-  margin-left: 10px;
+  margin-left: 20px;
   position: absolute;
-  top: 75px;
+  top: 76px;
 }
 #home-button {
   position: absolute;
   top: 240px;
-  margin-left: 10px;
+  margin-left: 20px;
 }
 #globe-button {
   position: absolute;
-  margin-left: 10px;
+  margin-left: 20px;
   top: 295px;
 }
