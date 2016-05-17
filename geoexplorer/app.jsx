@@ -26,7 +26,6 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import enLocaleData from 'react-intl/locale-data/en.js';
 import enMessages from 'boundless-sdk/locale/en.js';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import PanIcon from 'material-ui/lib/svg-icons/action/pan-tool';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
