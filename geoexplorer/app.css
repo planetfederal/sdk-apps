@@ -56,7 +56,7 @@ body {
 #geolocation-control {
   position: absolute;
   margin-left: 10px;
-  top: 175px;
+  top: 185px;
 }
 #zoom-buttons {
   margin-left: 10px;
@@ -65,11 +65,11 @@ body {
 }
 #home-button {
   position: absolute;
-  top: 225px;
+  top: 240px;
   margin-left: 10px;
 }
 #globe-button {
   position: absolute;
   margin-left: 10px;
-  top: 275px;
+  top: 295px;
 }
