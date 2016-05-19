@@ -22,7 +22,7 @@ import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import RaisedButton from 'material-ui/lib/raised-button';
+import Navigation from 'boundless-sdk/js/components/Navigation.jsx';
 import enLocaleData from 'react-intl/locale-data/en.js';
 import enMessages from 'boundless-sdk/locale/en.js';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -84,16 +84,6 @@ const messages = defineMessages({
     id: 'geoexplorer.wfsttab',
     description: 'Title of the wfst tab',
     defaultMessage: 'Edit'
-  },
-  navigationbutton: {
-    id: 'geoexplorer.navigationbutton',
-    description: 'Text of the Navigation button',
-    defaultMessage: 'Navigation'
-  },
-  navigationbuttontitle: {
-    id: 'geoexplorer.navigationbuttontitle',
-    description: 'Title of the Navigation button',
-    defaultMessage: 'Switch to map navigation (pan and zoom)'
   }
 });
 
@@ -106,9 +96,6 @@ class GeoExplorer extends App {
     this.state = {
       value: 1
     };
-  }
-  _navigationFunc() {
-    ToolActions.activateTool(null, 'navigation');
   }
   handleChange(value) {
     if (value === parseInt(value, 10)) {
@@ -127,7 +114,7 @@ class GeoExplorer extends App {
             </ToolbarGroup>
             <Measure toggleGroup='navigation' map={map}/>
             <Select toggleGroup='navigation' map={map}/>
-            <RaisedButton style={{margin: '10px 12px'}} label={formatMessage(messages.navigationbutton)} onTouchTap={this._navigationFunc.bind(this)} />
+            <Navigation toggleGroup='navigation' />
             <MapConfig map={map}/>
           </Toolbar>
           <div className="row container">
