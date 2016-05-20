@@ -13,6 +13,7 @@ import Select from 'boundless-sdk/js/components/Select.jsx';
 import WFST from 'boundless-sdk/js/components/WFST.jsx';
 import Geolocation from 'boundless-sdk/js/components/Geolocation.jsx';
 import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
+import Rotate from 'boundless-sdk/js/components/Rotate.jsx';
 import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
 import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
 import Globe from 'boundless-sdk/js/components/Globe.jsx';
@@ -134,6 +135,7 @@ class GeoExplorer extends App {
               <div id='geolocation-control'><Geolocation map={map} /></div>
               <div id='home-button'><HomeButton map={map} /></div>
               <div id='zoom-buttons'><Zoom map={map} /></div>
+              <div id='rotate-button'><Rotate map={map} /></div>
             </div>
           </div>
         </div>

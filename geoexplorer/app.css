@@ -63,6 +63,11 @@ body {
   position: absolute;
   top: 76px;
 }
+#rotate-button {
+  top: 76px;
+  right: 10px;
+  position: absolute;
+}
 #home-button {
   position: absolute;
   top: 240px;
