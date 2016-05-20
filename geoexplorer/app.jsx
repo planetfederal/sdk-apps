@@ -58,7 +58,7 @@ var map = new ol.Map({
       ]
     })
   ],
-  controls: [new ol.control.ScaleLine()],
+  controls: [new ol.control.Attribution({collapsible: false}), new ol.control.ScaleLine()],
   view: new ol.View({
     center: [0, 0],
     zoom: 2
