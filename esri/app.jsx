@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import ole from 'ole';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from 'boundless-sdk/js/components/MapPanel.js';
+import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import FeatureTable from 'boundless-sdk/js/components/FeatureTable.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enLocaleData from 'react-intl/locale-data/en.js';
