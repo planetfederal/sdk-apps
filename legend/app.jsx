@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import App from 'boundless-sdk/js/components/App.js';
+import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import QGISLegend from 'boundless-sdk/js/components/QGISLegend.jsx';
@@ -802,14 +802,14 @@ var map = new ol.Map({
   controls: []
 });
 
-class LegendApp extends App {
+class LegendApp extends React.Component {
   render() {
     return (
       <div id='content'>
         <AppBar showMenuIconButton={false} title="My Web App" />
-        <div id='map' ref='map'>
+        <MapPanel id='map' map={map} extent={originalExtent}>
           <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>
-        </div>
+        </MapPanel>
         <div id='layerlist'><LayerList showOpacity={false} showDownload={false} showGroupContent={true} showZoomTo={false} allowReordering={false} allowFiltering={true} map={map}/></div>
         <div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} pullRight/></div>
       </div>
@@ -817,4 +817,4 @@ class LegendApp extends App {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><LegendApp map={map} extent={originalExtent} /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><LegendApp /></IntlProvider>, document.getElementById('main'));

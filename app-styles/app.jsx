@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import App from 'boundless-sdk/js/components/App.js';
+import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import AppBar from 'material-ui/lib/app-bar';
@@ -45,12 +45,12 @@ var map = new ol.Map({
   })
 });
 
-class MyApp extends App {
+class MyApp extends React.Component {
   render() {
     return (
       <div id='content'>
         <AppBar iconElementLeft={<img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />} title="Styling" />
-        <div ref='map' id='map'></div>
+        <MapPanel id='map' map={map} useHistory={false} />
         <div><LayerList showOnStart={true} showZoomTo={true} allowStyling={true} allowReordering={true} addLayer={{url: '/geoserver/wfs?', asVector: true}} expandOnHover={false} map={map} /></div>
         <div id='home-button'><HomeButton map={map} /></div>
       </div>
@@ -58,4 +58,4 @@ class MyApp extends App {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><MyApp useHistory={false} map={map} /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><MyApp /></IntlProvider>, document.getElementById('main'));

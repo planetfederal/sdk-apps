@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import App from 'boundless-sdk/js/components/App.js';
+import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import Geocoding from 'boundless-sdk/js/components/Geocoding.jsx';
 import GeocodingResults from 'boundless-sdk/js/components/GeocodingResults.jsx';
@@ -213,7 +213,7 @@ var charts = [{
 
 var selectedLayer = map.getLayers().item(2);
 
-class BasicApp extends App {
+class BasicApp extends React.Component {
   _toggle(el) {
     if (el.style.display === 'block') {
       el.style.display = 'none';
@@ -253,12 +253,12 @@ class BasicApp extends App {
           <Select toggleGroup='navigation' map={map}/>
           <RaisedButton style={buttonStyle} icon={<PanIcon />} label='Navigation' onTouchTap={this._navigationFunc.bind(this)} />
         </Toolbar>
-        <div ref='map' id='map'>
+        <MapPanel id='map' map={map}>
           <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
           <div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div>
           <div ref='editToolPanel' className='edit-tool-panel'><Edit toggleGroup='navigation' map={map} /></div>
           <div id='globe-button'><Globe map={map} /></div>
-        </div>
+        </MapPanel>
         <div id='chart-panel' className='chart-panel'>
         </div>
         <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable ref='table' resizeTo='table-panel' offset={[30, 30]} layer={selectedLayer} map={map} /></div>
@@ -270,4 +270,4 @@ class BasicApp extends App {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><BasicApp map={map} /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><BasicApp /></IntlProvider>, document.getElementById('main'));

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import App from 'boundless-sdk/js/components/App.js';
+import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import Playback from 'boundless-sdk/js/components/Playback.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -84,14 +84,14 @@ var map = new ol.Map({
   })
 });
 
-class PlaybackApp extends App {
+class PlaybackApp extends React.Component {
   render() {
     return (
       <article>
         <nav role='navigation'>
         </nav>
         <div id='content'>
-          <div ref='map' id='map'>
+          <MapPanel id='map' map={map}>
             <div id='timeline'><Playback map={map} minDate={324511200000} maxDate={1385938800000} /></div>
           </div>
           <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
@@ -101,4 +101,4 @@ class PlaybackApp extends App {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><PlaybackApp map={map} /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><PlaybackApp /></IntlProvider>, document.getElementById('main'));

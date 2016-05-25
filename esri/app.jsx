@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import ole from 'ole';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import App from 'boundless-sdk/js/components/App.js';
+import MapPanel from 'boundless-sdk/js/components/MapPanel.js';
 import FeatureTable from 'boundless-sdk/js/components/FeatureTable.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enLocaleData from 'react-intl/locale-data/en.js';
@@ -92,12 +92,11 @@ map = new ol.Map({
   })
 });
 
-class EsriApp extends App {
+class EsriApp extends React.Component {
   render() {
     return (
       <div id='content'>
-        <div ref='map' id='map' className='row'>
-        </div>
+        <MapPanel id='map' className='row' map={map} />
         <div ref='tablePanel' id='table-panel' className='row attributes-table'>
           <FeatureTable ref='table' resizeTo='table-panel' offset={[30, 30]} layer={vector} map={map} />
         </div>
@@ -106,4 +105,4 @@ class EsriApp extends App {
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><EsriApp map={map} /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><EsriApp /></IntlProvider>, document.getElementById('main'));

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
-import App from 'boundless-sdk/js/components/App.js';
+import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import ToolActions from 'boundless-sdk/js/actions/ToolActions.js';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import Geocoding from 'boundless-sdk/js/components/Geocoding.jsx';
@@ -386,7 +386,7 @@ enMessages['app.navigationbuttontitle'] = 'Go to map navigation (zoom and pan)';
 var locale = window.location.search.indexOf('nl') !== -1 ? 'nl' : 'en';
 var i18n = locale === 'nl' ? nlMessages : enMessages;
 
-class TabbedApp extends App {
+class TabbedApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -442,7 +442,7 @@ class TabbedApp extends App {
             </Tabs>
           </div>
           <div className="col maps">
-            <div id='map' ref='map'></div>
+            <MapPanel id='map' map={map} />
             <LoadingPanel map={map} />
             <div id='layerlist'><LayerList addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
             <div id='legend'><QGISLegend map={map} legendBasePath='../../resources/legend/' legendData={legendData} /></div>
@@ -465,4 +465,4 @@ TabbedApp.propTypes = {
 
 TabbedApp = injectIntl(TabbedApp);
 
-ReactDOM.render(<IntlProvider locale={locale} messages={i18n}><TabbedApp map={map} /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale={locale} messages={i18n}><TabbedApp /></IntlProvider>, document.getElementById('main'));

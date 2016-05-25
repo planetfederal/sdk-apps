@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import RaisedButton from 'material-ui/lib/raised-button';
-import App from 'boundless-sdk/js/components/App.js';
+import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import WFST from 'boundless-sdk/js/components/WFST.jsx';
 import enLocaleData from 'react-intl/locale-data/en.js';
@@ -95,7 +95,7 @@ var map = new ol.Map({
   })
 });
 
-class WFSTApp extends App {
+class WFSTApp extends React.Component {
   _toggle(el) {
     if (el.style.display === 'block') {
       el.style.display = 'none';
@@ -112,10 +112,10 @@ class WFSTApp extends App {
       <div id='content'>
         <Toolbar><RaisedButton style={buttonStyle} onTouchTap={this._toggleWFST.bind(this)} label='WFS-T' /></Toolbar>
         <div id='wfst' ref='wfstPanel'><WFST map={map} /></div>
-        <div ref='map' id='map'></div>
+        <MapPanel id='map' map={map} />
       </div>
     );
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><WFSTApp map={map} /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><WFSTApp /></IntlProvider>, document.getElementById('main'));

@@ -6,7 +6,7 @@ import proj4 from 'proj4';
 import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
 import AppBar from 'material-ui/lib/app-bar';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import App from 'boundless-sdk/js/components/App.js';
+import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -53,7 +53,7 @@ var map = new ol.Map({
   controls: [new ol.control.MousePosition({'projection': 'EPSG:4326', 'undefinedHTML': '&nbsp;', 'coordinateFormat': ol.coordinate.createStringXY(4)})]
 });
 
-class ProjectionApp extends App {
+class ProjectionApp extends React.Component {
   componentDidMount() {
     super.componentDidMount();
     this.props.map.addControl(new ol.control.OverviewMap({
@@ -68,12 +68,12 @@ class ProjectionApp extends App {
     return (
       <div id='content'>
         <AppBar showMenuIconButton={false} title="My Web App" />
-        <div id='map' ref='map'>
+        <MapPanel id='map' map={map} extent={originalExtent}>
           <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>
-        </div>
+        </MapPanel>
       </div>
     );
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en'><ProjectionApp map={map} extent={originalExtent} /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en'><ProjectionApp map={map} /></IntlProvider>, document.getElementById('main'));

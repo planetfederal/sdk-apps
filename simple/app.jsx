@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import App from 'boundless-sdk/js/components/App.js';
+import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import FeatureTable from 'boundless-sdk/js/components/FeatureTable.jsx';
 import enLocaleData from 'react-intl/locale-data/en.js';
 import enMessages from 'boundless-sdk/locale/en.js';
@@ -177,15 +177,15 @@ var map = new ol.Map({
 
 var selectedLayer = map.getLayers().item(2);
 
-class SimpleApp extends App {
+class SimpleApp extends React.Component {
   render() {
     return (
       <div id='content'>
-        <div ref='map' id='map' className='row'></div>
+        <MapPanel id='map' className='row' map={map} />
         <div ref='tablePanel' id='table-panel' className='row attributes-table'><FeatureTable ref='table' resizeTo='table-panel' offset={[5, 5]} layer={selectedLayer} map={map} /></div>
       </div>
     );
   }
 }
 
-ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><SimpleApp map={map} /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><SimpleApp /></IntlProvider>, document.getElementById('main'));
