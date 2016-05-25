@@ -67,22 +67,22 @@ var map = new ol.Map({
 
 const messages = defineMessages({
   legendtab: {
-    id: 'geoexplorer.legendtab',
+    id: 'quickview.legendtab',
     description: 'Title of the legend tab',
     defaultMessage: 'Legend'
   },
   attributestab: {
-    id: 'geoexplorer.attributestab',
+    id: 'quickview.attributestab',
     description: 'Title of the attributes table tab',
     defaultMessage: 'Table'
   },
   layerstab: {
-    id: 'geoexplorer.layerstab',
+    id: 'quickview.layerstab',
     description: 'Title of the layers tab',
     defaultMessage: 'Layers'
   },
   wfsttab: {
-    id: 'geoexplorer.wfsttab',
+    id: 'quickview.wfsttab',
     description: 'Title of the wfst tab',
     defaultMessage: 'Edit'
   }
@@ -91,7 +91,7 @@ const messages = defineMessages({
 var locale = 'en';
 var i18n = enMessages;
 
-class GeoExplorer extends App {
+class QuickView extends App {
   constructor(props) {
     super(props);
     this.state = {
@@ -143,7 +143,7 @@ class GeoExplorer extends App {
   }
 }
 
-GeoExplorer.propTypes = {
+QuickView.propTypes = {
   /**
    * i18n message strings. Provided through the application through context.
    */
@@ -151,6 +151,6 @@ GeoExplorer.propTypes = {
 };
 
 
-GeoExplorer = injectIntl(GeoExplorer);
+QuickView = injectIntl(QuickView);
 
-ReactDOM.render(<IntlProvider locale={locale} messages={i18n}><GeoExplorer map={map} /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale={locale} messages={i18n}><QuickView map={map} /></IntlProvider>, document.getElementById('main'));
