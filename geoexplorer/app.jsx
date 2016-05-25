@@ -131,7 +131,7 @@ class GeoExplorer extends App {
               <div id='map' ref='map'className="col-8-12"></div>
               <LoadingPanel map={map} />
               <div id='globe-button'><Globe map={map} /></div>
-              <div id='popup' className='ol-popup'><InfoPopup infoFormat='application/vnd.ogc.gml' toggleGroup='navigation' map={map} /></div>
+              <div id='popup' className='ol-popup'><InfoPopup infoFormat='application/vnd.ogc.gml' map={map} /></div>
               <div id='geolocation-control'><Geolocation map={map} /></div>
               <div id='home-button'><HomeButton map={map} /></div>
               <div id='zoom-buttons'><Zoom map={map} /></div>
