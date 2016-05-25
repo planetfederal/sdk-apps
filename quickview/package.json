@@ -1,7 +1,7 @@
 {
-  "name": "GeoExplorer",
-  "version": "0.1.0",
-  "description": "GeoExplorer built with the Web SDK",
+  "name": "QuickView",
+  "version": "0.2.0",
+  "description": "WebSDK QuickView",
   "repository": {
     "type": "git",
     "url": "https://github.com/boundlessgeo/sdk-apps.git"
