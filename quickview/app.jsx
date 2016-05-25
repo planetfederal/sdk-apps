@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
-import App from 'boundless-sdk/js/components/App.js';
 import ToolActions from 'boundless-sdk/js/actions/ToolActions.js';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import FeatureTable from 'boundless-sdk/js/components/FeatureTable.jsx';
 import Measure from 'boundless-sdk/js/components/Measure.jsx';
 import LoadingPanel from 'boundless-sdk/js/components/LoadingPanel.jsx';
+import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import MapConfig from 'boundless-sdk/js/components/MapConfig.jsx';
 import Select from 'boundless-sdk/js/components/Select.jsx';
 import WFST from 'boundless-sdk/js/components/WFST.jsx';
@@ -91,7 +91,7 @@ const messages = defineMessages({
 var locale = 'en';
 var i18n = enMessages;
 
-class QuickView extends App {
+class QuickView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -128,7 +128,7 @@ class QuickView extends App {
               </Tabs>
             </div>
             <div className="col maps">
-              <div id='map' ref='map'className="col-8-12"></div>
+              <MapPanel id='map' className="col-8-12" map={map} />
               <LoadingPanel map={map} />
               <div id='globe-button'><Globe map={map} /></div>
               <div id='popup' className='ol-popup'><InfoPopup infoFormat='application/vnd.ogc.gml' map={map} /></div>
@@ -153,4 +153,4 @@ QuickView.propTypes = {
 
 QuickView = injectIntl(QuickView);
 
-ReactDOM.render(<IntlProvider locale={locale} messages={i18n}><QuickView map={map} /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<IntlProvider locale={locale} messages={i18n}><QuickView /></IntlProvider>, document.getElementById('main'));
