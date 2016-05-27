@@ -115,7 +115,7 @@ class QuickView extends React.Component {
             </ToolbarGroup>
             <Measure toggleGroup='navigation' map={map}/>
             <Select toggleGroup='navigation' map={map}/>
-            <Navigation toggleGroup='navigation' />
+            <Navigation secondary={true} toggleGroup='navigation' />
             <MapConfig map={map}/>
           </Toolbar>
           <div className="row container">
