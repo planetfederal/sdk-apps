@@ -128,7 +128,7 @@ class QuickView extends React.Component {
               </Tabs>
             </div>
             <div className="col maps">
-              <MapPanel id='map' className="col-8-12" map={map} />
+              <MapPanel id='map' map={map} />
               <LoadingPanel map={map} />
               <div id='globe-button'><Globe map={map} /></div>
               <div id='popup' className='ol-popup'><InfoPopup infoFormat='application/vnd.ogc.gml' map={map} /></div>
