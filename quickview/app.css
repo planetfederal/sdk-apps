@@ -34,6 +34,7 @@ body {
 .maps {
   height: calc(100% - 56px);
   width: 60%;
+  position: relative;
 }
 .tabs {
   height: calc(100% - 56px);
