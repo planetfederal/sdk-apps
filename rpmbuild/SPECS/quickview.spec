@@ -2,7 +2,7 @@
 
 Name: quickview
 Version: 4.9.0
-Release: 1
+Release: REPLACE_RELEASE
 Summary: Boundless WebSDK demo application
 Group: Applications/Engineering
 License: LGPL
