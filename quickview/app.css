@@ -82,7 +82,6 @@ body {
 .layer-list-list {
   height: 100%;
   overflow-y: scroll;
-  padding-top: 56px !important;
   padding-bottom: 56px !important;
 }
 
