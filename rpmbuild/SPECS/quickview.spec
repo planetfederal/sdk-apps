@@ -26,7 +26,7 @@ Boundless Spatial WebSDK demo application
 %prep
 
 %install
-mv %{_WORKSPACE}/SRC/* %{_WORKSPACE}/BUILDROOT/
+mv %{_WORKSPACE}/rpmbuild/SRC/* %{_WORKSPACE}/rpmbuild/BUILDROOT/
 
 %pre
 
