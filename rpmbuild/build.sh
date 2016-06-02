@@ -25,8 +25,9 @@ mkdir -p $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
 cp tomcat-context/${COMPONENT}.xml $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
 
 find $WORKSPACE/rpmbuild/$COMPONENT/SRC/ -type f | sed "s|$WORKSPACE/rpmbuild/$COMPONENT/SRC||" | awk -F\\ '{print "\""$1"\""}' >> $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
+
 rpmbuild -ba --define "_topdir $WORKSPACE/rpmbuild/$COMPONENT" --define "_WORKSPACE $WORKSPACE/rpmbuild/$COMPONENT" --buildroot $WORKSPACE/rpmbuild/$COMPONENT/BUILDROOT/ $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
 
-for i in `find $WORKSPACE/rpmbuild/ -name *.rpm`; do
-  mv $i $WORKSPACE/archive/
-done
+#for i in `find $WORKSPACE/rpmbuild/ -name *.rpm`; do
+#  mv $i $WORKSPACE/archive/
+#done

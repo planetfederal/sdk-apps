@@ -1,7 +1,7 @@
 %define __spec_install_pre /bin/true
 
 Name: quickview
-Version: 1
+Version: 4.9.0
 Release: 1
 Summary: Boundless WebSDK demo application
 Group: Applications/Engineering
@@ -13,7 +13,7 @@ Requires(preun): bash
 Requires:  unzip, suite-geoserver
 AutoReqProv: no
 
-%define _rpmdir artifacts-out/
+%define _rpmdir archive/
 %define _rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
 %define _unpackaged_files_terminate_build 0
 # Don't waste time re-packing jars (http://makewhatis.com/2011/12/remove-unwanted-commpression-in-during-rpmbuild-for-jar-files)
@@ -26,7 +26,7 @@ Boundless Spatial WebSDK demo application
 %prep
 
 %install
-mv %{_WORKSPACE}/rpmbuild/SRC/* %{_WORKSPACE}/rpmbuild/BUILDROOT/
+mv %{_WORKSPACE}/SRC/* %{_WORKSPACE}/BUILDROOT/
 
 %pre
 
