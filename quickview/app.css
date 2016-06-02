@@ -90,6 +90,16 @@ body {
   position: absolute;
   width: 100%;
 }
+#legend {
+  height: 100%;
+}
+#legend > .legend {
+  height: 100%;
+}
+.legend-list {
+  height: 100%;
+  overflow-y: scroll;
+}
 
 #wfst {
   height: 100%;
