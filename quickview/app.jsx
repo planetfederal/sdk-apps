@@ -121,7 +121,7 @@ class QuickView extends React.Component {
           <div className="row container">
             <div className="col tabs" id="tabspanel">
               <Tabs value={this.state.value} onChange={this.handleChange.bind(this)} disableTouchRipple={true}>
-                <Tab value={1} label={formatMessage(messages.layerstab)} disableTouchRipple={true}><div id='layerlist'><LayerList allowStyling={true} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></Tab>
+                <Tab value={1} label={formatMessage(messages.layerstab)} disableTouchRipple={true}><div id='layerlist'><LayerList allowStyling={false} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></Tab>
                 <Tab value={2} label={formatMessage(messages.legendtab)} disableTouchRipple={true}><div id='legend'><Legend map={map} /></div></Tab>
                 <Tab value={3} label={formatMessage(messages.attributestab)} disableTouchRipple={true}><div id="attributes-table-tab"><FeatureTable resizeTo='tabspanel' offset={[0, 48]} map={map} /></div></Tab>
                 <Tab value={4} label={formatMessage(messages.wfsttab)} disableTouchRipple={true}><div id='wfst'><WFST toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
