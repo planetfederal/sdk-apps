@@ -246,7 +246,7 @@ class BasicApp extends React.Component {
         </Toolbar>
         <MapPanel id='map' map={map} />
         <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
-        <div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div>
+        <div id='geocoding-results' className='geocoding-results-panel'><GeocodingResults map={map} /></div>
         <div ref='editToolPanel' className='edit-tool-panel'><Edit ref='edit' toggleGroup='navigation' map={map} /></div>
         <div id='globe-button'><Globe map={map} /></div>
         <div id='zoom-buttons'><Zoom map={map} /></div>
