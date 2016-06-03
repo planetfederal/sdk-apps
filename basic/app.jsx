@@ -222,7 +222,11 @@ class BasicApp extends React.Component {
     this._toggle(ReactDOM.findDOMNode(this.refs.chartPanel));
   }
   _toggleEdit() {
-    this._toggle(ReactDOM.findDOMNode(this.refs.editToolPanel));
+    var node = ReactDOM.findDOMNode(this.refs.editToolPanel);
+    this._toggle(node);
+    if (node.style.display === 'none') {
+      this.refs.edit.getWrappedInstance().deactivate();
+    }
   }
   render() {
     const buttonStyle = {margin: '10px 12px'};
@@ -243,7 +247,7 @@ class BasicApp extends React.Component {
         <MapPanel id='map' map={map} />
         <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
         <div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div>
-        <div ref='editToolPanel' className='edit-tool-panel'><Edit toggleGroup='navigation' map={map} /></div>
+        <div ref='editToolPanel' className='edit-tool-panel'><Edit ref='edit' toggleGroup='navigation' map={map} /></div>
         <div id='globe-button'><Globe map={map} /></div>
         <div id='zoom-buttons'><Zoom map={map} /></div>
         <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable ref='table' resizeTo='table-panel' offset={[30, 30]} layer={selectedLayer} map={map} /></div>
