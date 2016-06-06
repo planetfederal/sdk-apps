@@ -244,12 +244,13 @@ class BasicApp extends React.Component {
           <Select toggleGroup='navigation' map={map}/>
           <Navigation secondary={true} toggleGroup='navigation' map={map}/>
         </Toolbar>
-        <MapPanel id='map' map={map} />
-        <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
-        <div id='geocoding-results' className='geocoding-results-panel'><GeocodingResults map={map} /></div>
-        <div ref='editToolPanel' className='edit-tool-panel'><Edit ref='edit' toggleGroup='navigation' map={map} /></div>
-        <div id='globe-button'><Globe map={map} /></div>
-        <div id='zoom-buttons'><Zoom map={map} /></div>
+        <MapPanel id='map' map={map}>
+          <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
+          <div id='geocoding-results' className='geocoding-results-panel'><GeocodingResults map={map} /></div>
+          <div ref='editToolPanel' className='edit-tool-panel'><Edit ref='edit' toggleGroup='navigation' map={map} /></div>
+          <div id='globe-button'><Globe map={map} /></div>
+          <div id='zoom-buttons'><Zoom map={map} /></div>
+        </MapPanel>
         <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable ref='table' resizeTo='table-panel' offset={[30, 30]} layer={selectedLayer} map={map} /></div>
         <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
         <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' map={map} /></div>

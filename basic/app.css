@@ -6,6 +6,7 @@ body {
   position: absolute;
   top: 70px;
   margin-left: 10px;
+  z-index: 1111;
 }
 #globe-button {
   z-index: 1111;
