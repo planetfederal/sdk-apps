@@ -115,7 +115,7 @@ class QuickView extends React.Component {
             </ToolbarGroup>
             <Measure toggleGroup='navigation' map={map}/>
             <Select toggleGroup='navigation' map={map}/>
-            <Navigation secondary={true} toggleGroup='navigation' />
+            <Navigation secondary={true} toggleGroup='navigation' toolId='nav' />
             <MapConfig map={map}/>
           </Toolbar>
           <div className="row container">
@@ -131,7 +131,7 @@ class QuickView extends React.Component {
               <MapPanel id='map' map={map} />
               <LoadingPanel map={map} />
               <div id='globe-button'><Globe map={map} /></div>
-              <div id='popup' className='ol-popup'><InfoPopup infoFormat='application/vnd.ogc.gml' map={map} /></div>
+              <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' toolId='nav' infoFormat='application/vnd.ogc.gml' map={map} /></div>
               <div id='geolocation-control'><Geolocation map={map} /></div>
               <div id='home-button'><HomeButton map={map} /></div>
               <div id='zoom-buttons'><Zoom map={map} /></div>

@@ -6,6 +6,7 @@ import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import Geocoding from 'boundless-sdk/js/components/Geocoding.jsx';
 import GeocodingResults from 'boundless-sdk/js/components/GeocodingResults.jsx';
+import Navigation from 'boundless-sdk/js/components/Navigation.jsx';
 import Select from 'boundless-sdk/js/components/Select.jsx';
 import QueryBuilder from 'boundless-sdk/js/components/QueryBuilder.jsx';
 import FeatureTable from 'boundless-sdk/js/components/FeatureTable.jsx';
@@ -18,9 +19,9 @@ import TableIcon from 'material-ui/lib/svg-icons/action/view-list';
 import QueryIcon from 'material-ui/lib/svg-icons/action/query-builder';
 import ChartIcon from 'material-ui/lib/svg-icons/editor/insert-chart';
 import EditIcon from 'material-ui/lib/svg-icons/editor/mode-edit';
-import PanIcon from 'material-ui/lib/svg-icons/action/pan-tool';
 import Edit from 'boundless-sdk/js/components/Edit.jsx';
 import Globe from 'boundless-sdk/js/components/Globe.jsx';
+import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
 import ToolActions from 'boundless-sdk/js/actions/ToolActions.js';
 import enLocaleData from 'react-intl/locale-data/en.js';
@@ -125,6 +126,7 @@ var stylePopp = function(feature) {
 };
 
 var map = new ol.Map({
+  controls: [],
   layers: [
     new ol.layer.Group({
       type: 'base-group',
@@ -140,18 +142,6 @@ var map = new ol.Map({
           visible: false,
           title: 'Aerial',
           source: new ol.source.MapQuest({layer: 'sat'})
-        }),
-        new ol.layer.Tile({
-          type: 'base',
-          visible: false,
-          title: 'None',
-          source: new ol.source.XYZ({
-            attributions: [
-              new ol.Attribution({
-                html: 'Blank tiles: No attribution'
-              })
-            ]
-          })
         })
       ]
     }),
@@ -232,10 +222,11 @@ class BasicApp extends React.Component {
     this._toggle(ReactDOM.findDOMNode(this.refs.chartPanel));
   }
   _toggleEdit() {
-    this._toggle(ReactDOM.findDOMNode(this.refs.editToolPanel));
-  }
-  _navigationFunc() {
-    ToolActions.activateTool(null, 'navigation');
+    var node = ReactDOM.findDOMNode(this.refs.editToolPanel);
+    this._toggle(node);
+    if (node.style.display === 'none') {
+      this.refs.edit.getWrappedInstance().deactivate();
+    }
   }
   render() {
     const buttonStyle = {margin: '10px 12px'};
@@ -251,20 +242,19 @@ class BasicApp extends React.Component {
           <RaisedButton style={buttonStyle} icon={<ChartIcon />} label='Chart' onTouchTap={this._toggleChart.bind(this)} />
           <RaisedButton style={buttonStyle} icon={<EditIcon />} label='Edit' onTouchTap={this._toggleEdit.bind(this)} />
           <Select toggleGroup='navigation' map={map}/>
-          <RaisedButton style={buttonStyle} icon={<PanIcon />} label='Navigation' onTouchTap={this._navigationFunc.bind(this)} />
+          <Navigation secondary={true} toggleGroup='navigation' map={map}/>
         </Toolbar>
         <MapPanel id='map' map={map}>
           <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
-          <div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div>
-          <div ref='editToolPanel' className='edit-tool-panel'><Edit toggleGroup='navigation' map={map} /></div>
+          <div id='geocoding-results' className='geocoding-results-panel'><GeocodingResults map={map} /></div>
+          <div ref='editToolPanel' className='edit-tool-panel'><Edit ref='edit' toggleGroup='navigation' map={map} /></div>
           <div id='globe-button'><Globe map={map} /></div>
+          <div id='zoom-buttons'><Zoom map={map} /></div>
         </MapPanel>
-        <div id='chart-panel' className='chart-panel'>
-        </div>
         <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable ref='table' resizeTo='table-panel' offset={[30, 30]} layer={selectedLayer} map={map} /></div>
         <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
         <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' map={map} /></div>
-        <div  id='chart-panel'><Chart ref='chartPanel' combo={true} charts={charts}/></div>
+        <div ref='chartPanel' className='chart-panel'><Chart combo={true} charts={charts}/></div>
       </div>
     );
   }
