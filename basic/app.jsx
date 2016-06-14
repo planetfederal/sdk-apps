@@ -225,7 +225,7 @@ class BasicApp extends React.Component {
     var node = ReactDOM.findDOMNode(this.refs.editToolPanel);
     this._toggle(node);
     if (node.style.display === 'none') {
-      this.refs.edit.getWrappedInstance().deactivate();
+      this.refs.edit.getWrappedInstance().disableEditMode();
     }
   }
   render() {
