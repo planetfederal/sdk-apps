@@ -6,7 +6,7 @@ mkdir archive/
 # Quickview:
 # Build quickview war
 COMPONENT=suite-quickview
-cd $WORKSPACE/$COMPONENT
+cd $WORKSPACE/quickview
 npm i
 npm run package <<< "quickview.war"
 mv quickview.war ../archive
