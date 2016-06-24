@@ -31,7 +31,7 @@ mv %{_WORKSPACE}/SRC/* %{_WORKSPACE}/BUILDROOT/
 %pre
 
 %post
-chown -R tomcat8:tomcat8 /usr/share/boundless/
+chown -R tomcat8:tomcat8 /opt/boundless/
 
 %preun
 

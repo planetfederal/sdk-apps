@@ -5,7 +5,7 @@ mkdir archive/
 
 # Quickview:
 # Build quickview war
-COMPONENT=quickview
+COMPONENT=suite-quickview
 cd $WORKSPACE/$COMPONENT
 npm i
 npm run package <<< "quickview.war"
@@ -19,8 +19,8 @@ do
   mkdir -p $WORKSPACE/rpmbuild/$COMPONENT/$dir
 done
 cp SPECS/${COMPONENT}.spec $COMPONENT/SPECS
-mkdir -p $COMPONENT/SRC/usr/share/boundless/$COMPONENT
-unzip ../archive/quickview.war -d $COMPONENT/SRC/usr/share/boundless/$COMPONENT
+mkdir -p $COMPONENT/SRC/opt/boundless/$COMPONENT
+unzip ../archive/quickview.war -d $COMPONENT/SRC/opt/boundless/$COMPONENT
 mkdir -p $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
 cp tomcat-context/${COMPONENT}.xml $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
 
