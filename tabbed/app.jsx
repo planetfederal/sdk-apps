@@ -4,6 +4,7 @@ import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import ToolActions from 'boundless-sdk/js/actions/ToolActions.js';
+import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import Geocoding from 'boundless-sdk/js/components/Geocoding.jsx';
 import GeocodingResults from 'boundless-sdk/js/components/GeocodingResults.jsx';
@@ -170,6 +171,7 @@ var stylePopp = function(feature) {
 };
 
 var map = new ol.Map({
+  controls: [],
   layers: [
     new ol.layer.Group({
       type: 'base-group',
@@ -448,6 +450,7 @@ class TabbedApp extends React.Component {
             <div id='legend'><QGISLegend map={map} legendBasePath='../../resources/legend/' legendData={legendData} /></div>
             <div id='geolocation-control'><Geolocation map={map} /></div>
             <div id='home-button'><HomeButton map={map} /></div>
+            <div id='zoom-buttons'><Zoom map={map} /></div>
           </div>
         </div>
       </div>

@@ -37,12 +37,19 @@
   width: 40%;
 }
 #geolocation-control {
+  margin-left: 20px;
   position: absolute;
-  top: 125px;
+  top: 185px;
+}
+#zoom-buttons {
+  margin-left: 20px;
+  position: absolute;
+  top: 76px;
 }
 #home-button {
+  margin-left: 20px;
   position: absolute;
-  top: 175px;
+  top: 235px;
 }
 html, body {
   height: 100%;
