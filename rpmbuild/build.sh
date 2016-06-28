@@ -21,8 +21,8 @@ done
 cp SPECS/${COMPONENT}.spec $COMPONENT/SPECS
 mkdir -p $COMPONENT/SRC/opt/boundless/suite/quickview
 unzip ../archive/quickview.war -d $COMPONENT/SRC/opt/boundless/suite/quickview/
-mkdir -p $COMPONENT/SRC/opt/boundless/suite/doc
-cp $WORKSPACE/rpmbuild/LICENSE.md $COMPONENT/SRC/opt/boundless/suite/doc
+mkdir -p $COMPONENT/SRC/opt/boundless/suite/quickview/doc
+cp $WORKSPACE/rpmbuild/LICENSE.md $COMPONENT/SRC/opt/boundless/suite/quickview/doc
 mkdir -p $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
 cp tomcat-context/quickview.xml $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
 
