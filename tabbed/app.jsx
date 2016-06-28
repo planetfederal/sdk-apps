@@ -4,6 +4,7 @@ import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import ToolActions from 'boundless-sdk/js/actions/ToolActions.js';
+import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import Geocoding from 'boundless-sdk/js/components/Geocoding.jsx';
 import GeocodingResults from 'boundless-sdk/js/components/GeocodingResults.jsx';
@@ -14,6 +15,7 @@ import Select from 'boundless-sdk/js/components/Select.jsx';
 import QueryBuilder from 'boundless-sdk/js/components/QueryBuilder.jsx';
 import Chart from 'boundless-sdk/js/components/Chart.jsx';
 import Geolocation from 'boundless-sdk/js/components/Geolocation.jsx';
+import Navigation from 'boundless-sdk/js/components/Navigation.jsx';
 import QGISLegend from 'boundless-sdk/js/components/QGISLegend.jsx';
 import ImageExport from 'boundless-sdk/js/components/ImageExport.jsx';
 import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
@@ -24,7 +26,6 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import Login from 'boundless-sdk/js/components/Login.jsx';
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
-import PanIcon from 'material-ui/lib/svg-icons/action/pan-tool';
 import nlLocaleData from 'react-intl/locale-data/nl.js';
 import enLocaleData from 'react-intl/locale-data/en.js';
 import nlMessages from 'boundless-sdk/locale/nl.js';
@@ -170,6 +171,7 @@ var stylePopp = function(feature) {
 };
 
 var map = new ol.Map({
+  controls: [],
   layers: [
     new ol.layer.Group({
       type: 'base-group',
@@ -352,16 +354,6 @@ const messages = defineMessages({
     id: 'app.chart2',
     description: 'Title of the second chart',
     defaultMessage: 'Forest area total surface'
-  },
-  navigationbutton: {
-    id: 'app.navigationbutton',
-    description: 'Text of the Navigation button',
-    defaultMessage: 'Navigation'
-  },
-  navigationbuttontitle: {
-    id: 'app.navigationbuttontitle',
-    description: 'Title of the Navigation button',
-    defaultMessage: 'Switch to map navigation (pan and zoom)'
   }
 });
 
@@ -371,17 +363,13 @@ nlMessages['app.querytab'] = 'Bevragen';
 nlMessages['app.charttab'] = 'Grafieken';
 nlMessages['app.chart1'] = 'Aantal vliegvelden per gebruikscategorie';
 nlMessages['app.chart2'] = 'Totaal oppervlakte bos';
-nlMessages['app.navigationbutton'] = 'Navigatie';
-nlMessages['app.navigationbuttontitle'] = 'Schakel naar kaart navigatie (verschuif en zoom)';
 
 enMessages['app.geocodingtab'] = 'Find place';
-enMessages['app.attributestab'] = 'Feature table';
+enMessages['app.attributestab'] = 'Table';
 enMessages['app.querytab'] = 'Query';
 enMessages['app.charttab'] = 'Charts';
 enMessages['app.chart1'] = 'Number of airports per usage category';
 enMessages['app.chart2'] = 'Total area of forest';
-enMessages['app.navigationbutton'] = 'Navigation';
-enMessages['app.navigationbuttontitle'] = 'Go to map navigation (zoom and pan)';
 
 var locale = window.location.search.indexOf('nl') !== -1 ? 'nl' : 'en';
 var i18n = locale === 'nl' ? nlMessages : enMessages;
@@ -392,9 +380,6 @@ class TabbedApp extends React.Component {
     this.state = {
       value: 2
     };
-  }
-  _navigationFunc() {
-    ToolActions.activateTool(null, 'navigation');
   }
   handleChange(value) {
     if (value === parseInt(value, 10)) {
@@ -430,7 +415,7 @@ class TabbedApp extends React.Component {
           <AddLayer map={map} />
           <QGISPrint map={map} layouts={printLayouts} />
           <Select toggleGroup='navigation' map={map}/>
-          <RaisedButton style={buttonStyle} icon={<PanIcon />} label={formatMessage(messages.navigationbutton)} onTouchTap={this._navigationFunc.bind(this)} />
+          <Navigation secondary={true} toggleGroup='navigation' map={map}/>
         </Toolbar>
         <div className='row container'>
           <div className="col tabs" id="tabs-panel">
@@ -448,6 +433,7 @@ class TabbedApp extends React.Component {
             <div id='legend'><QGISLegend map={map} legendBasePath='../../resources/legend/' legendData={legendData} /></div>
             <div id='geolocation-control'><Geolocation map={map} /></div>
             <div id='home-button'><HomeButton map={map} /></div>
+            <div id='zoom-buttons'><Zoom map={map} /></div>
           </div>
         </div>
       </div>
