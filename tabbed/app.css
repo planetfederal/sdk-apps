@@ -28,18 +28,36 @@
   position: fixed;
   bottom: 0px;
 }
+#geocoding-tab {
+  padding: 10px;
+}
 .maps {
-  height: 100%;
+  height: calc(100% - 56px);
   width: 60%;
+  position: absolute;
+  top: 56px;
+  left: 40%;
 }
 .tabs {
-  height: 100%;
+  height: calc(100% - 56px);
   width: 40%;
+  position: absolute;
+  top: 56px;
+  left: 0px;
+}
+.tabs > div {
+  height: 100%;
+}
+.tabs > div > div:last-child {
+  height: calc(100% - 50px);
+}
+.tabs > div > div:last-child > div{
+  height: 100%;
 }
 #geolocation-control {
   margin-left: 20px;
   position: absolute;
-  top: 185px;
+  top: 184px;
 }
 #zoom-buttons {
   margin-left: 20px;

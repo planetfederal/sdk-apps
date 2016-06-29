@@ -428,7 +428,7 @@ class TabbedApp extends React.Component {
           <div className="col tabs" id="tabs-panel">
             <Tabs value={this.state.value} onChange={this.handleChange.bind(this)}>
               <Tab value={1} label={formatMessage(messages.geocodingtab)}><div style={{background: DarkTheme.palette.canvasColor}} id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></Tab>
-              <Tab value={2} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab"><FeatureTable resizeTo='tabs-panel' offset={[50, 60]} layer={selectedLayer} map={map} /></div></Tab>
+              <Tab value={2} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab"><FeatureTable resizeTo='tabs-panel' offset={[0, 48]} layer={selectedLayer} map={map} /></div></Tab>
               <Tab value={3} label={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></Tab>
               <Tab value={4} label={formatMessage(messages.charttab)}><div id='charts-tab'><Chart combo={true} charts={charts}/></div></Tab>
             </Tabs>
