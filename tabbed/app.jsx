@@ -4,7 +4,7 @@ import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
-import DarkTheme from 'material-ui//lib/styles/raw-themes/dark-raw-theme';
+import CustomTheme from './theme';
 import ToolActions from 'boundless-sdk/js/actions/ToolActions.js';
 import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
@@ -385,7 +385,7 @@ class TabbedApp extends React.Component {
   }
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getMuiTheme(DarkTheme)
+      muiTheme: ThemeManager.getMuiTheme(CustomTheme)
     };
   }
   handleChange(value) {
@@ -414,7 +414,7 @@ class TabbedApp extends React.Component {
       operation: 2
     }];
     return (
-      <div id='content' style={{background: DarkTheme.palette.canvasColor}}>
+      <div id='content' style={{background: CustomTheme.palette.canvasColor}}>
         <Toolbar>
           <Login />
           <ImageExport map={map} />
@@ -427,7 +427,7 @@ class TabbedApp extends React.Component {
         <div className='row container'>
           <div className="col tabs" id="tabs-panel">
             <Tabs value={this.state.value} onChange={this.handleChange.bind(this)}>
-              <Tab value={1} label={formatMessage(messages.geocodingtab)}><div style={{background: DarkTheme.palette.canvasColor}} id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></Tab>
+              <Tab value={1} label={formatMessage(messages.geocodingtab)}><div style={{background: CustomTheme.palette.canvasColor}} id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></Tab>
               <Tab value={2} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab"><FeatureTable resizeTo='tabs-panel' offset={[0, 48]} layer={selectedLayer} map={map} /></div></Tab>
               <Tab value={3} label={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></Tab>
               <Tab value={4} label={formatMessage(messages.charttab)}><div id='charts-tab'><Chart combo={true} charts={charts}/></div></Tab>
