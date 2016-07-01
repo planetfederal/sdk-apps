@@ -1,7 +1,7 @@
 #!/bin/sh
 # Run from repo root level
 
-mkdir archive/
+mkdir -p archive/tmp/doc
 
 # Quickview:
 # Build quickview war
@@ -9,7 +9,12 @@ COMPONENT=suite-quickview
 cd $WORKSPACE/quickview
 npm i
 npm run package <<< "quickview.war"
-mv quickview.war ../archive
+mv quickview.war ../archive/quickview-orig.war
+cd ../archive/tmp
+jar -xvf ../quickview-orig.war 
+cp $WORKSPACE/rpmbuild/LICENSE.md doc/
+jar -cvf ../quickview.war .
+rm -f ../quickview-orig.war
 
 # Build quickview RPM
 cd $WORKSPACE/rpmbuild
@@ -21,8 +26,8 @@ done
 cp SPECS/${COMPONENT}.spec $COMPONENT/SPECS
 mkdir -p $COMPONENT/SRC/opt/boundless/suite/quickview
 unzip ../archive/quickview.war -d $COMPONENT/SRC/opt/boundless/suite/quickview/
-mkdir -p $COMPONENT/SRC/opt/boundless/suite/quickview/doc
-cp $WORKSPACE/rpmbuild/LICENSE.md $COMPONENT/SRC/opt/boundless/suite/quickview/doc
+#mkdir -p $COMPONENT/SRC/opt/boundless/suite/quickview/doc
+#cp $WORKSPACE/rpmbuild/LICENSE.md $COMPONENT/SRC/opt/boundless/suite/quickview/doc
 mkdir -p $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
 cp tomcat-context/quickview.xml $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
 
