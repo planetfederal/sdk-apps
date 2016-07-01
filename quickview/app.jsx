@@ -46,14 +46,47 @@ var map = new ol.Map({
       layers: [
         new ol.layer.Tile({
           type: 'base',
-          title: 'Streets',
-          source: new ol.source.MapQuest({layer: 'osm'})
+          title: 'OSM Streets',
+          source: new ol.source.OSM()
         }),
         new ol.layer.Tile({
           type: 'base',
+          title: 'CartoDB light',
           visible: false,
-          title: 'Aerial',
-          source: new ol.source.MapQuest({layer: 'sat'})
+          source: new ol.source.XYZ({
+            url: 'http://s.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+            attributions: [
+              new ol.Attribution({
+                html: ['&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>']
+              })
+            ]
+          })
+        }),
+        new ol.layer.Tile({
+          type: 'base',
+          title: 'CartoDB dark',
+          visible: false,
+          source: new ol.source.XYZ({
+            url: 'http://s.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
+            attributions: [
+              new ol.Attribution({
+                html: ['&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>']
+              })
+            ]
+          })
+        }),
+        new ol.layer.Tile({
+          type: 'base',
+          title: 'ESRI world imagery',
+          visible: false,
+          source: new ol.source.XYZ({
+            attributions: [
+              new ol.Attribution({
+                html:['Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community']
+              })
+            ],
+            url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+          })
         })
       ]
     })
