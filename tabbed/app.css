@@ -28,37 +28,56 @@
   position: fixed;
   bottom: 0px;
 }
+#geocoding-tab {
+  padding: 10px;
+}
 .maps {
-  height: 100%;
+  height: calc(100% - 56px);
   width: 60%;
+  position: absolute;
+  top: 56px;
+  left: 40%;
 }
 .tabs {
-  height: 100%;
+  height: calc(100% - 56px);
   width: 40%;
+  position: absolute;
+  top: 56px;
+  left: 0px;
+}
+.tabs > div {
+  height: 100%;
+}
+.tabs > div > div:last-child {
+  height: calc(100% - 50px);
+}
+.tabs > div > div:last-child > div{
+  height: 100%;
 }
 #geolocation-control {
   margin-left: 20px;
   position: absolute;
-  top: 185px;
+  top: 128px;
+}
+.layer-switcher {
+  top: 20px;
 }
 #zoom-buttons {
   margin-left: 20px;
   position: absolute;
-  top: 76px;
+  top: 20px;
 }
 #home-button {
   margin-left: 20px;
   position: absolute;
-  top: 235px;
+  top: 180px;
 }
 html, body {
   height: 100%;
   padding: 0;
   margin: 0;
 }
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
 #map {
+  background-color: white;
   height: 100%;
 }

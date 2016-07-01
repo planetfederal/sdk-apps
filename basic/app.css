@@ -1,27 +1,23 @@
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: 0;
 }
 #zoom-buttons {
   position: absolute;
-  top: 70px;
+  top: 10px;
   margin-left: 10px;
   z-index: 1111;
 }
 #globe-button {
   z-index: 1111;
   position: absolute;
-  top: 180px;
+  top: 124px;
   margin-left: 10px;
 }
 .edit-tool-panel {
   display: none;
   position: absolute;
-  background:rgba(255,255,255, 1);
-  padding: 5px;
   left: 652px;
-  top: 56px;
-  border: 1px solid #000000;
+  top: 0px;
   max-width: 50%;
   z-index: 1111;
 }
@@ -32,7 +28,9 @@ html, body {
 }
 #map {
   width: 100%;
-  height: 100%;
+  top: 56px;
+  position: absolute;
+  height: calc(100% - 56px);
 }
 #content {
   width: 100%;
@@ -43,31 +41,22 @@ html, body {
 .geocoding-results-panel {
   display: none;
   position: absolute;
-  background: rgba(255,255,255, 1);
-  padding: 15px;
-  border: 1px solid #000000;
-  top: 56px;
+  top: 0px;
   right: 0px;
   max-width: 50%;
   z-index: 1111;
 }
 .query-panel {
   display: none;
-  left: 250px;
-  top: 56px;
+  left: 387px;
+  top: 0px;
   position: absolute;
-  background: rgba(255,255,255, 1);
-  padding: 15px;
-  border: 1px solid #000000;
   max-width: 50%;
   z-index: 1111;
 }
 .attributes-table {
   display: none;
   position: absolute;
-  background: rgba(255,255,255,1);
-  padding: 15px;
-  border: 1px solid #000000;
   bottom: 0px;
   left: 0;
   height: 50%;
@@ -77,9 +66,6 @@ html, body {
 .chart-panel{
   display: none;
   position: absolute;
-  background: rgba(255,255,255,1);
-  padding: 15px;
-  border: 1px solid #000000;
   bottom: 0px;
   left: 0;
   width: 100%;
@@ -89,7 +75,4 @@ html, body {
 #main {
   width: 100%;
   height: 100%;
-}
-.layerlistbutton {
-  top: 50px;
 }
