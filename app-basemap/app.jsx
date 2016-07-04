@@ -28,8 +28,8 @@ var map = new ol.Map({
       layers: [
         new ol.layer.Tile({
           type: 'base',
-          title: 'MapQuest Street Map',
-          source: new ol.source.MapQuest({layer: 'osm'})
+          title: 'OpenStreetMap',
+          source: new ol.source.OSM()
         }),
         new ol.layer.Tile({
           type: 'base',

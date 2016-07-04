@@ -20,19 +20,7 @@ var map = new ol.Map({
         new ol.layer.Tile({
           type: 'base',
           title: 'Streets',
-          source: new ol.source.MapQuest({layer: 'osm'})
-        }),
-        new ol.layer.Tile({
-          type: 'base',
-          visible: false,
-          title: 'None',
-          source: new ol.source.XYZ({
-            attributions: [
-              new ol.Attribution({
-                html: 'Blank tiles: No attribution'
-              })
-            ]
-          })
+          source: new ol.source.OSM()
         })
       ]
     })

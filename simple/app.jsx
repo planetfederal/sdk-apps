@@ -114,24 +114,19 @@ var map = new ol.Map({
         new ol.layer.Tile({
           type: 'base',
           title: 'Streets',
-          source: new ol.source.MapQuest({layer: 'osm'})
+          source: new ol.source.OSM()
         }),
         new ol.layer.Tile({
           type: 'base',
-          visible: false,
           title: 'Aerial',
-          source: new ol.source.MapQuest({layer: 'sat'})
-        }),
-        new ol.layer.Tile({
-          type: 'base',
           visible: false,
-          title: 'None',
           source: new ol.source.XYZ({
             attributions: [
               new ol.Attribution({
-                html: 'Blank tiles: No attribution'
+                html:['Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community']
               })
-            ]
+            ],
+            url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
           })
         })
       ]

@@ -30,13 +30,7 @@ var map = new ol.Map({
         new ol.layer.Tile({
           type: 'base',
           title: 'OpenStreetMap',
-          visible: false,
           source: new ol.source.OSM()
-        }),
-        new ol.layer.Tile({
-          type: 'base',
-          title: 'MapQuest Street Map',
-          source: new ol.source.MapQuest({layer: 'osm'})
         }),
         new ol.layer.Tile({
           type: 'base',
