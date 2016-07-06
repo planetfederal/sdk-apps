@@ -4,6 +4,7 @@ import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
+import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import EditPopup from 'boundless-sdk/js/components/EditPopup.jsx';
 import AppBar from 'material-ui/lib/app-bar';
@@ -23,6 +24,7 @@ addLocaleData(
 );
 
 var map = new ol.Map({
+  controls: [new ol.control.Attribution({collapsible: false})],
   layers: [
     new ol.layer.Group({
       type: 'base-group',
@@ -31,18 +33,7 @@ var map = new ol.Map({
         new ol.layer.Tile({
           type: 'base',
           title: 'OpenStreetMap',
-          visible: false,
           source: new ol.source.OSM()
-        }),
-        new ol.layer.Tile({
-          type: 'base',
-          title: 'MapQuest Street Map',
-          source: new ol.source.MapQuest({layer: 'osm'})
-        }),
-        new ol.layer.Tile({
-          type: 'base',
-          visible: false,
-          title: 'None'
         })
       ]
     })
@@ -58,9 +49,11 @@ class MyApp extends React.Component {
     return (
       <div id='content'>
         <AppBar iconElementLeft={<img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />} title="Features" />
-        <MapPanel id='map' map={map} useHistory={false} />
-        <div><LayerList allowStyling={true} showOnStart={true} showZoomTo={true} allowEditing={true} allowReordering={true} addLayer={{url: '/geoserver/wfs?', asVector: true}} expandOnHover={false} map={map} /></div>
+        <MapPanel id='map' map={map} useHistory={false}>
+          <div><LayerList allowStyling={true} showOnStart={true} showZoomTo={true} allowEditing={true} allowReordering={true} addLayer={{url: '/geoserver/wfs?', asVector: true}} expandOnHover={false} map={map} /></div>
+        </MapPanel>
         <div id='home-button'><HomeButton map={map} /></div>
+        <div id='zoom-buttons'><Zoom map={map} /></div>
         <div id='popup' className='ol-popup'><EditPopup map={map} /></div>
         <div id='wfst'><WFST layerSelector={false} visible={false} map={map} /></div>
       </div>

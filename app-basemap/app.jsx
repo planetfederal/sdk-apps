@@ -4,6 +4,7 @@ import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
+import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import AppBar from 'material-ui/lib/app-bar';
 import enLocaleData from 'react-intl/locale-data/en.js';
@@ -21,6 +22,7 @@ addLocaleData(
 );
 
 var map = new ol.Map({
+  controls: [new ol.control.Attribution({collapsible: false})],
   layers: [
     new ol.layer.Group({
       type: 'base-group',
@@ -28,13 +30,8 @@ var map = new ol.Map({
       layers: [
         new ol.layer.Tile({
           type: 'base',
-          title: 'MapQuest Street Map',
-          source: new ol.source.MapQuest({layer: 'osm'})
-        }),
-        new ol.layer.Tile({
-          type: 'base',
-          visible: false,
-          title: 'None'
+          title: 'OpenStreetMap',
+          source: new ol.source.OSM()
         })
       ]
     })
@@ -50,9 +47,11 @@ class MyApp extends React.Component {
     return (
       <div id='content'>
         <AppBar iconElementLeft={<img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />} title="Basemaps" />
-        <MapPanel id='map' map={map} useHistory={false} />
-        <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} addLayer={{url: '/geoserver/wms?'}} expandOnHover={false} map={map} /></div>
+        <MapPanel id='map' map={map} useHistory={false}>
+          <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} addLayer={{url: '/geoserver/wms?'}} expandOnHover={false} map={map} /></div>
+        </MapPanel>
         <div id='home-button'><HomeButton map={map} /></div>
+        <div id='zoom-buttons'><Zoom map={map} /></div>
       </div>
     );
   }
