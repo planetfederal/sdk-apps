@@ -7,6 +7,7 @@ mkdir -p archive/tmp/doc
 # Build quickview war
 COMPONENT=suite-quickview
 cd $WORKSPACE/quickview
+nvm use 6.0.0
 npm cache clean
 npm i
 npm run package <<< "quickview.war"
