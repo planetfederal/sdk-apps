@@ -57,7 +57,7 @@ var map = new ol.Map({
             url: 'http://s.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
             attributions: [
               new ol.Attribution({
-                html: ['&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>']
+                html: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
               })
             ]
           })
@@ -70,7 +70,7 @@ var map = new ol.Map({
             url: 'http://s.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
             attributions: [
               new ol.Attribution({
-                html: ['&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>']
+                html: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
               })
             ]
           })
@@ -82,7 +82,7 @@ var map = new ol.Map({
           source: new ol.source.XYZ({
             attributions: [
               new ol.Attribution({
-                html:['Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community']
+                html: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
               })
             ],
             url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
