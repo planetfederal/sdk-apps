@@ -14,11 +14,13 @@
     box-sizing: border-box;
 }}
 /* end Dead Simple Grid */
-
 html, body {
   height: 100%;
   padding: 0;
   margin: 0;
+}
+body {
+  font-family: Roboto, sans-serif;
 }
 #content, #main {
   width: 100%;
@@ -36,4 +38,9 @@ html, body {
   height: 45%;
   width: 100%;
   z-index: 101;
+}
+#zoom-buttons {
+  margin-left: 20px;
+  position: absolute;
+  top: 20px;
 }
