@@ -22,7 +22,7 @@
     "boundless-sdk": "git+https://github.com/boundlessgeo/sdk.git",
     "react": "0.14.8",
     "react-dom": "0.14.8",
-    "openlayers": "~3.15.0",
+    "openlayers": "3.17.1",
     "react-intl": "2.0.0-rc-1"
   },
   "devDependencies": {
