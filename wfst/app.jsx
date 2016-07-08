@@ -5,6 +5,8 @@ import {addLocaleData, IntlProvider} from 'react-intl';
 import RaisedButton from 'material-ui/lib/raised-button';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
+import Navigation from 'boundless-sdk/js/components/Navigation.jsx';
+import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import WFST from 'boundless-sdk/js/components/WFST.jsx';
 import enLocaleData from 'react-intl/locale-data/en.js';
 import enMessages from 'boundless-sdk/locale/en.js';
@@ -57,6 +59,7 @@ var vector = new ol.layer.Vector({
 });
 
 var map = new ol.Map({
+  controls: [new ol.control.Attribution({collapsible: false})],
   layers: [
     new ol.layer.Group({
       type: 'base-group',
@@ -105,9 +108,13 @@ class WFSTApp extends React.Component {
     const buttonStyle = {margin: '10px 12px'};
     return (
       <div id='content'>
-        <Toolbar><RaisedButton style={buttonStyle} onTouchTap={this._toggleWFST.bind(this)} label='WFS-T' /></Toolbar>
-        <div id='wfst' ref='wfstPanel'><WFST map={map} /></div>
+        <Toolbar>
+          <RaisedButton style={buttonStyle} onTouchTap={this._toggleWFST.bind(this)} label='WFS-T' />
+          <Navigation toggleGroup='nav' secondary={true} />
+        </Toolbar>
+        <div id='wfst' ref='wfstPanel'><WFST toggleGroup='nav' map={map} /></div>
         <MapPanel id='map' map={map} />
+        <div id='zoom-buttons'><Zoom map={map} /></div>
       </div>
     );
   }

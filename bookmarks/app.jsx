@@ -3,15 +3,24 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
+import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import Bookmarks from 'boundless-sdk/js/components/Bookmarks.jsx';
 import enLocaleData from 'react-intl/locale-data/en.js';
 import enMessages from 'boundless-sdk/locale/en.js';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+// Needed for onTouchTap
+// Can go away when react 1.0 release
+// Check this repo:
+// https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
 
 addLocaleData(
   enLocaleData
 );
 
 var map = new ol.Map({
+  controls: [new ol.control.Attribution({collapsible: false})],
   layers: [
     new ol.layer.Group({
       type: 'base-group',
@@ -68,6 +77,7 @@ class BookmarkApp extends React.Component {
         <MapPanel id='map' map={map}>
           <div id='bookmarks-panel'><Bookmarks introTitle='Paris bakeries' introDescription='Explore the best bakeries of the capital of France' map={map} bookmarks={bookmarks} /></div>
         </MapPanel>
+        <div id='zoom-buttons'><Zoom map={map} /></div>
       </div>
     );
   }

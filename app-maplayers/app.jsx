@@ -4,6 +4,7 @@ import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
+import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import AppBar from 'material-ui/lib/app-bar';
 import Measure from 'boundless-sdk/js/components/Measure.jsx';
@@ -22,6 +23,7 @@ addLocaleData(
 );
 
 var map = new ol.Map({
+  controls: [new ol.control.Attribution({collapsible: false})],
   layers: [
     new ol.layer.Group({
       type: 'base-group',
@@ -29,13 +31,21 @@ var map = new ol.Map({
       layers: [
         new ol.layer.Tile({
           type: 'base',
-          title: 'OpenStreetMap',
+          title: 'Streets',
           source: new ol.source.OSM()
         }),
         new ol.layer.Tile({
           type: 'base',
+          title: 'Satellite',
           visible: false,
-          title: 'None'
+          source: new ol.source.XYZ({
+            attributions: [
+              new ol.Attribution({
+                html: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+              })
+            ],
+            url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+          })
         })
       ]
     })
@@ -53,9 +63,11 @@ class MyApp extends React.Component {
         <AppBar iconElementLeft={<img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />} title="Map Layers">
           <Measure style={{marginTop: '10px'}} map={map} />
         </AppBar>
-        <MapPanel id='map' map={map} useHistory={false} />
-        <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} addLayer={{url: '/geoserver/wms?'}} expandOnHover={false} map={map} /></div>
+        <MapPanel id='map' map={map} useHistory={false}>
+          <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} addLayer={{url: '/geoserver/wms?'}} expandOnHover={false} map={map} /></div>
+        </MapPanel>
         <div id='home-button'><HomeButton map={map} /></div>
+        <div id='zoom-buttons'><Zoom map={map} /></div>
       </div>
     );
   }

@@ -5,6 +5,7 @@ import ole from 'ole';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import FeatureTable from 'boundless-sdk/js/components/FeatureTable.jsx';
+import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enLocaleData from 'react-intl/locale-data/en.js';
 import enMessages from 'boundless-sdk/locale/en.js';
@@ -85,6 +86,7 @@ script.src = styleUrl + '&callback=styleCb';
 document.head.appendChild(script);
 
 map = new ol.Map({
+  controls: [new ol.control.Attribution({collapsible: false})],
   layers: [raster, vector],
   view: new ol.View({
     center: [0, 0],
@@ -97,8 +99,9 @@ class EsriApp extends React.Component {
     return (
       <div id='content'>
         <MapPanel id='map' className='row' map={map} />
+        <div id='zoom-buttons'><Zoom map={map} /></div>
         <div ref='tablePanel' id='table-panel' className='row attributes-table'>
-          <FeatureTable ref='table' resizeTo='table-panel' offset={[30, 30]} layer={vector} map={map} />
+          <FeatureTable ref='table' resizeTo='table-panel' offset={[0, 0]} layer={vector} map={map} />
         </div>
       </div>
     );

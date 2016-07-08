@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
+import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import FeatureTable from 'boundless-sdk/js/components/FeatureTable.jsx';
 import enLocaleData from 'react-intl/locale-data/en.js';
 import enMessages from 'boundless-sdk/locale/en.js';
@@ -106,6 +107,7 @@ var stylePopp = function(feature) {
 };
 
 var map = new ol.Map({
+  controls: [new ol.control.Attribution({collapsible: false})],
   layers: [
     new ol.layer.Group({
       type: 'base-group',
@@ -177,7 +179,8 @@ class SimpleApp extends React.Component {
     return (
       <div id='content'>
         <MapPanel id='map' className='row' map={map} />
-        <div ref='tablePanel' id='table-panel' className='row attributes-table'><FeatureTable ref='table' resizeTo='table-panel' offset={[5, 5]} layer={selectedLayer} map={map} /></div>
+        <div id='table-panel' className='row attributes-table'><FeatureTable resizeTo='table-panel' offset={[0, 0]} layer={selectedLayer} map={map} /></div>
+        <div id='zoom-buttons'><Zoom map={map} /></div>
       </div>
     );
   }

@@ -4,6 +4,7 @@ import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
+import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import Playback from 'boundless-sdk/js/components/Playback.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enLocaleData from 'react-intl/locale-data/en.js';
@@ -32,6 +33,7 @@ var styleFires = new ol.style.Style({
 });
 
 var map = new ol.Map({
+  controls: [new ol.control.Attribution({collapsible: false})],
   layers: [
     new ol.layer.Group({
       type: 'base-group',
@@ -82,16 +84,13 @@ var map = new ol.Map({
 class PlaybackApp extends React.Component {
   render() {
     return (
-      <article>
-        <nav role='navigation'>
-        </nav>
-        <div id='content'>
-          <MapPanel id='map' map={map}>
-            <div id='timeline'><Playback map={map} minDate={324511200000} maxDate={1385938800000} /></div>
-          </MapPanel>
-          <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
-        </div>
-      </article>
+      <div id='content'>
+        <MapPanel id='map' map={map}>
+          <div id='timeline'><Playback map={map} minDate={324511200000} maxDate={1385938800000} /></div>
+        </MapPanel>
+        <div id='zoom-buttons'><Zoom map={map} /></div>
+        <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
+      </div>
     );
   }
 }
