@@ -809,9 +809,9 @@ class LegendApp extends React.Component {
         <AppBar showMenuIconButton={false} title="My Web App" />
         <MapPanel id='map' map={map} extent={originalExtent}>
           <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>
+          <div id='layerlist'><LayerList showOpacity={false} showDownload={false} showGroupContent={true} showZoomTo={false} allowReordering={false} allowFiltering={true} map={map}/></div>
+          <div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} /></div>
         </MapPanel>
-        <div id='layerlist'><LayerList showOpacity={false} showDownload={false} showGroupContent={true} showZoomTo={false} allowReordering={false} allowFiltering={true} map={map}/></div>
-        <div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} pullRight/></div>
       </div>
     );
   }

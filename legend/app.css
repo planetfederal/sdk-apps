@@ -10,12 +10,15 @@ html, body {
   font-size: small;
 }
 #map {
+  position: absolute;
+  top: 64px;
+  left: 0px;
   width: 100%;
   height:  calc(100% - 64px);
 }
 .layer-switcher {
-  top: 100px !important;
+  right: 28px !important;
 }
 .legend {
-  top: 200px !important;
+  right: 28px !important;
 }
