@@ -31,11 +31,11 @@ mv %{_WORKSPACE}/SRC/* %{_WORKSPACE}/BUILDROOT/
 %pre
 
 %post
-chown -R tomcat8:tomcat8 /opt/boundless/
+chown -R root:root /opt/boundless/
 
 %preun
 
 %postun
 
 %files
-%defattr(-,tomcat8,tomcat8,-)
+%defattr(-,root,root,-)
