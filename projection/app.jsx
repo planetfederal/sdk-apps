@@ -4,6 +4,7 @@ import ol from 'openlayers';
 import {IntlProvider} from 'react-intl';
 import proj4 from 'proj4';
 import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
+import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import AppBar from 'material-ui/lib/app-bar';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
@@ -55,7 +56,6 @@ var map = new ol.Map({
 
 class ProjectionApp extends React.Component {
   componentDidMount() {
-    super.componentDidMount();
     this.props.map.addControl(new ol.control.OverviewMap({
       collapsed: true,
       view: new ol.View({
@@ -71,6 +71,7 @@ class ProjectionApp extends React.Component {
         <MapPanel id='map' map={map} extent={originalExtent}>
           <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>
         </MapPanel>
+        <div id='zoom-buttons'><Zoom map={map} /></div>
       </div>
     );
   }
