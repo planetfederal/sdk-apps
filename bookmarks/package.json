@@ -23,7 +23,8 @@
     "react": "0.14.8",
     "react-dom": "0.14.8",
     "openlayers": "3.17.1",
-    "react-intl": "2.0.0-rc-1"
+    "react-intl": "2.0.0-rc-1",
+    "react-tap-event-plugin": "^0.2.2"
   },
   "devDependencies": {
     "archiver": "^0.21.0",
