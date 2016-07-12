@@ -1,11 +1,13 @@
 import React from 'react';
 import ol from 'openlayers';
-import MapTool from 'boundless-sdk/js/components/MapTool.js';
+import ToolUtil from 'boundless-sdk/js/toolutil.js';
+import AppDispatcher from 'boundless-sdk/js//dispatchers/AppDispatcher.js';
 import RaisedButton from 'boundless-sdk/js/components/Button.jsx';
 
-class DrawBox extends MapTool {
+class DrawBox extends React.Component {
   constructor(props) {
     super(props);
+    this._dispatchToken = ToolUtil.register(this);
     var source = new ol.source.Vector({wrapX: false});
     this._interaction = new ol.interaction.Draw({
       source: source,
@@ -34,6 +36,15 @@ class DrawBox extends MapTool {
       zIndex: 100000
     });
     this.props.map.addLayer(this._layer);
+  }
+  componentWillUnmount() {
+    AppDispatcher.unregister(this._dispatchToken);
+  }
+  activate(interactions) {
+    ToolUtil.activate(this, interactions);
+  }
+  deactivate() {
+    ToolUtil.deactivate(this);
   }
   _drawBox() {
     this.activate(this._interaction); 
