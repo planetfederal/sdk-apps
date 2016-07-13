@@ -8,6 +8,7 @@ import BoxInfo from './js/components/BoxInfo.jsx';
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
+import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enLocaleData from 'react-intl/locale-data/en.js';
 import enMessages from 'boundless-sdk/locale/en.js';
@@ -62,12 +63,13 @@ class MyApp extends React.Component {
        <div id='content'>
         <div className='row container'>
           <Toolbar>
-            <DrawBox style={{margin: '10px 12px'}} strokeColor='#00FF00' map={map} />
+            <DrawBox style={{margin: '10px 12px'}} strokeColor='#00FF00' map={map} toggleGroup='navigation' />
           </Toolbar>
           <MapPanel id='map' map={map}>
             <div><LayerList map={map} /></div>
             <div id='zoom-buttons'><Zoom map={map} /></div>
           </MapPanel>
+          <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' map={map} /></div>
         </div>
         <div className='row boxinfo'>
           <BoxInfo />

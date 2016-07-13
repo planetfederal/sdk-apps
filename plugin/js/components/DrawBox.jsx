@@ -2,6 +2,7 @@ import React from 'react';
 import ol from 'openlayers';
 import ToolUtil from 'boundless-sdk/js/toolutil.js';
 import AppDispatcher from 'boundless-sdk/js//dispatchers/AppDispatcher.js';
+import ToolActions from 'boundless-sdk/js/actions/ToolActions.js';
 import RaisedButton from 'boundless-sdk/js/components/Button.jsx';
 
 class DrawBox extends React.Component {
@@ -26,6 +27,7 @@ class DrawBox extends React.Component {
       maxPoints: 2
     });
     this._layer = new ol.layer.Vector({
+      popupInfo: '#AllAttributes',
       title: null, /* to keep it out of the LayerList */
       style: new ol.style.Style({
         stroke: new ol.style.Stroke({
@@ -36,11 +38,13 @@ class DrawBox extends React.Component {
       zIndex: 100000
     });
     source.on('addfeature', function(evt) {
+      evt.feature.set('AREA', evt.feature.getGeometry().getArea());
+      ToolActions.showPopup(evt.feature, this._layer);
       AppDispatcher.handleAction({
         type: 'DRAWBOX',
         geometry: evt.feature.getGeometry()
       });
-    });
+    }, this);
     this.props.map.addLayer(this._layer);
   }
   componentWillUnmount() {
