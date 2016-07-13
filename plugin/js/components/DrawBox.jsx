@@ -35,6 +35,12 @@ class DrawBox extends React.Component {
       source: source,
       zIndex: 100000
     });
+    source.on('addfeature', function(evt) {
+      AppDispatcher.handleAction({
+        type: 'DRAWBOX',
+        geometry: evt.feature.getGeometry()
+      });
+    });
     this.props.map.addLayer(this._layer);
   }
   componentWillUnmount() {
@@ -51,7 +57,7 @@ class DrawBox extends React.Component {
   }
   render() {
     return (
-     <RaisedButton label='Draw Box' tooltip='Click in the map and move the mouse to draw a box' onTouchTap={this._drawBox.bind(this)} />
+     <RaisedButton {...this.props} label='Draw Box' tooltip='Click in the map and move the mouse to draw a box' onTouchTap={this._drawBox.bind(this)} />
     );
   }
 }
@@ -61,7 +67,7 @@ DrawBox.propTypes = {
 };
 
 DrawBox.defaultProps = {
-   strokeColor: '#FF0000'
+  strokeColor: '#FF0000'
 };
 
 export default DrawBox;

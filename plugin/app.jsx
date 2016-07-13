@@ -4,6 +4,7 @@ import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import DrawBox from './js/components/DrawBox.jsx';
+import BoxInfo from './js/components/BoxInfo.jsx';
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
@@ -59,13 +60,18 @@ class MyApp extends React.Component {
   render() {
     return (
        <div id='content'>
-        <Toolbar>
-          <DrawBox strokeColor='#00FF00' map={map} />
-        </Toolbar>
-        <MapPanel id='map' map={map}>
-          <div><LayerList map={map} /></div>
-          <div id='zoom-buttons'><Zoom map={map} /></div>
-        </MapPanel>
+        <div className='row container'>
+          <Toolbar>
+            <DrawBox style={{margin: '10px 12px'}} strokeColor='#00FF00' map={map} />
+          </Toolbar>
+          <MapPanel id='map' map={map}>
+            <div><LayerList map={map} /></div>
+            <div id='zoom-buttons'><Zoom map={map} /></div>
+          </MapPanel>
+        </div>
+        <div className='row boxinfo'>
+          <BoxInfo />
+        </div>
       </div>
     );
   }
