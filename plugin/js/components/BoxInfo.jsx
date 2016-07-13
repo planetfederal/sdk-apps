@@ -1,7 +1,7 @@
 import React from 'react';
 import AppDispatcher from 'boundless-sdk/js/dispatchers/AppDispatcher.js';
 
-export default class BoxInfo extends React.Component {
+class BoxInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,3 +48,5 @@ BoxInfo.defaultProps = {
   title: 'Box info',
   tplText: 'Area: {area}'
 };
+
+export default BoxInfo;
