@@ -18,7 +18,7 @@ mv quickview.war ../archive/quickview-orig.war
 cd ../archive/tmp
 jar -xvf ../quickview-orig.war 
 cp $WORKSPACE/rpmbuild/LICENSE.txt doc/
-cp $WORKSPACE/EULA doc/
+cp $WORKSPACE/rpmbuild/EULA doc/
 jar -cvf ../quickview.war .
 rm -f ../quickview-orig.war
 
