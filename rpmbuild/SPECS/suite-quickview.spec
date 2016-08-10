@@ -36,6 +36,9 @@ chown -R root:root /opt/boundless/
 %preun
 
 %postun
+for dir in `find /opt/boundless/suite/quickview -type d -exec bash -c '[ "x\`find "{}" -maxdepth 1 -type f\`" = x ] && echo "{}"' \; | sort -r`; do
+  rm -rf $dir
+done
 
 %files
 %defattr(-,root,root,-)
