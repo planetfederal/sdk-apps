@@ -1,1 +1,1 @@
-require('sdk-tools').createBuildDir();
+require('boundless-sdk-tools').createBuildDir();

@@ -11,7 +11,7 @@
     "package": "node_modules/.bin/npm-run-all build createzip"
   },
   "dependencies": {
-    "boundless-sdk": "git+https://github.com/boundlessgeo/sdk.git",
+    "boundless-sdk": "^0.9.0",
     "openlayers": "3.17.1",
     "react": "0.14.8",
     "react-dom": "0.14.8",
@@ -30,7 +30,7 @@
     "npm-run-all": "1.3.1",
     "readline": "1.3.0",
     "replacestream": "4.0.0",
-    "sdk-tools": "git+https://github.com/boundlessgeo/sdk-tools.git",
+    "boundless-sdk-tools": "^0.9.0",
     "through": "^2.3.8",
     "watchify": "^3.2.0"
   },

@@ -1,4 +1,4 @@
-var tools = require('sdk-tools');
+var tools = require('boundless-sdk-tools');
 var readline = require('readline');
 
 var rl = readline.createInterface({

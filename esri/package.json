@@ -19,7 +19,7 @@
   "author": "Boundless Spatial, Inc",
   "license": "Apache-2.0",
   "dependencies": {
-    "boundless-sdk": "git+https://github.com/boundlessgeo/sdk.git",
+    "boundless-sdk": "^0.9.0",
     "ole": "git+https://github.com/boundlessgeo/ole.git",
     "react": "0.14.8",
     "react-dom": "0.14.8",
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "archiver": "^0.21.0",
-    "sdk-tools": "git+https://github.com/boundlessgeo/sdk-tools.git",
+    "boundless-sdk-tools": "^0.9.0",
     "babel-eslint": "^4.1.6",
     "babel-preset-es2015": "6.9.0",
     "babel-plugin-react-intl": "1.0.0-beta-5",
