@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "archiver": "^0.21.0",
-    "sdk-tools": "git+https://github.com/boundlessgeo/sdk-tools.git",
+    "boundless-sdk-tools": "^0.9.0",
     "babel-eslint": "^4.1.6",
     "babel-plugin-react-intl": "1.0.0-beta-5",
     "babelify": "^6.0.2",
