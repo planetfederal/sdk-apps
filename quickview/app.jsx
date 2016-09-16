@@ -4,6 +4,8 @@ import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
 import ToolActions from 'boundless-sdk/js/actions/ToolActions.js';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import CustomTheme from './theme';
 import FeatureTable from 'boundless-sdk/js/components/FeatureTable.jsx';
 import Measure from 'boundless-sdk/js/components/Measure.jsx';
 import LoadingPanel from 'boundless-sdk/js/components/LoadingPanel.jsx';
@@ -131,6 +133,11 @@ class QuickView extends React.Component {
       value: 1
     };
   }
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getMuiTheme(CustomTheme)
+    };
+  }
   handleChange(value) {
     if (value === parseInt(value, 10)) {
       this.setState({
@@ -183,6 +190,9 @@ QuickView.propTypes = {
   intl: intlShape.isRequired
 };
 
+QuickView.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 QuickView = injectIntl(QuickView);
 
