@@ -1,6 +1,9 @@
 .ol-attribution img {
   max-width: 2em;
 }
+.ol-scale-line {
+  background-color: #0097a7;
+}
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: 0;
