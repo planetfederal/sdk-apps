@@ -140,6 +140,7 @@ class QuickView extends React.Component {
   }
   handleChange(value) {
     this.refs.table.getWrappedInstance().setActive(value === 3);
+    this.refs.edit.getWrappedInstance().setActive(value === 4);
     if (value === parseInt(value, 10)) {
       this.setState({
         value: value,
@@ -165,7 +166,7 @@ class QuickView extends React.Component {
                 <Tab value={1} label={formatMessage(messages.layerstab)} disableTouchRipple={true}><div id='layerlist'><LayerList allowStyling={false} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></Tab>
                 <Tab value={2} label={formatMessage(messages.legendtab)} disableTouchRipple={true}><div id='legend'><Legend map={map} /></div></Tab>
                 <Tab value={3} label={formatMessage(messages.attributestab)} disableTouchRipple={true}><div id="attributes-table-tab"><FeatureTable ref='table' resizeTo='tabspanel' offset={[0, 48]} map={map} /></div></Tab>
-                <Tab value={4} label={formatMessage(messages.wfsttab)} disableTouchRipple={true}><div id='wfst'><WFST toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
+                <Tab value={4} label={formatMessage(messages.wfsttab)} disableTouchRipple={true}><div id='wfst'><WFST ref='edit' toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
               </Tabs>
             </div>
             <div className="col maps">
