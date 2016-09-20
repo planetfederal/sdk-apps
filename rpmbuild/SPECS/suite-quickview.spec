@@ -1,7 +1,7 @@
 %define __spec_install_pre /bin/true
 
 Name: suite-quickview
-Version: 4.9.0rc
+Version: 4.9.0
 Release: REPLACE_RELEASE
 Summary: Boundless WebSDK demo application
 Group: Applications/Engineering
