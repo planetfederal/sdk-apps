@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CustomTheme from './theme';
 import ToolActions from 'boundless-sdk/js/actions/ToolActions.js';
 import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
@@ -23,11 +23,10 @@ import ImageExport from 'boundless-sdk/js/components/ImageExport.jsx';
 import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
 import AddLayer from 'boundless-sdk/js/components/AddLayer.jsx';
 import QGISPrint from 'boundless-sdk/js/components/QGISPrint.jsx';
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import RaisedButton from 'material-ui/lib/raised-button';
+import {Toolbar} from 'material-ui/Toolbar';
+import RaisedButton from 'material-ui/RaisedButton';
 import Login from 'boundless-sdk/js/components/Login.jsx';
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
+import {Tabs, Tab} from 'material-ui/Tabs';
 import nlLocaleData from 'react-intl/locale-data/nl.js';
 import enLocaleData from 'react-intl/locale-data/en.js';
 import nlMessages from 'boundless-sdk/locale/nl.js';
@@ -380,7 +379,7 @@ class TabbedApp extends React.Component {
   }
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getMuiTheme(CustomTheme)
+      muiTheme: getMuiTheme(CustomTheme)
     };
   }
   handleChange(value) {

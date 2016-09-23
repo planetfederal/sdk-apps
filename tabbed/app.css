@@ -31,8 +31,11 @@
 #geocoding-tab {
   padding: 10px;
 }
-.maps {
+.map-panel {
   height: calc(100% - 56px);
+}
+.maps {
+  height: 100%;
   width: 60%;
   position: absolute;
   top: 56px;
