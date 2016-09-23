@@ -1,8 +1,9 @@
-import Colors from 'material-ui/lib/styles/colors';
+import {cyan700, lime500} from 'material-ui/styles/colors';
 
 export default {
   palette: {
-    primary1Color: Colors.cyan700,
-    accent1Color: Colors.lime500
+    primary1Color: cyan700,
+    active1Color: lime500,
+    accent1Color: cyan700
   }
 };

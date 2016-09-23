@@ -4,7 +4,7 @@ import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
 import ToolActions from 'boundless-sdk/js/actions/ToolActions.js';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CustomTheme from './theme';
 import FeatureTable from 'boundless-sdk/js/components/FeatureTable.jsx';
 import Measure from 'boundless-sdk/js/components/Measure.jsx';
@@ -21,10 +21,8 @@ import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
 import Globe from 'boundless-sdk/js/components/Globe.jsx';
 import Legend from 'boundless-sdk/js/components/Legend.jsx';
 import Login from 'boundless-sdk/js/components/Login.jsx';
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
+import {Tabs, Tab} from 'material-ui/Tabs';
+import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 import Navigation from 'boundless-sdk/js/components/Navigation.jsx';
 import enLocaleData from 'react-intl/locale-data/en.js';
 import enMessages from 'boundless-sdk/locale/en.js';
@@ -135,7 +133,7 @@ class QuickView extends React.Component {
   }
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getMuiTheme(CustomTheme)
+      muiTheme: getMuiTheme(CustomTheme)
     };
   }
   handleChange(value) {
@@ -152,21 +150,21 @@ class QuickView extends React.Component {
     return (
         <div id='content'>
           <Toolbar>
-            <ToolbarGroup float="right">
-              <Login />
-            </ToolbarGroup>
+            <MapConfig firstChild={true} map={map}/>
             <Measure toggleGroup='navigation' map={map}/>
             <Select toggleGroup='navigation' map={map}/>
             <Navigation secondary={true} toggleGroup='navigation' toolId='nav' />
-            <MapConfig map={map}/>
+            <ToolbarGroup lastChild={true}>
+              <Login />
+            </ToolbarGroup>
           </Toolbar>
           <div className="row container">
             <div className="col tabs" id="tabspanel">
-              <Tabs value={this.state.value} onChange={this.handleChange.bind(this)} disableTouchRipple={true}>
-                <Tab value={1} label={formatMessage(messages.layerstab)} disableTouchRipple={true}><div id='layerlist'><LayerList allowStyling={false} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></Tab>
-                <Tab value={2} label={formatMessage(messages.legendtab)} disableTouchRipple={true}><div id='legend'><Legend map={map} /></div></Tab>
-                <Tab value={3} label={formatMessage(messages.attributestab)} disableTouchRipple={true}><div id="attributes-table-tab"><FeatureTable ref='table' resizeTo='tabspanel' offset={[0, 48]} map={map} /></div></Tab>
-                <Tab value={4} label={formatMessage(messages.wfsttab)} disableTouchRipple={true}><div id='wfst'><WFST ref='edit' toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
+              <Tabs value={this.state.value} onChange={this.handleChange.bind(this)}>
+                <Tab value={1} label={formatMessage(messages.layerstab)}><div id='layerlist'><LayerList allowStyling={false} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></Tab>
+                <Tab value={2} label={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></Tab>
+                <Tab value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab"><FeatureTable ref='table' resizeTo='tabspanel' offset={[0, 48]} map={map} /></div></Tab>
+                <Tab value={4} label={formatMessage(messages.wfsttab)}><div id='wfst'><WFST ref='edit' toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
               </Tabs>
             </div>
             <div className="col maps">
