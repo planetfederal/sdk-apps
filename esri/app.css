@@ -22,7 +22,7 @@ body {
     box-sizing: border-box;
 }}
 /* end Dead Simple Grid */
-#map {
+.map-panel {
   height: 50%;
 }
 .attributes-table {
