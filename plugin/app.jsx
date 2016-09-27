@@ -5,12 +5,13 @@ import {addLocaleData, IntlProvider} from 'react-intl';
 import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import DrawBox from './js/components/DrawBox.jsx';
 import BoxInfo from './js/components/BoxInfo.jsx';
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
+import {Toolbar} from 'material-ui/Toolbar';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enLocaleData from 'react-intl/locale-data/en.js';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import enMessages from 'boundless-sdk/locale/en.js';
 
 // Needed for onTouchTap
@@ -58,6 +59,11 @@ var map = new ol.Map({
 });
 
 class MyApp extends React.Component {
+  getChildContext() {
+    return {
+      muiTheme: getMuiTheme()
+    };
+  }
   render() {
     return (
        <div id='content'>
@@ -78,5 +84,9 @@ class MyApp extends React.Component {
     );
   }
 }
+
+MyApp.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><MyApp /></IntlProvider>, document.getElementById('main'));

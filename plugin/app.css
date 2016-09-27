@@ -33,7 +33,10 @@ html, body {
   top: 56px;
   width: 100%;
   left: 0px;
-  height: calc(75% - 56px);
+  height: 100%;
+}
+.map-panel {
+  height: calc(100% - 56px);
 }
 #content, #main {
   width: 100%;
@@ -43,5 +46,13 @@ html, body {
   z-index: 1100;
   margin-left: 20px;
   position: absolute;
-  top: 20px;
+  top: 76px;
+}
+.layerlistbutton {
+  top: 50px;
+}
+.layer-tree-panel {
+  top: 50px;
+  right: 5px;
+  position: absolute;
 }

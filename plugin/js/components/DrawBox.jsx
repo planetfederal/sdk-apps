@@ -61,7 +61,7 @@ class DrawBox extends React.Component {
   }
   render() {
     return (
-     <RaisedButton {...this.props} label='Draw Box' tooltip='Click in the map and move the mouse to draw a box' onTouchTap={this._drawBox.bind(this)} />
+     <RaisedButton label='Draw Box' tooltip='Click in the map and move the mouse to draw a box' onTouchTap={this._drawBox.bind(this)} />
     );
   }
 }
