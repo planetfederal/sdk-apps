@@ -5,8 +5,9 @@ import {IntlProvider} from 'react-intl';
 import proj4 from 'proj4';
 import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
 import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
-import AppBar from 'material-ui/lib/app-bar';
+import AppBar from 'material-ui/AppBar';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 
 // Needed for onTouchTap
@@ -55,6 +56,11 @@ var map = new ol.Map({
 });
 
 class ProjectionApp extends React.Component {
+  getChildContext() {
+    return {
+      muiTheme: getMuiTheme()
+    };
+  }
   componentDidMount() {
     this.props.map.addControl(new ol.control.OverviewMap({
       collapsed: true,
@@ -76,5 +82,9 @@ class ProjectionApp extends React.Component {
     );
   }
 }
+
+ProjectionApp.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 ReactDOM.render(<IntlProvider locale='en'><ProjectionApp map={map} /></IntlProvider>, document.getElementById('main'));
