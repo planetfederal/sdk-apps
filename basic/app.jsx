@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import Geocoding from 'boundless-sdk/js/components/Geocoding.jsx';
@@ -12,13 +13,12 @@ import QueryBuilder from 'boundless-sdk/js/components/QueryBuilder.jsx';
 import FeatureTable from 'boundless-sdk/js/components/FeatureTable.jsx';
 import Chart from 'boundless-sdk/js/components/Chart.jsx';
 import MapConfig from 'boundless-sdk/js/components/MapConfig.jsx';
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import RaisedButton from 'material-ui/lib/raised-button';
-import TableIcon from 'material-ui/lib/svg-icons/action/view-list';
-import QueryIcon from 'material-ui/lib/svg-icons/action/query-builder';
-import ChartIcon from 'material-ui/lib/svg-icons/editor/insert-chart';
-import EditIcon from 'material-ui/lib/svg-icons/editor/mode-edit';
+import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
+import RaisedButton from 'material-ui/RaisedButton';
+import TableIcon from 'material-ui/svg-icons/action/view-list';
+import QueryIcon from 'material-ui/svg-icons/action/query-builder';
+import ChartIcon from 'material-ui/svg-icons/editor/insert-chart';
+import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import Edit from 'boundless-sdk/js/components/Edit.jsx';
 import Globe from 'boundless-sdk/js/components/Globe.jsx';
 import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
@@ -211,6 +211,11 @@ var charts = [{
 var selectedLayer = map.getLayers().item(2);
 
 class BasicApp extends React.Component {
+  getChildContext() {
+    return {
+      muiTheme: getMuiTheme()
+    };
+  }
   _toggle(el) {
     if (el.style.display === 'block') {
       el.style.display = 'none';
@@ -240,9 +245,6 @@ class BasicApp extends React.Component {
     return (
       <div id='content'>
         <Toolbar>
-          <ToolbarGroup float="right">
-            <Geocoding />
-          </ToolbarGroup>
           <MapConfig map={map}/>
           <RaisedButton style={buttonStyle} icon={<TableIcon />} label='Table' onTouchTap={this._toggleTable.bind(this)} />
           <RaisedButton style={buttonStyle} icon={<QueryIcon />} label='Query' onTouchTap={this._toggleQuery.bind(this)} />
@@ -250,6 +252,9 @@ class BasicApp extends React.Component {
           <RaisedButton style={buttonStyle} icon={<EditIcon />} label='Edit' onTouchTap={this._toggleEdit.bind(this)} />
           <Select toggleGroup='navigation' map={map}/>
           <Navigation secondary={true} toggleGroup='navigation' map={map}/>
+          <ToolbarGroup>
+            <Geocoding />
+          </ToolbarGroup>
         </Toolbar>
         <MapPanel id='map' map={map}>
           <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
@@ -266,5 +271,9 @@ class BasicApp extends React.Component {
     );
   }
 }
+
+BasicApp.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><BasicApp /></IntlProvider>, document.getElementById('main'));

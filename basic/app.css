@@ -3,21 +3,21 @@ body {
 }
 #zoom-buttons {
   position: absolute;
-  top: 10px;
+  top: 70px;
   margin-left: 10px;
   z-index: 1111;
 }
 #globe-button {
   z-index: 1111;
   position: absolute;
-  top: 124px;
+  top: 180px;
   margin-left: 10px;
 }
 .edit-tool-panel {
   display: none;
   position: absolute;
   left: 652px;
-  top: 0px;
+  top: 56px;
   max-width: 50%;
   z-index: 1111;
 }
@@ -39,9 +39,10 @@ html, body {
   bottom: 0px;
 }
 .geocoding-results-panel {
+  background-color: white;
   display: none;
   position: absolute;
-  top: 0px;
+  top: 56px;
   right: 0px;
   max-width: 50%;
   z-index: 1111;
@@ -49,7 +50,7 @@ html, body {
 .query-panel {
   display: none;
   left: 387px;
-  top: 0px;
+  top: 56px;
   position: absolute;
   max-width: 50%;
   z-index: 1111;
@@ -75,4 +76,12 @@ html, body {
 #main {
   width: 100%;
   height: 100%;
+}
+.layerlistbutton {
+  top: 50px;
+}
+.layer-tree-panel {
+  position: absolute;
+  top: 50px;
+  right: 5px;
 }
