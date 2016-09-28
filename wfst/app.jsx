@@ -2,14 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
+import {Toolbar} from 'material-ui/Toolbar';
 import Navigation from 'boundless-sdk/js/components/Navigation.jsx';
 import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import WFST from 'boundless-sdk/js/components/WFST.jsx';
 import enLocaleData from 'react-intl/locale-data/en.js';
 import enMessages from 'boundless-sdk/locale/en.js';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
@@ -94,6 +95,11 @@ var map = new ol.Map({
 });
 
 class WFSTApp extends React.Component {
+  getChildContext() {
+    return {
+      muiTheme: getMuiTheme()
+    };
+  }
   _toggle(el) {
     if (el.style.display === 'block') {
       el.style.display = 'none';
@@ -109,8 +115,8 @@ class WFSTApp extends React.Component {
     return (
       <div id='content'>
         <Toolbar>
-          <RaisedButton style={buttonStyle} onTouchTap={this._toggleWFST.bind(this)} label='WFS-T' />
           <Navigation toggleGroup='nav' secondary={true} />
+          <RaisedButton style={buttonStyle} onTouchTap={this._toggleWFST.bind(this)} label='WFS-T' />
         </Toolbar>
         <div id='wfst' ref='wfstPanel'><WFST toggleGroup='nav' map={map} /></div>
         <MapPanel id='map' map={map} />
@@ -119,5 +125,9 @@ class WFSTApp extends React.Component {
     );
   }
 }
+
+WFSTApp.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><WFSTApp /></IntlProvider>, document.getElementById('main'));
