@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import QGISLegend from 'boundless-sdk/js/components/QGISLegend.jsx';
-import AppBar from 'material-ui/lib/app-bar';
+import AppBar from 'material-ui/AppBar';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enLocaleData from 'react-intl/locale-data/en.js';
 import enMessages from 'boundless-sdk/locale/en.js';
@@ -803,6 +804,11 @@ var map = new ol.Map({
 });
 
 class LegendApp extends React.Component {
+  getChildContext() {
+    return {
+      muiTheme: getMuiTheme()
+    };
+  }
   render() {
     return (
       <div id='content'>
@@ -816,5 +822,9 @@ class LegendApp extends React.Component {
     );
   }
 }
+
+LegendApp.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><LegendApp /></IntlProvider>, document.getElementById('main'));
