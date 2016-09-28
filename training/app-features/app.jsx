@@ -7,7 +7,8 @@ import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
 import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
 import EditPopup from 'boundless-sdk/js/components/EditPopup.jsx';
-import AppBar from 'material-ui/lib/app-bar';
+import AppBar from 'material-ui/AppBar';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import WFST from 'boundless-sdk/js/components/WFST.jsx';
 import enLocaleData from 'react-intl/locale-data/en.js';
 import enMessages from 'boundless-sdk/locale/en.js';
@@ -58,6 +59,11 @@ var map = new ol.Map({
 });
 
 class MyApp extends React.Component {
+  getChildContext() {
+    return {
+      muiTheme: getMuiTheme()
+    };
+  }
   render() {
     return (
       <div id='content'>
@@ -73,5 +79,9 @@ class MyApp extends React.Component {
     );
   }
 }
+
+MyApp.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><MyApp /></IntlProvider>, document.getElementById('main'));
