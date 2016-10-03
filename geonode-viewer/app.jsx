@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
+import Globe from 'boundless-sdk/js/components/Globe.jsx';
 import LegendIcon from 'material-ui/svg-icons/image/image';
 import Legend from 'boundless-sdk/js/components/Legend.jsx';
 import PanelButton from 'boundless-sdk/js/components/PanelButton.jsx';
 import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
+import Rotate from 'boundless-sdk/js/components/Rotate.jsx';
 import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
 import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -61,10 +63,12 @@ class MyApp extends React.Component {
           </ToolbarGroup>
         </Toolbar>
         <MapPanel id='map' map={map} />
+        <div id='globe-button'><Globe tooltipPosition='right' map={map} /></div>
         <div><PanelButton className='legenddiv' contentClassName='legendcontent' buttonClassName='legend-button' icon={<LegendIcon />} tooltipPosition='top-left' buttonTitle='Show legend' map={map} content={<Legend map={map} />}/></div>
         <div id='home-button'><HomeButton tooltipPosition='right' map={map} /></div>
-        <div><LayerList allowStyling={true} map={map} /></div>
+        <div><LayerList tooltipPosition='top-left' allowStyling={true} map={map} /></div>
         <div id='zoom-buttons'><Zoom tooltipPosition='right' map={map} /></div>
+        <div id='rotate-button'><Rotate tooltipPosition='top-left' map={map} /></div>
         <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' toolId='nav' infoFormat='application/vnd.ogc.gml' map={map} /></div>
       </div>
     );

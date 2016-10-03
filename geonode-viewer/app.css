@@ -36,7 +36,12 @@ html, body {
   top: 76px;
 }
 .layer-list {
-  top: 76px !important;
+  top: 130px !important;
+}
+#rotate-button {
+  top: 74px;
+  right: 20px;
+  position: absolute;
 }
 #home-button {
   margin-left: 20px;
@@ -48,7 +53,7 @@ html, body {
   float: right;
 }
 .legenddiv {
-  top: 150px;
+  top: 200px;
   right: 20px;
   position: absolute;
 }
@@ -56,4 +61,9 @@ html, body {
   background-color: white;
   margin-right: 42px;
   overflow: auto;
+}
+#globe-button {
+  position: absolute;
+  margin-left: 20px;
+  top: 245px;
 }
