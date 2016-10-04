@@ -6,6 +6,7 @@ import Globe from 'boundless-sdk/js/components/Globe.jsx';
 import LegendIcon from 'material-ui/svg-icons/image/image';
 import Legend from 'boundless-sdk/js/components/Legend.jsx';
 import PanelButton from 'boundless-sdk/js/components/PanelButton.jsx';
+import QGISPrint from 'boundless-sdk/js/components/QGISPrint.jsx';
 import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
 import Rotate from 'boundless-sdk/js/components/Rotate.jsx';
 import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
@@ -27,6 +28,36 @@ import Measure from 'boundless-sdk/js/components/Measure.jsx';
 // Check this repo:
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
+
+var printLayouts = [{
+  name: 'Layout 1',
+  width: 420.0,
+  elements: [{
+    name: 'Title',
+    height: 40.825440467359044,
+    width: 51.98353115727002,
+    y: 39.25222551928783,
+    x: 221.77507418397624,
+    font: 'Helvetica',
+    type: 'label',
+    id: '24160ce7-34a3-4f25-a077-8910e4889681',
+    size: 18
+  }, {
+    height: 167.0,
+    width: 171.0,
+    grid: {
+      intervalX: 0.0,
+      intervalY: 0.0,
+      annotationEnabled: false,
+      crs: ''
+    },
+    y: 19.0,
+    x: 16.0,
+    type: 'map',
+    id: '3d532cb9-0eca-4e50-9f0a-ce29b1c7f5a6'
+  }],
+  height: 297.0
+}];
 
 addLocaleData(
   enLocaleData
@@ -58,6 +89,7 @@ class MyApp extends React.Component {
           <ToolbarGroup firstChild={true}>
             <Navigation secondary={true} toggleGroup='navigation' toolId='nav' />
           </ToolbarGroup>
+          <QGISPrint map={map} layouts={printLayouts} />
           <ToolbarGroup lastChild={true}>
             <Measure toggleGroup='navigation' map={map}/>
           </ToolbarGroup>
