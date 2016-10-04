@@ -20,11 +20,8 @@ html, body {
 }}
 /* end Dead Simple Grid */
 #map {
-  height: calc(100% - 56px);
   width: 100%;
-  position: absolute;
-  top: 56px;
-  left: 0px;
+  height: calc(100% - 56px);
 }
 #content, #main {
   width: 100%;
@@ -47,7 +44,6 @@ html, body {
   margin-left: 20px;
   position: absolute;
   top: 190px;
-  left: 0px;
 }
 .legend-button {
   float: right;

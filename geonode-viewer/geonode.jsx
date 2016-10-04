@@ -1,7 +1,10 @@
 import React from 'react';
+global.React = React;
 import ReactDOM from 'react-dom';
+global.ReactDOM = ReactDOM;
 import ol from 'openlayers';
-import {addLocaleData} from 'react-intl';
+import {addLocaleData, IntlProvider} from 'react-intl';
+global.IntlProvider = IntlProvider;
 import Globe from 'boundless-sdk/js/components/Globe.jsx';
 import LegendIcon from 'material-ui/svg-icons/image/image';
 import Legend from 'boundless-sdk/js/components/Legend.jsx';
@@ -21,6 +24,8 @@ import MapConfigTransformService from 'boundless-sdk/js/services/MapConfigTransf
 import MapConfigService from 'boundless-sdk/js/services/MapConfigService.js';
 import Navigation from 'boundless-sdk/js/components/Navigation.jsx';
 import Measure from 'boundless-sdk/js/components/Measure.jsx';
+import enMessages from 'boundless-sdk/locale/en.js';
+global.enMessages = enMessages;
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -71,7 +76,8 @@ var map = new ol.Map({
 });
 
 class GeoNodeViewer extends React.Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
     MapConfigService.load(MapConfigTransformService.transform(this.props.config), map);
   }
   getChildContext() {
@@ -91,7 +97,7 @@ class GeoNodeViewer extends React.Component {
             <Measure toggleGroup='navigation' map={map}/>
           </ToolbarGroup>
         </Toolbar>
-        <MapPanel id='map' map={map} />
+        <MapPanel useHistory={false} id='map' map={map} />
         <div id='globe-button'><Globe tooltipPosition='right' map={map} /></div>
         <div><PanelButton className='legenddiv' contentClassName='legendcontent' buttonClassName='legend-button' icon={<LegendIcon />} tooltipPosition='top-left' buttonTitle='Show legend' map={map} content={<Legend map={map} />}/></div>
         <div id='home-button'><HomeButton tooltipPosition='right' map={map} /></div>
@@ -113,3 +119,4 @@ GeoNodeViewer.childContextTypes = {
 };
 
 export default GeoNodeViewer;
+global.GeoNodeViewer = GeoNodeViewer;
