@@ -1,4 +1,4 @@
-# Example applications for the Boundless Web SDK.
+# Example applications for the Boundless Web SDK
 
 Use node version 6.0.0 through nvm (https://github.com/creationix/nvm).
 
