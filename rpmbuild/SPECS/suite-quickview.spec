@@ -1,7 +1,7 @@
 %define __spec_install_pre /bin/true
 
 Name: suite-quickview
-Version: 4.9.0
+Version: REPLACE_VERSION
 Release: REPLACE_RELEASE
 Summary: Boundless WebSDK demo application
 Group: Applications/Engineering
@@ -10,7 +10,7 @@ URL: http://boundlessgeo.com/
 BuildRoot: %{_WORKSPACE}/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
-Requires:  unzip, suite-geoserver >= 4.9.0, suite-geoserver < 4.9.1
+Requires:  unzip, suite-geoserver >= 4.9.1, suite-geoserver < 4.9.2
 AutoReqProv: no
 
 %define _rpmdir /var/jenkins/workspace/sdkApps-quickview/archive/
