@@ -23,7 +23,7 @@
     "boundless-sdk": "git+https://github.com/boundlessgeo/sdk.git",
     "material-ui": "^0.15.4",
     "ol3-cesium": "3.9.4",
-    "openlayers": "3.17.1",
+    "openlayers": "3.19.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-intl": "2.0.0-rc-1",
