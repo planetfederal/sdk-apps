@@ -20,7 +20,7 @@
   "author": "Boundless Spatial, Inc.",
   "license": "Apache-2.0",
   "dependencies": {
-    "boundless-sdk": "git+https://github.com/boundlessgeo/sdk.git",
+    "boundless-sdk": "^0.9.0",
     "material-ui": "^0.15.4",
     "ol3-cesium": "3.9.4",
     "openlayers": "3.19.0",
