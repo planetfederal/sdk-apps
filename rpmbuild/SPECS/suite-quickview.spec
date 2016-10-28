@@ -29,6 +29,9 @@ Boundless Spatial WebSDK demo application
 mv %{_WORKSPACE}/SRC/* %{_WORKSPACE}/BUILDROOT/
 
 %pre
+if [ -f /etc/tomcat8/Catalina/localhost/quickview.xml ]; then
+  cp -pf /etc/tomcat8/Catalina/localhost/quickview.xml /etc/tomcat8/Catalina/localhost/quickview.xml.rpmsave
+fi
 
 %post
 chown -R root:root /opt/boundless/
@@ -36,9 +39,14 @@ chown -R root:root /opt/boundless/
 %preun
 
 %postun
-for dir in `find /opt/boundless/suite/quickview -type d -exec bash -c '[ "x\`find "{}" -maxdepth 1 -type f\`" = x ] && echo "{}"' \; | sort -r`; do
-  rm -rf $dir
-done
+if [ "$1" = "0" ]; then
+  if [ -f /etc/tomcat8/Catalina/localhost/quickview.xml ]; then
+    rm -f /etc/tomcat8/Catalina/localhost/quickview.xml
+  fi
+  for dir in `find /opt/boundless/suite/quickview -type d -exec bash -c '[ "x\`find "{}" -maxdepth 1 -type f\`" = x ] && echo "{}"' \; | sort -r`; do
+    rm -rf $dir
+  done
+fi
 
 %files
 %defattr(-,root,root,-)
