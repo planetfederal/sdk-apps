@@ -39,7 +39,7 @@ chown -R root:root /opt/boundless/
 %preun
 
 %postun
-if [ "$1" = "0" ]; then
+if [ "$1" = "0" ] || [ "$1" = "remove" ]; then
   if [ -f /etc/tomcat8/Catalina/localhost/quickview.xml ]; then
     rm -f /etc/tomcat8/Catalina/localhost/quickview.xml
   fi
