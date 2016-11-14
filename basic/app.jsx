@@ -264,7 +264,7 @@ class BasicApp extends React.Component {
           <div id='zoom-buttons'><Zoom map={map} /></div>
           <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
         </MapPanel>
-        <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable ref='table' resizeTo='table-panel' offset={[0, 0]} layer={selectedLayer} map={map} /></div>
+        <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable ref='table' layer={selectedLayer} map={map} /></div>
         <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' map={map} /></div>
         <div ref='chartPanel' className='chart-panel'><Chart combo={true} charts={charts}/></div>
       </div>
