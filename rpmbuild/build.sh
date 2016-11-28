@@ -41,7 +41,7 @@ sed -i "s/REPLACE_VERSION/$MINOR_VERSION/" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/
 sed -i "s/REPLACE_RELEASE/$BUILD_NUMBER/" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
 find $WORKSPACE/rpmbuild/$COMPONENT/SRC/ -type f | sed "s|$WORKSPACE/rpmbuild/$COMPONENT/SRC||" | awk -F\\ '{print "\""$1"\""}' >> $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
 
-rpmbuild -ba --define "_topdir $WORKSPACE/rpmbuild/$COMPONENT" --define "_WORKSPACE $WORKSPACE/rpmbuild/$COMPONENT" --buildroot $WORKSPACE/rpmbuild/$COMPONENT/BUILDROOT/ --sign $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
+rpmbuild -ba --define "_topdir $WORKSPACE/rpmbuild/$COMPONENT" --define "_WORKSPACE $WORKSPACE/rpmbuild/$COMPONENT" --buildroot $WORKSPACE/rpmbuild/$COMPONENT/BUILDROOT/ $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
 
 #for i in `find $WORKSPACE/rpmbuild/ -name *.rpm`; do
 #  mv $i $WORKSPACE/archive/
