@@ -43,9 +43,11 @@ if [ "$1" = "0" ] || [ "$1" = "remove" ]; then
   if [ -f /etc/tomcat8/Catalina/localhost/quickview.xml ]; then
     rm -f /etc/tomcat8/Catalina/localhost/quickview.xml
   fi
-  for dir in `find /opt/boundless/suite/quickview -type d -exec bash -c '[ "x\`find "{}" -maxdepth 1 -type f\`" = x ] && echo "{}"' \; | sort -r`; do
-    rm -rf $dir
-  done
+  if [ -d /opt/boundless/suite/quickview ]; then
+    for dir in `find /opt/boundless/suite/quickview -type d -exec bash -c '[ "x\`find "{}" -maxdepth 1 -type f\`" = x ] && echo "{}"' \; | sort -r`; do
+      rm -rf $dir
+    done
+  fi
 fi
 
 %files
