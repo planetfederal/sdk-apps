@@ -2,35 +2,35 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
-import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
+import MapPanel from 'boundless-sdk/components/MapPanel';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CustomTheme from './theme';
-import ToolActions from 'boundless-sdk/js/actions/ToolActions.js';
-import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
-import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
-import Geocoding from 'boundless-sdk/js/components/Geocoding.jsx';
-import GeocodingResults from 'boundless-sdk/js/components/GeocodingResults.jsx';
-import FeatureTable from 'boundless-sdk/js/components/FeatureTable.jsx';
-import Measure from 'boundless-sdk/js/components/Measure.jsx';
-import LoadingPanel from 'boundless-sdk/js/components/LoadingPanel.jsx';
-import Select from 'boundless-sdk/js/components/Select.jsx';
-import QueryBuilder from 'boundless-sdk/js/components/QueryBuilder.jsx';
-import Chart from 'boundless-sdk/js/components/Chart.jsx';
-import Geolocation from 'boundless-sdk/js/components/Geolocation.jsx';
-import Navigation from 'boundless-sdk/js/components/Navigation.jsx';
-import QGISLegend from 'boundless-sdk/js/components/QGISLegend.jsx';
-import ImageExport from 'boundless-sdk/js/components/ImageExport.jsx';
-import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
-import AddLayer from 'boundless-sdk/js/components/AddLayer.jsx';
-import QGISPrint from 'boundless-sdk/js/components/QGISPrint.jsx';
+import ToolActions from 'boundless-sdk/actions/ToolActions';
+import Zoom from 'boundless-sdk/components/Zoom';
+import LayerList from 'boundless-sdk/components/LayerList';
+import Geocoding from 'boundless-sdk/components/Geocoding';
+import GeocodingResults from 'boundless-sdk/components/GeocodingResults';
+import FeatureTable from 'boundless-sdk/components/FeatureTable';
+import Measure from 'boundless-sdk/components/Measure';
+import LoadingPanel from 'boundless-sdk/components/LoadingPanel';
+import Select from 'boundless-sdk/components/Select';
+import QueryBuilder from 'boundless-sdk/components/QueryBuilder';
+import Chart from 'boundless-sdk/components/Chart';
+import Geolocation from 'boundless-sdk/components/Geolocation';
+import Navigation from 'boundless-sdk/components/Navigation';
+import QGISLegend from 'boundless-sdk/components/QGISLegend';
+import ImageExport from 'boundless-sdk/components/ImageExport';
+import HomeButton from 'boundless-sdk/components/HomeButton';
+import AddLayer from 'boundless-sdk/components/AddLayer';
+import QGISPrint from 'boundless-sdk/components/QGISPrint';
 import {Toolbar} from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
-import Login from 'boundless-sdk/js/components/Login.jsx';
+import Login from 'boundless-sdk/components/Login';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import nlLocaleData from 'react-intl/locale-data/nl.js';
-import enLocaleData from 'react-intl/locale-data/en.js';
-import nlMessages from 'boundless-sdk/locale/nl.js';
-import enMessages from 'boundless-sdk/locale/en.js';
+import nlLocaleData from 'react-intl/locale-data/nl';
+import enLocaleData from 'react-intl/locale-data/en';
+import nlMessages from './nl';
+import enMessages from 'boundless-sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
@@ -422,7 +422,7 @@ class TabbedApp extends React.Component {
           <div className="col tabs" id="tabs-panel">
             <Tabs value={this.state.value} onChange={this.handleChange.bind(this)}>
               <Tab value={1} label={formatMessage(messages.geocodingtab)}><div style={{background: CustomTheme.palette.canvasColor}} id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></Tab>
-              <Tab value={2} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab"><FeatureTable resizeTo='tabs-panel' offset={[0, 48]} layer={selectedLayer} map={map} /></div></Tab>
+              <Tab value={2} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable ref='table' map={map} /></div></Tab>
               <Tab value={3} label={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></Tab>
               <Tab value={4} label={formatMessage(messages.charttab)}><div id='charts-tab'><Chart combo={true} charts={charts}/></div></Tab>
             </Tabs>
@@ -430,7 +430,7 @@ class TabbedApp extends React.Component {
           <div className="col maps">
             <MapPanel id='map' map={map} />
             <LoadingPanel map={map} />
-            <div id='layerlist'><LayerList addLayer={{allowUserInput: true, url: '/geoserver/wms'}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
+            <div id='layerlist'><LayerList addLayer={{allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
             <div id='legend'><QGISLegend map={map} legendBasePath='../../resources/legend/' legendData={legendData} /></div>
             <div id='geolocation-control'><Geolocation map={map} /></div>
             <div id='home-button'><HomeButton map={map} /></div>
