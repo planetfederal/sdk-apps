@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
-import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
-import FeatureTable from 'boundless-sdk/js/components/FeatureTable.jsx';
-import enLocaleData from 'react-intl/locale-data/en.js';
-import enMessages from 'boundless-sdk/locale/en.js';
+import MapPanel from 'boundless-sdk/components/MapPanel';
+import Zoom from 'boundless-sdk/components/Zoom';
+import FeatureTable from 'boundless-sdk/components/FeatureTable';
+import enLocaleData from 'react-intl/locale-data/en';
+import enMessages from 'boundless-sdk/locale/en';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
@@ -175,6 +176,11 @@ var map = new ol.Map({
 var selectedLayer = map.getLayers().item(2);
 
 class SimpleApp extends React.Component {
+  getChildContext() {
+    return {
+      muiTheme: getMuiTheme()
+    };
+  }
   render() {
     return (
       <div id='content'>
@@ -185,5 +191,9 @@ class SimpleApp extends React.Component {
     );
   }
 }
+
+SimpleApp.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><SimpleApp /></IntlProvider>, document.getElementById('main'));
