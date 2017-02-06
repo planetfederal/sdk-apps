@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
-import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
-import Bookmarks from 'boundless-sdk/js/components/Bookmarks.jsx';
-import enLocaleData from 'react-intl/locale-data/en.js';
-import enMessages from 'boundless-sdk/locale/en.js';
+import MapPanel from 'boundless-sdk/components/MapPanel';
+import Zoom from 'boundless-sdk/components/Zoom';
+import Bookmarks from 'boundless-sdk/components/Bookmarks';
+import enLocaleData from 'react-intl/locale-data/en';
+import enMessages from 'boundless-sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -71,6 +72,11 @@ var bookmarks = [{
 }];
 
 class BookmarkApp extends React.Component {
+  getChildContext() {
+    return {
+      muiTheme: getMuiTheme()
+    };
+  }
   render() {
     return (
       <div id='content'>
@@ -82,5 +88,9 @@ class BookmarkApp extends React.Component {
     );
   }
 }
+
+BookmarkApp.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><BookmarkApp /></IntlProvider>, document.getElementById('main'));
