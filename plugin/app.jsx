@@ -2,17 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
-import DrawBox from './js/components/DrawBox.jsx';
-import BoxInfo from './js/components/BoxInfo.jsx';
+import Zoom from 'boundless-sdk/components/Zoom';
+import DrawBox from './js/components/DrawBox';
+import BoxInfo from './js/components/BoxInfo';
 import {Toolbar} from 'material-ui/Toolbar';
-import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
-import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
-import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
+import MapPanel from 'boundless-sdk/components/MapPanel';
+import LayerList from 'boundless-sdk/components/LayerList';
+import InfoPopup from 'boundless-sdk/components/InfoPopup';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import enLocaleData from 'react-intl/locale-data/en.js';
+import enLocaleData from 'react-intl/locale-data/en';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import enMessages from 'boundless-sdk/locale/en.js';
+import enMessages from 'boundless-sdk/locale/en';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release

@@ -1,5 +1,5 @@
 import React from 'react';
-import AppDispatcher from 'boundless-sdk/js/dispatchers/AppDispatcher.js';
+import AppDispatcher from 'boundless-sdk/dispatchers/AppDispatcher';
 
 class BoxInfo extends React.Component {
   constructor(props) {

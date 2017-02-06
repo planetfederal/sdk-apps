@@ -1,9 +1,9 @@
 import React from 'react';
 import ol from 'openlayers';
-import ToolUtil from 'boundless-sdk/js/toolutil.js';
-import AppDispatcher from 'boundless-sdk/js//dispatchers/AppDispatcher.js';
-import ToolActions from 'boundless-sdk/js/actions/ToolActions.js';
-import RaisedButton from 'boundless-sdk/js/components/Button.jsx';
+import ToolUtil from 'boundless-sdk/toolutil';
+import AppDispatcher from 'boundless-sdk/dispatchers/AppDispatcher';
+import ToolActions from 'boundless-sdk/actions/ToolActions';
+import RaisedButton from 'boundless-sdk/components/Button';
 
 class DrawBox extends React.Component {
   constructor(props) {
