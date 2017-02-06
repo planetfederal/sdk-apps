@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {IntlProvider} from 'react-intl';
 import proj4 from 'proj4';
-import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
-import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
+import InfoPopup from 'boundless-sdk/components/InfoPopup';
+import Zoom from 'boundless-sdk/components/Zoom';
 import AppBar from 'material-ui/AppBar';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
+import MapPanel from 'boundless-sdk/components/MapPanel';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -26,6 +26,7 @@ var projection = new ol.proj.Projection({
 });
 
 var lyr_cbsprovincies212 = new ol.layer.Tile({
+  name: 'cbsprovincies2012',
   opacity: 1.0,
   timeInfo: null,
   source: new ol.source.TileWMS({
@@ -51,7 +52,6 @@ var originalExtent = [-143023.252373, 222652.455129, 429769.110349, 706343.78364
 var map = new ol.Map({
   layers: layersList,
   view: view,
-  renderer: 'dom',
   controls: [new ol.control.MousePosition({'projection': 'EPSG:4326', 'undefinedHTML': '&nbsp;', 'coordinateFormat': ol.coordinate.createStringXY(4)})]
 });
 
