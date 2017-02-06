@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
-import InfoPopup from 'boundless-sdk/js/components/InfoPopup.jsx';
-import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
-import QGISLegend from 'boundless-sdk/js/components/QGISLegend.jsx';
+import MapPanel from 'boundless-sdk/components/MapPanel';
+import InfoPopup from 'boundless-sdk/components/InfoPopup';
+import LayerList from 'boundless-sdk/components/LayerList';
+import QGISLegend from 'boundless-sdk/components/QGISLegend';
 import AppBar from 'material-ui/AppBar';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import enLocaleData from 'react-intl/locale-data/en.js';
-import enMessages from 'boundless-sdk/locale/en.js';
+import enLocaleData from 'react-intl/locale-data/en';
+import enMessages from 'boundless-sdk/locale/en';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -813,11 +813,10 @@ class LegendApp extends React.Component {
     return (
       <div id='content'>
         <AppBar showMenuIconButton={false} title="My Web App" />
-        <MapPanel id='map' map={map} extent={originalExtent}>
-          <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>
-          <div id='layerlist'><LayerList showOpacity={false} showDownload={false} showGroupContent={true} showZoomTo={false} allowReordering={false} allowFiltering={true} map={map}/></div>
-          <div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} /></div>
-        </MapPanel>
+        <MapPanel id='map' map={map} extent={originalExtent}></MapPanel>
+        <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>
+        <div id='layerlist'><LayerList showOpacity={false} showDownload={false} showGroupContent={true} showZoomTo={false} allowReordering={false} allowFiltering={true} map={map}/></div>
+        <div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} /></div>
       </div>
     );
   }

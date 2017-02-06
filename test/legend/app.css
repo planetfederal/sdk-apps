@@ -17,8 +17,10 @@ html, body {
   height:  calc(100% - 64px);
 }
 .layer-switcher {
+  top: 84px !important;
   right: 28px !important;
 }
 .legend {
+  top: 164px !important;
   right: 28px !important;
 }
