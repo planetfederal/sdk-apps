@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
-import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
-import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
-import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
-import EditPopup from 'boundless-sdk/js/components/EditPopup.jsx';
+import MapPanel from 'boundless-sdk/components/MapPanel';
+import HomeButton from 'boundless-sdk/components/HomeButton';
+import Zoom from 'boundless-sdk/components/Zoom';
+import LayerList from 'boundless-sdk/components/LayerList';
+import EditPopup from 'boundless-sdk/components/EditPopup';
 import AppBar from 'material-ui/AppBar';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import WFST from 'boundless-sdk/js/components/WFST.jsx';
-import enLocaleData from 'react-intl/locale-data/en.js';
-import enMessages from 'boundless-sdk/locale/en.js';
+import WFST from 'boundless-sdk/components/WFST';
+import enLocaleData from 'react-intl/locale-data/en';
+import enMessages from 'boundless-sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
@@ -69,8 +69,8 @@ class MyApp extends React.Component {
       <div id='content'>
         <AppBar iconElementLeft={<img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />} title="Features" />
         <MapPanel id='map' map={map} useHistory={false}>
-          <div><LayerList allowStyling={true} showOnStart={true} showZoomTo={true} allowEditing={true} allowReordering={true} addLayer={{url: '/geoserver/wfs?', asVector: true}} expandOnHover={false} map={map} /></div>
         </MapPanel>
+        <div><LayerList allowStyling={true} showOnStart={true} showZoomTo={true} allowEditing={true} allowReordering={true} addLayer={{sources: [{url: '/geoserver/ows', type: 'WFS', title: 'Local GeoServer'}]}} expandOnHover={false} map={map} /></div>
         <div id='home-button'><HomeButton map={map} /></div>
         <div id='zoom-buttons'><Zoom map={map} /></div>
         <div id='popup' className='ol-popup'><EditPopup map={map} /></div>

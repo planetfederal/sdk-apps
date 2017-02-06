@@ -41,3 +41,6 @@ body {
   left: 5px;
   bottom: 5px;
 }
+.layer-switcher {
+  top: 84px !important;
+}
