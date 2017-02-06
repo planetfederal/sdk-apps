@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import ole from 'ole';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
-import FeatureTable from 'boundless-sdk/js/components/FeatureTable.jsx';
-import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
+import MapPanel from 'boundless-sdk/components/MapPanel';
+import FeatureTable from 'boundless-sdk/components/FeatureTable';
+import Zoom from 'boundless-sdk/components/Zoom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import enLocaleData from 'react-intl/locale-data/en.js';
-import enMessages from 'boundless-sdk/locale/en.js';
+import enLocaleData from 'react-intl/locale-data/en';
+import enMessages from 'boundless-sdk/locale/en';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -95,6 +96,11 @@ map = new ol.Map({
 });
 
 class EsriApp extends React.Component {
+  getChildContext() {
+    return {
+      muiTheme: getMuiTheme()
+    };
+  }
   render() {
     return (
       <div id='content'>
@@ -107,5 +113,9 @@ class EsriApp extends React.Component {
     );
   }
 }
+
+EsriApp.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><EsriApp /></IntlProvider>, document.getElementById('main'));
