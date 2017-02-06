@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
-import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
-import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
-import Playback from 'boundless-sdk/js/components/Playback.jsx';
+import MapPanel from 'boundless-sdk/components/MapPanel';
+import LayerList from 'boundless-sdk/components/LayerList';
+import Zoom from 'boundless-sdk/components/Zoom';
+import Playback from 'boundless-sdk/components/Playback';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import enLocaleData from 'react-intl/locale-data/en.js';
-import enMessages from 'boundless-sdk/locale/en.js';
+import enLocaleData from 'react-intl/locale-data/en';
+import enMessages from 'boundless-sdk/locale/en';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -82,6 +83,11 @@ var map = new ol.Map({
 });
 
 class PlaybackApp extends React.Component {
+  getChildContext() {
+    return {
+      muiTheme: getMuiTheme()
+    };
+  }
   render() {
     return (
       <div id='content'>
@@ -94,5 +100,9 @@ class PlaybackApp extends React.Component {
     );
   }
 }
+
+PlaybackApp.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><PlaybackApp /></IntlProvider>, document.getElementById('main'));
