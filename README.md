@@ -1,10 +1,12 @@
 # Example applications for the Boundless Web SDK
 
-Use node version 6.0.0 through nvm (https://github.com/creationix/nvm).
+Use node version LTS (Long Term Support) through nvm (https://github.com/creationix/nvm).
+
+    nvm install --lts
 
 # How to use
     cd %examplename%
-    nvm use 6.0.0
+    nvm use --lts
     npm i
     npm run build
     npm start
@@ -22,13 +24,15 @@ Applications that need access to a local GeoServer will need to run (in addition
 # Linking to a github directory of the sdk
 Go to the directory of your sdk git checkout and type:
 
+    npm run release
+    cd release
     npm link
 
-Go to the node_modules/react directory of that git checkout and type:
+Go to the node_modules/react directory of the release subdirectory and type:
 
     npm link
 
-Go to the node_modules/openlayers directory of that git checkout and type:
+Go to the node_modules/openlayers directory of the release subdirectory and type:
 
     npm link
 
@@ -38,8 +42,12 @@ In your sdk app type:
     npm link react
     npm link openlayers
 
-This will be the result on file system:
+Go to the root of your sdk checkout and run the watchdog.
 
-    lrwxr-xr-x   1 bartvandeneijnden  staff    71 Dec  3 15:05 boundless-sdk -> ../../../../../.nvm/versions/node/v6.0.0/lib/node_modules/boundless-sdk
-    lrwxr-xr-x   1 bartvandeneijnden  staff    68 Dec  3 16:34 openlayers -> ../../../../../.nvm/versions/node/v6.0.0/lib/node_modules/openlayers
-    lrwxr-xr-x   1 bartvandeneijnden  staff    63 Dec  3 15:05 react -> ../../../../../.nvm/versions/node/v6.0.0/lib/node_modules/react
+    npm start
+
+This will be the result on file system (check with something like: ```ls -l ~/.nvm/versions/node/v6.9.2/lib/node_modules/```):
+
+    lrwxrwxrwx  1 bartvde bartvde   37 jan  4 17:59 boundless-sdk -> /home/bartvde/opengeo/git/sdk/release
+    lrwxrwxrwx  1 bartvde bartvde   53 jan  4 17:59 openlayers -> /home/bartvde/opengeo/git/sdk/node_modules/openlayers
+    lrwxrwxrwx  1 bartvde bartvde   48 jan  4 17:59 react -> /home/bartvde/opengeo/git/sdk/node_modules/react
