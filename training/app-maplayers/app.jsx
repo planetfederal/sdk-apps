@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from 'boundless-sdk/js/components/MapPanel.jsx';
-import HomeButton from 'boundless-sdk/js/components/HomeButton.jsx';
-import Zoom from 'boundless-sdk/js/components/Zoom.jsx';
-import LayerList from 'boundless-sdk/js/components/LayerList.jsx';
+import MapPanel from 'boundless-sdk/components/MapPanel';
+import HomeButton from 'boundless-sdk/components/HomeButton';
+import Zoom from 'boundless-sdk/components/Zoom';
+import LayerList from 'boundless-sdk/components/LayerList';
 import AppBar from 'material-ui/AppBar';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import Measure from 'boundless-sdk/js/components/Measure.jsx';
-import enLocaleData from 'react-intl/locale-data/en.js';
-import enMessages from 'boundless-sdk/locale/en.js';
+import Measure from 'boundless-sdk/components/Measure';
+import enLocaleData from 'react-intl/locale-data/en';
+import enMessages from 'boundless-sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
@@ -69,9 +69,8 @@ class MyApp extends React.Component {
         <AppBar iconElementLeft={<img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />} title="Map Layers">
           <Measure style={{marginTop: '10px'}} map={map} />
         </AppBar>
-        <MapPanel id='map' map={map} useHistory={false}>
-          <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} addLayer={{url: '/geoserver/wms?'}} expandOnHover={false} map={map} /></div>
-        </MapPanel>
+        <MapPanel id='map' map={map} useHistory={false}></MapPanel>
+        <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} addLayer={{sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}} expandOnHover={false} map={map} /></div>
         <div id='home-button'><HomeButton map={map} /></div>
         <div id='zoom-buttons'><Zoom map={map} /></div>
       </div>

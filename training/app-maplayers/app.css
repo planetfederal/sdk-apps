@@ -30,3 +30,6 @@ body {
   position: absolute;
   top: 90px;
 }
+.layer-switcher {
+  top: 84px !important;
+}
