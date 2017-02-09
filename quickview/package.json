@@ -15,7 +15,7 @@
     "build": "node_modules/.bin/npm-run-all createdir build:js",
     "test": "eslint app.jsx --ext .jsx,.js",
     "createzip": "node createpackage.js",
-    "package": "node_modules/.bin/npm-run-all build createzip"
+    "package": "npm run build && npm run createzip"
   },
   "author": "Boundless Spatial, Inc.",
   "license": "Apache-2.0",
@@ -27,7 +27,9 @@
     "react": "15.3.2",
     "react-dom": "15.3.2",
     "react-intl": "^2.1.5",
-    "react-tap-event-plugin": "^1.0.0"
+    "react-redux": "^5.0.2",
+    "react-tap-event-plugin": "^1.0.0",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "archiver": "^0.21.0",

@@ -27,6 +27,10 @@ import Navigation from 'boundless-sdk/components/Navigation';
 import enLocaleData from 'react-intl/locale-data/en';
 import enMessages from 'boundless-sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import rootReducer from 'boundless-sdk/state';
+import bindMap from 'boundless-sdk/state/map';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -124,6 +128,9 @@ const messages = defineMessages({
 var locale = 'en';
 var i18n = enMessages;
 
+let store = createStore(rootReducer);
+bindMap(store, map);
+
 class QuickView extends React.Component {
   constructor(props) {
     super(props);
@@ -196,4 +203,4 @@ QuickView.childContextTypes = {
 
 QuickView = injectIntl(QuickView);
 
-ReactDOM.render(<IntlProvider locale={locale} messages={i18n}><QuickView /></IntlProvider>, document.getElementById('main'));
+ReactDOM.render(<Provider store={store}><IntlProvider locale={locale} messages={i18n}><QuickView /></IntlProvider></Provider>, document.getElementById('main'));
