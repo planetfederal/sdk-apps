@@ -72,8 +72,6 @@ getPromise('http://api.dev.boundlessgeo.io/v1/basemaps/').then(function(layerJSO
   {
     var bm = layerJSON[i];
     if(bm.tileFormat == 'PNG' && bm.standard == 'XYZ')	{
-      console.log("Adding basemap layer "+bm.name);
-      console.log("len "+i);
       var	tile = new ol.layer.Tile({
                 visible: eval(i == 2),
                 title: bm.name,
