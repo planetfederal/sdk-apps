@@ -21,6 +21,8 @@ injectTapEventPlugin();
 addLocaleData(
   enLocaleData
 );
+var apikey = "";
+
 var layerArray =[];
 
 function getPromise(url) {
@@ -45,7 +47,6 @@ function getPromise(url) {
   });
 };
 
-var apikey = "";
 var map = new ol.Map({
   controls: [new ol.control.Attribution({collapsible: false})],
   layers: [
