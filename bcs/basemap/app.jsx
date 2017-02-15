@@ -47,20 +47,7 @@ function getPromise(url) {
   });
 };
 
-var map = new ol.Map({
-  controls: [new ol.control.Attribution({collapsible: false})],
-  layers: [
-    new ol.layer.Group({
-      type: 'base-group',
-      title: 'Base maps',
-      layers: layerArray
-    })
-  ],
-  view: new ol.View({
-    center: [-10764594.758211, 4523072.3184791],
-    zoom: 3
-  })
-});
+var map;
 var messages = {};
 function layerLoadComplete()
 {
@@ -83,8 +70,8 @@ getPromise('http://api.dev.boundlessgeo.io/v1/basemaps/').then(function(layerJSO
   })]
                 })
                 });
+      layerArray.push(tile);
               }
-  layerArray.push(tile);
   }
   map = new ol.Map({
         loadTilesWhileAnimating: true,
