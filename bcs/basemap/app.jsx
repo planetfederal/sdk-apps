@@ -8,7 +8,6 @@ import Zoom from 'boundless-sdk/components/Zoom';
 import LayerList from 'boundless-sdk/components/LayerList';
 import AppBar from 'material-ui/AppBar';
 import enLocaleData from 'react-intl/locale-data/en';
-import enMessages from 'boundless-sdk/locale/en';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -21,9 +20,9 @@ injectTapEventPlugin();
 addLocaleData(
   enLocaleData
 );
-var apikey = "";
+var apikey = '';
 
-var layerArray =[];
+var layerArray = [];
 
 function getPromise(url) {
   return new Promise(function(resolve, reject) {
@@ -32,69 +31,65 @@ function getPromise(url) {
 
     req.onload = function() {
       if (req.status == 200) {
-        console.log("resolving..");
         resolve(JSON.parse(req.response));
-      }
-      else {
+      } else {
         reject(Error(req.statusText));
       }
     };
 
     req.onerror = function() {
-      reject(Error("Network Error"));
+      reject(Error('Network Error'));
     };
     req.send();
   });
-};
+}
 
 var map;
 var messages = {};
-function layerLoadComplete()
-{
+function layerLoadComplete() {
   ReactDOM.render(<IntlProvider locale='en' messages={messages}><MyApp /></IntlProvider>, document.getElementById('main'));
 }
 
-getPromise('http://api.dev.boundlessgeo.io/v1/basemaps/').then(function(layerJSON){
-
-  for (var i = 0, len = layerJSON.length; i < len; i++)
-  {
+getPromise('http://api.dev.boundlessgeo.io/v1/basemaps/').then(function(layerJSON) {
+  for (var i = 0, len = layerJSON.length; i < len; i++) {
     var bm = layerJSON[i];
-    if(bm.tileFormat == 'PNG' && bm.standard == 'XYZ')	{
-      var	tile = new ol.layer.Tile({
-                visible: eval(i == 2),
-                title: bm.name,
-                type: 'base',
-                source: new ol.source.XYZ({url: bm.endpoint+"?apikey="+apikey,  attributions: [
-  new ol.Attribution({
-  html: bm.attribution
-  })]
-                })
-                });
+    if (bm.tileFormat == 'PNG' && bm.standard == 'XYZ')	{
+      var tile = new ol.layer.Tile({
+        visible: eval(i == 2),
+        title: bm.name,
+        type: 'base',
+        source: new ol.source.XYZ({url: bm.endpoint + '?apikey=' + apikey, attributions: [
+          new ol.Attribution({
+            html: bm.attribution
+          })]
+        })
+      });
       layerArray.push(tile);
-              }
+    }
   }
   map = new ol.Map({
-        loadTilesWhileAnimating: true,
-        controls: [new ol.control.Attribution({collapsible: true})],
-        layers: [
-        new ol.layer.Group({
-          type: 'base-group',
-          title: 'Base maps',
-          layers: layerArray,
-          view: new ol.View({
+    loadTilesWhileAnimating: true,
+    controls: [new ol.control.Attribution({collapsible: true})],
+    layers: [
+      new ol.layer.Group({
+        type: 'base-group',
+        title: 'Base maps',
+        layers: layerArray,
+        view: new ol.View({
           center: [0, 0],
           zoom: 2,
           minZoom: 1,
           maxZoom: 10
-          })
-        })],
-        view: new ol.View({
-            center: ol.proj.transform([0.0,0.0], 'EPSG:4326', 'EPSG:3857'),
-            zoom: 2
-          })
-        });
+        })
+      })
+    ],
+    view: new ol.View({
+      center: ol.proj.transform([0.0,0.0], 'EPSG:4326', 'EPSG:3857'),
+      zoom: 2
+    })
+  });
 
-        layerLoadComplete();
+  layerLoadComplete();
 
 });
 class MyApp extends React.Component {
@@ -107,8 +102,7 @@ class MyApp extends React.Component {
     return (
       <div id='content'>
         <AppBar iconElementLeft={<img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />} title="BCS Basemaps" />
-        <MapPanel id='map' map={map} useHistory={false}>
-        </MapPanel>
+        <MapPanel id='map' map={map} useHistory={false} />
         <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} expandOnHover={false} map={map} /></div>
         <div id='home-button'><HomeButton map={map} /></div>
         <div id='zoom-buttons'><Zoom map={map} /></div>
@@ -120,9 +114,3 @@ class MyApp extends React.Component {
 MyApp.childContextTypes = {
   muiTheme: React.PropTypes.object
 };
-
-var messages = {};
-function layerLoadComplete()
-{
-  ReactDOM.render(<IntlProvider locale='en' messages={messages}><MyApp /></IntlProvider>, document.getElementById('main'));
-}

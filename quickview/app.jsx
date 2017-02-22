@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
-import ToolActions from 'boundless-sdk/actions/ToolActions';
 import LayerList from 'boundless-sdk/components/LayerList';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CustomTheme from './theme';
@@ -141,7 +140,7 @@ class QuickView extends React.Component {
     this.refs.edit.getWrappedInstance().setActive(value === 4);
     if (value === parseInt(value, 10)) {
       this.setState({
-        value: value,
+        value: value
       });
     }
   }

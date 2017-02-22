@@ -5,7 +5,6 @@ import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from
 import MapPanel from 'boundless-sdk/components/MapPanel';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CustomTheme from './theme';
-import ToolActions from 'boundless-sdk/actions/ToolActions';
 import Zoom from 'boundless-sdk/components/Zoom';
 import LayerList from 'boundless-sdk/components/LayerList';
 import Geocoding from 'boundless-sdk/components/Geocoding';
@@ -24,7 +23,6 @@ import HomeButton from 'boundless-sdk/components/HomeButton';
 import AddLayer from 'boundless-sdk/components/AddLayer';
 import QGISPrint from 'boundless-sdk/components/QGISPrint';
 import {Toolbar} from 'material-ui/Toolbar';
-import RaisedButton from 'material-ui/RaisedButton';
 import Login from 'boundless-sdk/components/Login';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import nlLocaleData from 'react-intl/locale-data/nl';
@@ -35,7 +33,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
-// Check this repo: 
+// Check this repo:
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
@@ -237,7 +235,6 @@ var map = new ol.Map({
   })
 });
 
-var selectedLayer = map.getLayers().item(2);
 var legendData = {
   'lyr03': [{
     title: '',
@@ -385,12 +382,11 @@ class TabbedApp extends React.Component {
   handleChange(value) {
     if (value === parseInt(value, 10)) {
       this.setState({
-        value: value,
+        value: value
       });
     }
   }
   render() {
-    const buttonStyle = {margin: '10px 12px'};
     const {formatMessage} = this.props.intl;
     var charts = [{
       title: formatMessage(messages.chart1),

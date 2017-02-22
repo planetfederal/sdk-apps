@@ -68,8 +68,7 @@ class MyApp extends React.Component {
     return (
       <div id='content'>
         <AppBar iconElementLeft={<img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />} title="Features" />
-        <MapPanel id='map' map={map} useHistory={false}>
-        </MapPanel>
+        <MapPanel id='map' map={map} useHistory={false}/>
         <div><LayerList allowStyling={true} showOnStart={true} showZoomTo={true} allowEditing={true} allowReordering={true} addLayer={{sources: [{url: '/geoserver/ows', type: 'WFS', title: 'Local GeoServer'}]}} expandOnHover={false} map={map} /></div>
         <div id='home-button'><HomeButton map={map} /></div>
         <div id='zoom-buttons'><Zoom map={map} /></div>

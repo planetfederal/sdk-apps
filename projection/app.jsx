@@ -56,6 +56,9 @@ var map = new ol.Map({
 });
 
 class ProjectionApp extends React.Component {
+  static propTypes = {
+    map: React.PropTypes.instanceOf(ol.Map).isRequired
+  }
   getChildContext() {
     return {
       muiTheme: getMuiTheme()
