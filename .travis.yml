@@ -7,6 +7,7 @@ node_js:
 
 env:
   global:
+  - NPM_CONFIG_LOGLEVEL: "warn"
   - ENCRYPTION_LABEL: "d1139ddcac92"
   - COMMIT_AUTHOR_EMAIL: "bartvde@boundlessgeo.com"
 
