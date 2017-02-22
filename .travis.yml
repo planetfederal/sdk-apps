@@ -1,25 +1,17 @@
 sudo: false
-
 language: node_js
-
 node_js:
-  - "6"
-
+- '6'
 env:
   global:
-  - NPM_CONFIG_LOGLEVEL: "warn"
-  - ENCRYPTION_LABEL: "d1139ddcac92"
-  - COMMIT_AUTHOR_EMAIL: "bartvde@boundlessgeo.com"
-
+  - ENCRYPTION_LABEL: cb39c70670f2
+  - COMMIT_AUTHOR_EMAIL: bartvde@boundlessgeo.com
 before_script:
-  - "export DISPLAY=:99.0"
-
+- export DISPLAY=:99.0
 script:
-  - "bash ./test.sh"
-
+- bash ./test.sh
 after_success:
-  - "bash ./deploy.sh"
-
+- bash ./deploy.sh
 branches:
   only:
-    - master
+  - master
