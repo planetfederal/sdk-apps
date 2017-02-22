@@ -1,5 +1,10 @@
 sudo: false
 
+language: node_js
+
+node_js:
+  - "6"
+
 env:
   global:
   - ENCRYPTION_LABEL: "d1139ddcac92"
