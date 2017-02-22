@@ -23,7 +23,6 @@ import Edit from 'boundless-sdk/components/Edit';
 import Globe from 'boundless-sdk/components/Globe';
 import Zoom from 'boundless-sdk/components/Zoom';
 import InfoPopup from 'boundless-sdk/components/InfoPopup';
-import ToolActions from 'boundless-sdk/actions/ToolActions';
 import enLocaleData from 'react-intl/locale-data/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enMessages from 'boundless-sdk/locale/en';

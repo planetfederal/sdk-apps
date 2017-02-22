@@ -1,0 +1,19 @@
+sudo: false
+
+env:
+  global:
+  - ENCRYPTION_LABEL: "d1139ddcac92"
+  - COMMIT_AUTHOR_EMAIL: "bartvde@boundlessgeo.com"
+
+before_script:
+  - "export DISPLAY=:99.0"
+
+script:
+  - "bash ./test.sh"
+
+after_success:
+  - "bash ./deploy.sh"
+
+branches:
+  only:
+    - master
