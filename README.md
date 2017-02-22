@@ -1,4 +1,5 @@
 # Example applications for the Boundless Web SDK
+[![Travis CI Status](https://secure.travis-ci.org/boundlessgeo/sdk-apps.svg)](http://travis-ci.org/#!/boundlessgeo/sdk-apps)
 
 Use node version LTS (Long Term Support) through nvm (https://github.com/creationix/nvm).
 
