@@ -123,7 +123,6 @@ var stylePopp = function(feature) {
     return baseStylePopp;
   }
 };
-var map = '';
 var map = new ol.Map({
   controls: [],
   layers: [
