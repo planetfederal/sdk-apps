@@ -9,5 +9,6 @@ for i in $( ls **/app.jsx ); do
   npm run createzip -- --output-file=../out/$dir/package.zip
   cd $start_dir/out/$dir
   unzip package.zip
+  sed -i -- 's/\/geoserver\//http:\/\/demo.boundlessgeo.com\/geoserver\//g' app.js
   rm package.zip
 done
