@@ -10,6 +10,8 @@ import AppBar from 'material-ui/AppBar';
 import enLocaleData from 'react-intl/locale-data/en';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import BCSService from 'boundless-sdk/services/BCSService';
+import enMessages from 'boundless-sdk/locale/en';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -22,88 +24,56 @@ addLocaleData(
 );
 var apikey = '';
 
-var layerArray = [];
-
-function getPromise(url) {
-  return new Promise(function(resolve, reject) {
-    var req = new XMLHttpRequest();
-    req.open('GET', url);
-
-    req.onload = function() {
-      if (req.status == 200) {
-        resolve(JSON.parse(req.response));
-      } else {
-        reject(Error(req.statusText));
-      }
-    };
-
-    req.onerror = function() {
-      reject(Error('Network Error'));
-    };
-    req.send();
-  });
-}
-
-var map;
-var messages = {};
-function layerLoadComplete() {
-  ReactDOM.render(<IntlProvider locale='en' messages={messages}><MyApp /></IntlProvider>, document.getElementById('main'));
-}
-
-getPromise('http://api.dev.boundlessgeo.io/v1/basemaps/').then(function(layerJSON) {
-  for (var i = 0, len = layerJSON.length; i < len; i++) {
-    var bm = layerJSON[i];
-    if (bm.tileFormat == 'PNG' && bm.standard == 'XYZ')	{
-      var tile = new ol.layer.Tile({
-        visible: eval(i == 2),
-        title: bm.name,
-        type: 'base',
-        source: new ol.source.XYZ({url: bm.endpoint + '?apikey=' + apikey, attributions: [
-          new ol.Attribution({
-            html: bm.attribution
-          })]
+var map = new ol.Map({
+  loadTilesWhileAnimating: true,
+  layers: [
+    new ol.layer.Group({
+      type: 'base-group',
+      title: 'Base maps',
+      layers: [
+        new ol.layer.Tile({
+          type: 'base',
+          title: 'Streets',
+          source: new ol.source.OSM()
         })
-      });
-      layerArray.push(tile);
-    }
-  }
-  map = new ol.Map({
-    loadTilesWhileAnimating: true,
-    controls: [new ol.control.Attribution({collapsible: true})],
-    layers: [
-      new ol.layer.Group({
-        type: 'base-group',
-        title: 'Base maps',
-        layers: layerArray,
-        view: new ol.View({
-          center: [0, 0],
-          zoom: 2,
-          minZoom: 1,
-          maxZoom: 10
-        })
-      })
-    ],
-    view: new ol.View({
-      center: ol.proj.transform([0.0,0.0], 'EPSG:4326', 'EPSG:3857'),
-      zoom: 2
+      ]
     })
-  });
-
-  layerLoadComplete();
-
+  ],
+  controls: [new ol.control.Attribution({collapsible: true})],
+  view: new ol.View({
+    center: [0, 0],
+    zoom: 2,
+    minZoom: 1,
+    maxZoom: 10
+  })
 });
+
 class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tileServices: []
+    };
+  }
   getChildContext() {
     return {
       muiTheme: getMuiTheme()
     };
+  }
+  componentDidMount() {
+    var me = this;
+    BCSService.getTileServices(apikey, function(tileServices) {
+      me.setState({
+        tileServices: tileServices
+      });
+    });
   }
   render() {
     return (
       <div id='content'>
         <AppBar iconElementLeft={<img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />} title="BCS Basemaps" />
         <MapPanel id='map' map={map} useHistory={false} />
-        <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} expandOnHover={false} map={map} /></div>
+        <div><LayerList addBaseMap={{tileServices: this.state.tileServices}} showOnStart={true} showZoomTo={true} allowReordering={true} expandOnHover={false} map={map} /></div>
         <div id='home-button'><HomeButton map={map} /></div>
         <div id='zoom-buttons'><Zoom map={map} /></div>
       </div>
@@ -114,3 +84,5 @@ class MyApp extends React.Component {
 MyApp.childContextTypes = {
   muiTheme: React.PropTypes.object
 };
+
+ReactDOM.render(<IntlProvider locale='en' messages={enMessages}><MyApp /></IntlProvider>, document.getElementById('main'));
