@@ -42,9 +42,7 @@ var map = new ol.Map({
   controls: [new ol.control.Attribution({collapsible: true})],
   view: new ol.View({
     center: [0, 0],
-    zoom: 2,
-    minZoom: 1,
-    maxZoom: 10
+    zoom: 2
   })
 });
 
