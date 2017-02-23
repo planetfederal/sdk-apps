@@ -1,5 +1,6 @@
 #!/bin/bash
 start_dir=${1:-`pwd`}
+cp gh-pages.index.html $start_dir/out/index.html
 for i in $( ls **/app.jsx ); do
   dir="$(dirname $i)"
   mkdir -p $start_dir/out/$dir
