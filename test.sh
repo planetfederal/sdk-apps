@@ -1,5 +1,5 @@
 #!/bin/bash
 cd basic
-npm i
+npm i --loglevel silent > /dev/null
 npm run test
 cd ..

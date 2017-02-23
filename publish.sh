@@ -1,7 +1,7 @@
 #!/bin/bash
 mkdir -p out/basic
 cd basic
-npm i
+npm i --loglevel silent > /dev/null
 npm run build
 npm run createzip -- --output-file=../out/basic/package.zip
 cd ../out/basic
