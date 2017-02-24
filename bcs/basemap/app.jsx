@@ -10,6 +10,7 @@ import AppBar from 'material-ui/AppBar';
 import enLocaleData from 'react-intl/locale-data/en';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import BaseMapConfigService from 'boundless-sdk/services/BaseMapConfigService';
 import BCSService from 'boundless-sdk/services/BCSService';
 import enMessages from 'boundless-sdk/locale/en';
 
@@ -24,21 +25,16 @@ addLocaleData(
 );
 var apikey = '';
 
+var group = new ol.layer.Group({
+  type: 'base-group',
+  title: 'Base maps'
+});
+
+const initialLayer = 'Mapbox Satellite';
+
 var map = new ol.Map({
   loadTilesWhileAnimating: true,
-  layers: [
-    new ol.layer.Group({
-      type: 'base-group',
-      title: 'Base maps',
-      layers: [
-        new ol.layer.Tile({
-          type: 'base',
-          title: 'Streets',
-          source: new ol.source.OSM()
-        })
-      ]
-    })
-  ],
+  layers: [group],
   controls: [new ol.control.Attribution({collapsible: true})],
   view: new ol.View({
     center: [0, 0],
@@ -61,6 +57,12 @@ class MyApp extends React.Component {
   componentDidMount() {
     var me = this;
     BCSService.getTileServices(apikey, function(tileServices) {
+      for (var i = 0, ii = tileServices.length; i < ii; ++i) {
+        if (tileServices[i].name === initialLayer) {
+          group.getLayers().push(BaseMapConfigService.createLayer(tileServices[i]));
+          break;
+        }
+      }
       me.setState({
         tileServices: tileServices
       });
