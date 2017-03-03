@@ -14,7 +14,7 @@
   "dependencies": {
     "boundless-sdk": "^0.10.2",
     "material-ui": "^0.16.4",
-    "openlayers": "3.19.0",
+    "openlayers": "4.0.1",
     "react": "15.3.2",
     "react-dom": "15.3.2",
     "react-intl": "2.0.0",

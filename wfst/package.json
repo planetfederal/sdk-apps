@@ -24,7 +24,7 @@
     "material-ui": "^0.16.4",
     "react": "15.3.2",
     "react-dom": "15.3.2",
-    "openlayers": "3.19.0",
+    "openlayers": "4.0.1",
     "react-intl": "^2.1.5",
     "react-tap-event-plugin": "^1.0.0"
   },
