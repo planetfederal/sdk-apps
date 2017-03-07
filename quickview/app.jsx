@@ -160,7 +160,7 @@ class QuickView extends React.Component {
           <div className="row container">
             <div className="col tabs" id="tabspanel">
               <Tabs value={this.state.value} onChange={this.handleChange.bind(this)}>
-                <Tab disableTouchRipple={true} value={1} label={formatMessage(messages.layerstab)}><div id='layerlist'><LayerList allowStyling={false} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></Tab>
+                <Tab disableTouchRipple={true} value={1} label={formatMessage(messages.layerstab)}><div id='layerlist'><LayerList inlineDialogs={true} allowStyling={true} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></Tab>
                 <Tab disableTouchRipple={true} value={2} label={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></Tab>
                 <Tab disableTouchRipple={true} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable ref='table' map={map} /></div></Tab>
                 <Tab disableTouchRipple={true} value={4} label={formatMessage(messages.wfsttab)}><div id='wfst'><WFST ref='edit' toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
