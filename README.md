@@ -32,12 +32,14 @@ Go to the directory of your sdk git checkout and type:
     cd release
     npm link
 
-Go to the node_modules/react directory of the release subdirectory and type:
+Go to the node_modules/react subdirectory of the root dir and type:
 
+    cd ../node_modules/react
     npm link
 
-Go to the node_modules/openlayers directory of the release subdirectory and type:
+Go to the node_modules/openlayers subdirectory of the root dir and type:
 
+    cd ../openlayers
     npm link
 
 In your sdk app type:
