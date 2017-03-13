@@ -43,5 +43,8 @@ html, body {
   z-index: 1100;
   margin-left: 20px;
   position: absolute;
-  top: 20px;
+  top: 76px;
+}
+div.layer-switcher {
+  top: 76px;
 }
