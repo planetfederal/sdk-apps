@@ -28,7 +28,7 @@ var styleFires = new ol.style.Style({
     anchorXUnits: 'fraction',
     anchorYUnits: 'fraction',
     anchor: [0.5, 0.5],
-    src: '/data/styles/amenity=fire_station2321243910.svg',
+    src: './data/styles/amenity=fire_station2321243910.svg',
     rotation: 0.000000
   })
 });
@@ -63,7 +63,7 @@ var map = new ol.Map({
     new ol.layer.Vector({
       opacity: 1.0,
       source: new ol.source.Vector({
-        url: '/data/fires.json',
+        url: './data/fires.json',
         format: new ol.format.GeoJSON()
       }),
       id: 'lyr00',
