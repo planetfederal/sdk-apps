@@ -150,9 +150,15 @@ class QuickView extends React.Component {
         <div id='content'>
           <Toolbar>
             <MapConfig firstChild={true} map={map}/>
-            <Measure toggleGroup='navigation' map={map}/>
-            <Select toggleGroup='navigation' map={map}/>
-            <Navigation secondary={true} toggleGroup='navigation' toolId='nav' />
+            <ToolbarGroup>
+              <Measure toggleGroup='navigation' map={map}/>
+            </ToolbarGroup>
+            <ToolbarGroup>
+              <Select toggleGroup='navigation' map={map}/>
+            </ToolbarGroup>
+            <ToolbarGroup>
+              <Navigation secondary={true} toggleGroup='navigation' />
+            </ToolbarGroup>
             <ToolbarGroup lastChild={true}>
               <Login />
             </ToolbarGroup>
