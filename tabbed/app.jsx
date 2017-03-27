@@ -20,9 +20,8 @@ import Navigation from 'boundless-sdk/components/Navigation';
 import QGISLegend from 'boundless-sdk/components/QGISLegend';
 import ImageExport from 'boundless-sdk/components/ImageExport';
 import HomeButton from 'boundless-sdk/components/HomeButton';
-import AddLayer from 'boundless-sdk/components/AddLayer';
 import QGISPrint from 'boundless-sdk/components/QGISPrint';
-import {Toolbar} from 'material-ui/Toolbar';
+import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 import Login from 'boundless-sdk/components/Login';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import nlLocaleData from 'react-intl/locale-data/nl';
@@ -406,13 +405,24 @@ class TabbedApp extends React.Component {
     return (
       <div id='content' style={{background: CustomTheme.palette.canvasColor}}>
         <Toolbar>
-          <Login />
-          <ImageExport map={map} />
-          <Measure toggleGroup='navigation' map={map}/>
-          <AddLayer map={map} />
-          <QGISPrint map={map} layouts={printLayouts} />
-          <Select toggleGroup='navigation' map={map}/>
-          <Navigation secondary={true} toggleGroup='navigation' map={map}/>
+          <ToolbarGroup>
+            <Login />
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <ImageExport map={map} />
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <Measure toggleGroup='navigation' map={map}/>
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <QGISPrint map={map} layouts={printLayouts} />
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <Select toggleGroup='navigation' map={map}/>
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <Navigation secondary={true} toggleGroup='navigation' map={map}/>
+          </ToolbarGroup>
         </Toolbar>
         <div className='row container'>
           <div className="col tabs" id="tabs-panel">
