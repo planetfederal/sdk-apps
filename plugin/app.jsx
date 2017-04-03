@@ -74,7 +74,7 @@ class MyApp extends React.Component {
             </ToolbarGroup>
           </Toolbar>
           <MapPanel id='map' map={map}></MapPanel>
-          <div><LayerList map={map} /></div>
+          <div id='layer-list'><LayerList map={map} /></div>
           <div id='zoom-buttons'><Zoom map={map} /></div>
           <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' map={map} /></div>
         </div>
