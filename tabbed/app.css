@@ -59,7 +59,9 @@
   position: absolute;
   top: 128px;
 }
-.layer-switcher {
+#layer-list {
+  position: absolute;
+  right: 20px;
   top: 20px;
 }
 #zoom-buttons {
