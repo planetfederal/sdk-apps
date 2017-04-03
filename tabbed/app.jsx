@@ -436,7 +436,7 @@ class TabbedApp extends React.Component {
           <div className="col maps">
             <MapPanel id='map' map={map} />
             <LoadingPanel map={map} />
-            <div id='layerlist'><LayerList addLayer={{allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
+            <div id='layer-list'><LayerList addLayer={{allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
             <div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} /></div>
             <div id='geolocation-control'><Geolocation map={map} /></div>
             <div id='home-button'><HomeButton map={map} /></div>
