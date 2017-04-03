@@ -28,7 +28,13 @@ body {
 .attributes-table {
   height: 50%;
 }
-#content, #main {
+#content {
+  width: 100%;
+  height:  100%;
+  position:fixed;
+  bottom: 0px;
+}
+#main {
   width: 100%;
   height: 100%;
 }
