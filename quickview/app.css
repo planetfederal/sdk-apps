@@ -41,12 +41,12 @@ body {
 
 .maps {
   height: calc(100% - 56px);
-  width: 60%;
+  width: calc(100% - 360px);
   position: absolute;
   top: 56px;
-  left: 40%;
+  left: 360px;
 }
-.tabs {
+/*.tabs {
   height: calc(100% - 56px);
   width: 40%;
   position: absolute;
@@ -62,7 +62,7 @@ body {
 .tabs > div > div:last-child > div{
   height: 100%;
 }
-#layerlist {
+#layerlist {*/
   height: 100%;
 }
 #layerlist > .layer-switcher {
