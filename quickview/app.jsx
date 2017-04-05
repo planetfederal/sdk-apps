@@ -21,8 +21,10 @@ import InfoPopup from 'boundless-sdk/components/InfoPopup';
 import Globe from 'boundless-sdk/components/Globe';
 import Legend from 'boundless-sdk/components/Legend';
 import Login from 'boundless-sdk/components/Login';
-import {Tabs, Tab} from 'material-ui/Tabs';
+import Header from 'boundless-sdk/components/Header';
+import {Tab} from 'material-ui/Tabs';
 import FlatButton from 'material-ui/FlatButton';
+import MenuItem from 'material-ui/MenuItem';
 import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 import Navigation from 'boundless-sdk/components/Navigation';
 import enLocaleData from 'react-intl/locale-data/en';
@@ -182,31 +184,41 @@ class QuickView extends React.Component {
             allowStyling={true}
             expandOnHover={false}
             showOnStart={true}
-            addLayer={{open:this.state.addLayerOpen, onRequestClose:this.layerListClose.bind(this), allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}}
+            addLayer={{isDrawer:true, open:this.state.addLayerOpen, onRequestClose:this.layerListClose.bind(this), allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}}
             allowFiltering={true}
             showOpacity={true}
             showDownload={true}
             showGroupContent={true}
             showZoomTo={true}
             allowReordering={true}
-            map={map} />
+            map={map}/>
         </div>
       </Tab>,
       <Tab disableTouchRipple={true} key={2} value={2} label={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></Tab>,
       <Tab disableTouchRipple={true} key={3} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable ref='table' map={map} /></div></Tab>,
       <Tab disableTouchRipple={true} key={4} value={4} label={formatMessage(messages.wfsttab)}><div id='wfst'><WFST ref='edit' toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
     ];
+    var toolBar = (<Toolbar>
+                <MapConfig firstChild={true} map={map}/>
+                <Measure toggleGroup='navigation' map={map}/>
+                <Select toggleGroup='navigation' map={map}/>
+                <Navigation secondary={true} toggleGroup='navigation' toolId='nav' />
+                <ToolbarGroup lastChild={true}>
+                  <Login />
+                </ToolbarGroup>
+              </Toolbar>);
+    var headerMenuItems = [
+      <MenuItem primaryText="Load" />,
+      <MenuItem primaryText="Save" />,
+      <MenuItem primaryText="Login" />];
     return (
         <div id='content'>
-          <Toolbar>
-            <MapConfig firstChild={true} map={map}/>
-            <Measure toggleGroup='navigation' map={map}/>
-            <Select toggleGroup='navigation' map={map}/>
-            <Navigation secondary={true} toggleGroup='navigation' toolId='nav' />
-            <ToolbarGroup lastChild={true}>
-              <Login />
-            </ToolbarGroup>
-          </Toolbar>
+
+          <Header
+            title='Boundless SDK Quickview'
+            leftMenuItems={headerMenuItems}
+            onLeftIconTouchTap={this.leftNavOpen.bind(this)}/>
+
           <div className="row container">
             <div className="col tabs" id="tabspanel">
               <LeftNav tabList={tabList} open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>

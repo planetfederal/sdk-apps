@@ -41,7 +41,7 @@ body {
 
 .maps {
   height: calc(100% - 56px);
-  width: calc(100% - 360px);
+  width: 100%
   position: absolute;
   top: 56px;
   left: 360px;
