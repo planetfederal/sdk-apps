@@ -21,7 +21,7 @@ import InfoPopup from 'boundless-sdk/components/InfoPopup';
 import Globe from 'boundless-sdk/components/Globe';
 import Legend from 'boundless-sdk/components/Legend';
 import Login from 'boundless-sdk/components/Login';
-import Header from 'boundless-sdk/components/Header';
+// import Header from 'boundless-sdk/components/Header';
 import {Tab} from 'material-ui/Tabs';
 import FlatButton from 'material-ui/FlatButton';
 import MenuItem from 'material-ui/MenuItem';
@@ -211,13 +211,12 @@ class QuickView extends React.Component {
       <MenuItem primaryText="Load" />,
       <MenuItem primaryText="Save" />,
       <MenuItem primaryText="Login" />];
+    // var header = (  <Header
+    //     title='Boundless SDK Quickview'
+    //     leftMenuItems={headerMenuItems}
+    //     onLeftIconTouchTap={this.leftNavOpen.bind(this)}/>);
     return (
         <div id='content'>
-
-          <Header
-            title='Boundless SDK Quickview'
-            leftMenuItems={headerMenuItems}
-            onLeftIconTouchTap={this.leftNavOpen.bind(this)}/>
 
           <div className="row container">
             <div className="col tabs" id="tabspanel">
