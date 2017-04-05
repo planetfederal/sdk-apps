@@ -30,6 +30,7 @@ import Navigation from 'boundless-sdk/components/Navigation';
 import enLocaleData from 'react-intl/locale-data/en';
 import enMessages from 'boundless-sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -175,7 +176,6 @@ class QuickView extends React.Component {
         disableTouchRipple={true}
         key={1}
         value={1}
-        icon={<FlatButton label="Add" />}
         onActive={this.layerListOpen.bind(this)}
         label={formatMessage(messages.layerstab)}>
         <div id='layerlist'>
@@ -183,6 +183,7 @@ class QuickView extends React.Component {
             inlineDialogs={true}
             allowStyling={true}
             expandOnHover={false}
+            icon={<FlatButton label="ADD"/>}
             showOnStart={true}
             addLayer={{isDrawer:true, open:this.state.addLayerOpen, onRequestClose:this.layerListClose.bind(this), allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}}
             allowFiltering={true}
@@ -207,17 +208,16 @@ class QuickView extends React.Component {
                   <Login />
                 </ToolbarGroup>
               </Toolbar>);
-    var headerMenuItems = [
-      <MenuItem primaryText="Load" />,
-      <MenuItem primaryText="Save" />,
-      <MenuItem primaryText="Login" />];
+    // var headerMenuItems = [
+    //   <MenuItem primaryText="Load" />,
+    //   <MenuItem primaryText="Save" />,
+    //   <MenuItem primaryText="Login" />];
     // var header = (  <Header
     //     title='Boundless SDK Quickview'
     //     leftMenuItems={headerMenuItems}
     //     onLeftIconTouchTap={this.leftNavOpen.bind(this)}/>);
     return (
         <div id='content'>
-
           <div className="row container">
             <div className="col tabs" id="tabspanel">
               <LeftNav tabList={tabList} open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
