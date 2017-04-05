@@ -62,7 +62,8 @@ body {
 .tabs > div > div:last-child > div{
   height: 100%;
 }
-#layerlist {*/
+*/
+#layerlist {
   height: 100%;
 }
 #layerlist > .layer-switcher {
@@ -85,9 +86,9 @@ body {
   z-index: 1000;
   background-color: #FFF;
 }
-.layer-list-list {
+/*.layer-list-list {
   padding-top: 56px !important;
-}
+}*/
 
 .layer-list-add {
   top: 0px;
