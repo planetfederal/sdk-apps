@@ -21,7 +21,7 @@ import InfoPopup from 'boundless-sdk/components/InfoPopup';
 import Globe from 'boundless-sdk/components/Globe';
 import Legend from 'boundless-sdk/components/Legend';
 import Login from 'boundless-sdk/components/Login';
-// import Header from 'boundless-sdk/components/Header';
+import Header from 'boundless-sdk/components/Header';
 import {Tab} from 'material-ui/Tabs';
 import FlatButton from 'material-ui/FlatButton';
 import MenuItem from 'material-ui/MenuItem';
@@ -199,25 +199,18 @@ class QuickView extends React.Component {
       <Tab disableTouchRipple={true} key={3} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable ref='table' map={map} /></div></Tab>,
       <Tab disableTouchRipple={true} key={4} value={4} label={formatMessage(messages.wfsttab)}><div id='wfst'><WFST ref='edit' toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
     ];
-    var toolBar = (<Toolbar>
-                <MapConfig firstChild={true} map={map}/>
-                <Measure toggleGroup='navigation' map={map}/>
-                <Select toggleGroup='navigation' map={map}/>
-                <Navigation secondary={true} toggleGroup='navigation' toolId='nav' />
-                <ToolbarGroup lastChild={true}>
-                  <Login />
-                </ToolbarGroup>
-              </Toolbar>);
-    // var headerMenuItems = [
-    //   <MenuItem primaryText="Load" />,
-    //   <MenuItem primaryText="Save" />,
-    //   <MenuItem primaryText="Login" />];
-    // var header = (  <Header
-    //     title='Boundless SDK Quickview'
-    //     leftMenuItems={headerMenuItems}
-    //     onLeftIconTouchTap={this.leftNavOpen.bind(this)}/>);
+    var header = (
+      <Header
+        title='Boundless SDK Quickview'
+        onLeftIconTouchTap={this.leftNavOpen.bind(this)}>
+        <Measure map={map}/>
+        <Select toggleGroup='navigation' map={map}/>
+        <Login />
+        <MapConfig map={map}/>
+      </Header>);
     return (
         <div id='content'>
+          {header}
           <div className="row container">
             <div className="col tabs" id="tabspanel">
               <LeftNav tabList={tabList} open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
