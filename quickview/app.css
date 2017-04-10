@@ -40,7 +40,7 @@ body {
 /* end Dead Simple Grid */
 
 .maps {
-  height: calc(100% - 56px);
+  height: calc(100% - 64px);
   width: 100%
   position: absolute;
   top: 56px;
