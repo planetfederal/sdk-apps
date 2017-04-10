@@ -73,7 +73,7 @@ class MyApp extends React.Component {
               <DrawBox strokeColor='#00FF00' map={map} toggleGroup='navigation' />
             </ToolbarGroup>
           </Toolbar>
-          <MapPanel id='map' map={map}></MapPanel>
+          <MapPanel id='map' map={map}/>
           <div id='layer-list'><LayerList map={map} /></div>
           <div id='zoom-buttons'><Zoom map={map} /></div>
           <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' map={map} /></div>
