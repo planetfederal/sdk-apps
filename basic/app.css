@@ -7,6 +7,11 @@ body {
   margin-left: 10px;
   z-index: 1111;
 }
+#layerlist {
+  position: absolute;
+  right: 10px;
+  top: 66px;
+}
 #globe-button {
   z-index: 1111;
   position: absolute;
