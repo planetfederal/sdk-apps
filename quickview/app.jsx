@@ -12,6 +12,7 @@ import MapPanel from 'boundless-sdk/components/MapPanel';
 import MapConfig from 'boundless-sdk/components/MapConfig';
 import Select from 'boundless-sdk/components/Select';
 import WFST from 'boundless-sdk/components/WFST';
+import LeftNav from 'boundless-sdk/components/LeftNav';
 import Geolocation from 'boundless-sdk/components/Geolocation';
 import Zoom from 'boundless-sdk/components/Zoom';
 import Rotate from 'boundless-sdk/components/Rotate';
@@ -20,12 +21,16 @@ import InfoPopup from 'boundless-sdk/components/InfoPopup';
 import Globe from 'boundless-sdk/components/Globe';
 import Legend from 'boundless-sdk/components/Legend';
 import Login from 'boundless-sdk/components/Login';
-import {Tabs, Tab} from 'material-ui/Tabs';
+import Header from 'boundless-sdk/components/Header';
+import {Tab} from 'material-ui/Tabs';
+import FlatButton from 'material-ui/FlatButton';
+import MenuItem from 'material-ui/MenuItem';
 import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 import Navigation from 'boundless-sdk/components/Navigation';
 import enLocaleData from 'react-intl/locale-data/en';
 import enMessages from 'boundless-sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -144,33 +149,71 @@ class QuickView extends React.Component {
       });
     }
   }
+  layerListOpen(value) {
+    this.setState({
+      addLayerOpen: true
+    });
+  }
+  layerListClose(value) {
+    this.setState({
+      addLayerOpen: false
+    });
+  }
+  leftNavOpen(value) {
+    this.setState({
+      leftNavOpen: true
+    });
+  }
+  leftNavClose(value) {
+    this.setState({
+      leftNavOpen: false
+    });
+  }
   render() {
     const {formatMessage} = this.props.intl;
+    const tabList = [
+      <Tab
+        disableTouchRipple={true}
+        key={1}
+        value={1}
+        onActive={this.layerListOpen.bind(this)}
+        label={formatMessage(messages.layerstab)}>
+        <div id='layerlist'>
+          <LayerList
+            inlineDialogs={true}
+            allowStyling={true}
+            expandOnHover={false}
+            icon={<FlatButton label="ADD"/>}
+            showOnStart={true}
+            addLayer={{isDrawer:true, open:this.state.addLayerOpen, onRequestClose:this.layerListClose.bind(this), allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}}
+            allowFiltering={true}
+            showOpacity={true}
+            showDownload={true}
+            showGroupContent={true}
+            showZoomTo={true}
+            allowReordering={true}
+            map={map}/>
+        </div>
+      </Tab>,
+      <Tab disableTouchRipple={true} key={2} value={2} label={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></Tab>,
+      <Tab disableTouchRipple={true} key={3} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable ref='table' map={map} /></div></Tab>,
+      <Tab disableTouchRipple={true} key={4} value={4} label={formatMessage(messages.wfsttab)}><div id='wfst'><WFST ref='edit' toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
+    ];
+    var header = (
+      <Header
+        title='Boundless SDK Quickview'
+        onLeftIconTouchTap={this.leftNavOpen.bind(this)}>
+        <Measure map={map}/>
+        <Select toggleGroup='navigation' map={map}/>
+        <Login />
+        <MapConfig map={map}/>
+      </Header>);
     return (
         <div id='content'>
-          <Toolbar>
-            <MapConfig firstChild={true} map={map}/>
-            <ToolbarGroup>
-              <Measure toggleGroup='navigation' map={map}/>
-            </ToolbarGroup>
-            <ToolbarGroup>
-              <Select toggleGroup='navigation' map={map}/>
-            </ToolbarGroup>
-            <ToolbarGroup>
-              <Navigation secondary={true} toggleGroup='navigation' />
-            </ToolbarGroup>
-            <ToolbarGroup lastChild={true}>
-              <Login />
-            </ToolbarGroup>
-          </Toolbar>
+          {header}
           <div className="row container">
             <div className="col tabs" id="tabspanel">
-              <Tabs value={this.state.value} onChange={this.handleChange.bind(this)}>
-                <Tab disableTouchRipple={true} value={1} label={formatMessage(messages.layerstab)}><div id='layerlist'><LayerList inlineDialogs={true} allowStyling={true} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></Tab>
-                <Tab disableTouchRipple={true} value={2} label={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></Tab>
-                <Tab disableTouchRipple={true} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable ref='table' map={map} /></div></Tab>
-                <Tab disableTouchRipple={true} value={4} label={formatMessage(messages.wfsttab)}><div id='wfst'><WFST ref='edit' toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
-              </Tabs>
+              <LeftNav tabList={tabList} open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
             </div>
             <div className="col maps">
               <MapPanel id='map' map={map} />

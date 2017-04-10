@@ -41,12 +41,12 @@ body {
 
 .maps {
   height: calc(100% - 56px);
-  width: 60%;
+  width: 100%
   position: absolute;
   top: 56px;
-  left: 40%;
+  left: 360px;
 }
-.tabs {
+/*.tabs {
   height: calc(100% - 56px);
   width: 40%;
   position: absolute;
@@ -62,6 +62,7 @@ body {
 .tabs > div > div:last-child > div{
   height: 100%;
 }
+*/
 #layerlist {
   height: 100%;
 }
@@ -85,9 +86,9 @@ body {
   z-index: 1000;
   background-color: #FFF;
 }
-.layer-list-list {
+/*.layer-list-list {
   padding-top: 56px !important;
-}
+}*/
 
 .layer-list-add {
   top: 0px;
