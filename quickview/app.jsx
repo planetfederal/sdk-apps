@@ -25,13 +25,10 @@ import Login from 'boundless-sdk/components/Login';
 import Header from 'boundless-sdk/components/Header';
 import {Tab} from 'material-ui/Tabs';
 import FlatButton from 'material-ui/FlatButton';
-import MenuItem from 'material-ui/MenuItem';
-import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 import Navigation from 'boundless-sdk/components/Navigation';
 import enLocaleData from 'react-intl/locale-data/en';
 import enMessages from 'boundless-sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -128,7 +125,8 @@ class QuickView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 1
+      value: 1,
+      leftNavOpen: true
     };
   }
   getChildContext() {
@@ -207,21 +205,17 @@ class QuickView extends React.Component {
     return (
         <div id='content'>
           {header}
-          <div className="row container">
-            <div className="col tabs" id="tabspanel">
-              <LeftNav tabList={tabList} open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
-            </div>
-            <div className="col maps">
-              <MapPanel id='map' map={map} />
-              <LoadingPanel map={map} />
-              <div id='globe-button'><Globe map={map} /></div>
-              <div id='editpopup' className='ol-popup'><EditPopup toggleGroup='navigation' map={map} /></div>
-              <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' toolId='nav' infoFormat='application/vnd.ogc.gml' map={map} /></div>
-              <div id='geolocation-control'><Geolocation map={map} /></div>
-              <div id='home-button'><HomeButton map={map} /></div>
-              <div id='zoom-buttons'><Zoom map={map} /></div>
-              <div id='rotate-button'><Rotate map={map} /></div>
-            </div>
+          <LeftNav tabList={tabList} open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
+          <div className='map' style={{left: this.state.leftNavOpen ? 360 : 0, width: this.state.leftNavOpen ? 'calc(100% - 360px)' : '100%'}}>
+            <MapPanel id='map' map={map} />
+            <LoadingPanel map={map} />
+            <div id='globe-button'><Globe map={map} /></div>
+            <div id='editpopup' className='ol-popup'><EditPopup toggleGroup='navigation' map={map} /></div>
+            <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' toolId='nav' infoFormat='application/vnd.ogc.gml' map={map} /></div>
+            <div id='geolocation-control'><Geolocation map={map} /></div>
+            <div id='home-button'><HomeButton map={map} /></div>
+            <div id='zoom-buttons'><Zoom map={map} /></div>
+            <div id='rotate-button'><Rotate map={map} /></div>
           </div>
         </div>
     );
