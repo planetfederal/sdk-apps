@@ -11,13 +11,14 @@ import LoadingPanel from 'boundless-sdk/components/LoadingPanel';
 import MapPanel from 'boundless-sdk/components/MapPanel';
 import MapConfig from 'boundless-sdk/components/MapConfig';
 import Select from 'boundless-sdk/components/Select';
-import WFST from 'boundless-sdk/components/WFST';
+import DrawFeature from 'boundless-sdk/components/DrawFeature';
 import LeftNav from 'boundless-sdk/components/LeftNav';
 import Geolocation from 'boundless-sdk/components/Geolocation';
 import Zoom from 'boundless-sdk/components/Zoom';
 import Rotate from 'boundless-sdk/components/Rotate';
 import HomeButton from 'boundless-sdk/components/HomeButton';
 import InfoPopup from 'boundless-sdk/components/InfoPopup';
+import EditPopup from 'boundless-sdk/components/EditPopup';
 import Globe from 'boundless-sdk/components/Globe';
 import Legend from 'boundless-sdk/components/Legend';
 import Login from 'boundless-sdk/components/Login';
@@ -117,11 +118,6 @@ const messages = defineMessages({
     id: 'quickview.layerstab',
     description: 'Title of the layers tab',
     defaultMessage: 'Layers'
-  },
-  wfsttab: {
-    id: 'quickview.wfsttab',
-    description: 'Title of the wfst tab',
-    defaultMessage: 'Edit'
   }
 });
 
@@ -142,7 +138,6 @@ class QuickView extends React.Component {
   }
   handleChange(value) {
     this.refs.table.getWrappedInstance().setActive(value === 3);
-    this.refs.edit.getWrappedInstance().setActive(value === 4);
     if (value === parseInt(value, 10)) {
       this.setState({
         value: value
@@ -196,8 +191,7 @@ class QuickView extends React.Component {
         </div>
       </Tab>,
       <Tab disableTouchRipple={true} key={2} value={2} label={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></Tab>,
-      <Tab disableTouchRipple={true} key={3} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable ref='table' map={map} /></div></Tab>,
-      <Tab disableTouchRipple={true} key={4} value={4} label={formatMessage(messages.wfsttab)}><div id='wfst'><WFST ref='edit' toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
+      <Tab disableTouchRipple={true} key={3} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable allowEdit={false} height={300} toggleGroup='navigation' ref='table' map={map} /></div></Tab>
     ];
     var header = (
       <Header
@@ -206,6 +200,8 @@ class QuickView extends React.Component {
         <Measure map={map}/>
         <Select toggleGroup='navigation' map={map}/>
         <Login />
+        <Navigation toggleGroup='navigation' secondary={true} />
+        <DrawFeature toggleGroup='navigation' map={map} />
         <MapConfig map={map}/>
       </Header>);
     return (
@@ -219,6 +215,7 @@ class QuickView extends React.Component {
               <MapPanel id='map' map={map} />
               <LoadingPanel map={map} />
               <div id='globe-button'><Globe map={map} /></div>
+              <div id='editpopup' className='ol-popup'><EditPopup toggleGroup='navigation' map={map} /></div>
               <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' toolId='nav' infoFormat='application/vnd.ogc.gml' map={map} /></div>
               <div id='geolocation-control'><Geolocation map={map} /></div>
               <div id='home-button'><HomeButton map={map} /></div>
