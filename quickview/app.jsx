@@ -125,7 +125,6 @@ class QuickView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 1,
       leftNavOpen: true
     };
   }
@@ -133,14 +132,6 @@ class QuickView extends React.Component {
     return {
       muiTheme: getMuiTheme(CustomTheme)
     };
-  }
-  handleChange(value) {
-    this.refs.table.getWrappedInstance().setActive(value === 3);
-    if (value === parseInt(value, 10)) {
-      this.setState({
-        value: value
-      });
-    }
   }
   layerListOpen(value) {
     this.setState({
@@ -156,14 +147,14 @@ class QuickView extends React.Component {
     this.setState({
       leftNavOpen: true
     }, function() {
-      map.updateSize()
+      map.updateSize();
     });
   }
   leftNavClose(value) {
     this.setState({
       leftNavOpen: false
     }, function() {
-      map.updateSize()
+      map.updateSize();
     });
   }
   render() {
