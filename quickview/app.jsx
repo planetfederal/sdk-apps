@@ -155,11 +155,15 @@ class QuickView extends React.Component {
   leftNavOpen(value) {
     this.setState({
       leftNavOpen: true
+    }, function() {
+      map.updateSize()
     });
   }
   leftNavClose(value) {
     this.setState({
       leftNavOpen: false
+    }, function() {
+      map.updateSize()
     });
   }
   render() {
