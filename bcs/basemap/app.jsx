@@ -21,7 +21,7 @@ injectTapEventPlugin();
 addLocaleData(
   enLocaleData
 );
-var apikey = "";
+var apikey = "MTIzND9UaGF0cyB0aGUga2luZCBvZiB0aGluZyBhbiBpZGlvdCB3b3VsZCBoYXZlIG9uIGhpcyBsdWdnYWdlIQ";
 
 var layerArray =[];
 
@@ -56,12 +56,15 @@ function layerLoadComplete()
 
 getPromise('http://api.dev.boundlessgeo.io/v1/basemaps/').then(function(layerJSON){
 
+  var hasDefaultLayer = false;
   for (var i = 0, len = layerJSON.length; i < len; i++)
   {
     var bm = layerJSON[i];
     if(bm.tileFormat == 'PNG' && bm.standard == 'XYZ')	{
+      var thisLayerIsDefault = false;
+      if(!hasDefaultLayer && bm.provider == 'mapbox'){thisLayerIsDefault = true; hasDefaultLayer = true;}
       var	tile = new ol.layer.Tile({
-                visible: eval(i == 2),
+                visible: thisLayerIsDefault,
                 title: bm.name,
                 type: 'base',
                 source: new ol.source.XYZ({url: bm.endpoint+"?apikey="+apikey,  attributions: [
@@ -106,7 +109,7 @@ class MyApp extends React.Component {
   render() {
     return (
       <div id='content'>
-        <AppBar iconElementLeft={<img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />} title="BCS Basemaps" />
+        <AppBar iconElementLeft={<img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />} title="Boundless Content Services: Basemaps (beta)" />
         <MapPanel id='map' map={map} useHistory={false}>
         </MapPanel>
         <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} expandOnHover={false} map={map} /></div>
