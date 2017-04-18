@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import Zoom from 'boundless-sdk/components/Zoom';
-import DrawBox from './js/components/DrawBox';
-import BoxInfo from './js/components/BoxInfo';
-import {Toolbar} from 'material-ui/Toolbar';
+import DrawBox from './components/DrawBox';
+import BoxInfo from './components/BoxInfo';
+import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 import MapPanel from 'boundless-sdk/components/MapPanel';
 import LayerList from 'boundless-sdk/components/LayerList';
 import InfoPopup from 'boundless-sdk/components/InfoPopup';
@@ -69,12 +69,13 @@ class MyApp extends React.Component {
        <div id='content'>
         <div className='row container'>
           <Toolbar>
-            <DrawBox style={{margin: '10px 12px'}} strokeColor='#00FF00' map={map} toggleGroup='navigation' />
+            <ToolbarGroup>
+              <DrawBox strokeColor='#00FF00' map={map} toggleGroup='navigation' />
+            </ToolbarGroup>
           </Toolbar>
-          <MapPanel id='map' map={map}>
-            <div><LayerList map={map} /></div>
-            <div id='zoom-buttons'><Zoom map={map} /></div>
-          </MapPanel>
+          <MapPanel id='map' map={map}/>
+          <div id='layer-list'><LayerList map={map} /></div>
+          <div id='zoom-buttons'><Zoom map={map} /></div>
           <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' map={map} /></div>
         </div>
         <div className='row boxinfo'>

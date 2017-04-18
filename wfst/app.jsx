@@ -4,7 +4,7 @@ import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import RaisedButton from 'material-ui/RaisedButton';
 import MapPanel from 'boundless-sdk/components/MapPanel';
-import {Toolbar} from 'material-ui/Toolbar';
+import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 import Navigation from 'boundless-sdk/components/Navigation';
 import Zoom from 'boundless-sdk/components/Zoom';
 import WFST from 'boundless-sdk/components/WFST';
@@ -15,7 +15,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
-// Check this repo: 
+// Check this repo:
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
@@ -115,8 +115,12 @@ class WFSTApp extends React.Component {
     return (
       <div id='content'>
         <Toolbar>
-          <Navigation toggleGroup='nav' secondary={true} />
-          <RaisedButton style={buttonStyle} onTouchTap={this._toggleWFST.bind(this)} label='WFS-T' />
+          <ToolbarGroup>
+            <Navigation toggleGroup='nav' secondary={true} />
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <RaisedButton style={buttonStyle} onTouchTap={this._toggleWFST.bind(this)} label='WFS-T' />
+          </ToolbarGroup>
         </Toolbar>
         <div id='wfst' ref='wfstPanel'><WFST toggleGroup='nav' map={map} /></div>
         <MapPanel id='map' map={map} />

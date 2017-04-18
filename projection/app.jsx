@@ -83,6 +83,10 @@ class ProjectionApp extends React.Component {
   }
 }
 
+ProjectionApp.propTypes = {
+  map: React.PropTypes.instanceOf(ol.Map).isRequired
+};
+
 ProjectionApp.childContextTypes = {
   muiTheme: React.PropTypes.object
 };

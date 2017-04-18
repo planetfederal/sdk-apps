@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
-import ToolActions from 'boundless-sdk/actions/ToolActions';
 import LayerList from 'boundless-sdk/components/LayerList';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CustomTheme from './theme';
@@ -12,17 +11,20 @@ import LoadingPanel from 'boundless-sdk/components/LoadingPanel';
 import MapPanel from 'boundless-sdk/components/MapPanel';
 import MapConfig from 'boundless-sdk/components/MapConfig';
 import Select from 'boundless-sdk/components/Select';
-import WFST from 'boundless-sdk/components/WFST';
+import DrawFeature from 'boundless-sdk/components/DrawFeature';
+import LeftNav from 'boundless-sdk/components/LeftNav';
 import Geolocation from 'boundless-sdk/components/Geolocation';
 import Zoom from 'boundless-sdk/components/Zoom';
 import Rotate from 'boundless-sdk/components/Rotate';
 import HomeButton from 'boundless-sdk/components/HomeButton';
 import InfoPopup from 'boundless-sdk/components/InfoPopup';
+import EditPopup from 'boundless-sdk/components/EditPopup';
 import Globe from 'boundless-sdk/components/Globe';
 import Legend from 'boundless-sdk/components/Legend';
 import Login from 'boundless-sdk/components/Login';
-import {Tabs, Tab} from 'material-ui/Tabs';
-import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
+import Header from 'boundless-sdk/components/Header';
+import {Tab} from 'material-ui/Tabs';
+import FlatButton from 'material-ui/FlatButton';
 import Navigation from 'boundless-sdk/components/Navigation';
 import enLocaleData from 'react-intl/locale-data/en';
 import enMessages from 'boundless-sdk/locale/en';
@@ -113,11 +115,6 @@ const messages = defineMessages({
     id: 'quickview.layerstab',
     description: 'Title of the layers tab',
     defaultMessage: 'Layers'
-  },
-  wfsttab: {
-    id: 'quickview.wfsttab',
-    description: 'Title of the wfst tab',
-    defaultMessage: 'Edit'
   }
 });
 
@@ -128,7 +125,7 @@ class QuickView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 1
+      leftNavOpen: true
     };
   }
   getChildContext() {
@@ -136,47 +133,84 @@ class QuickView extends React.Component {
       muiTheme: getMuiTheme(CustomTheme)
     };
   }
-  handleChange(value) {
-    this.refs.table.getWrappedInstance().setActive(value === 3);
-    this.refs.edit.getWrappedInstance().setActive(value === 4);
-    if (value === parseInt(value, 10)) {
-      this.setState({
-        value: value,
-      });
-    }
+  layerListOpen(value) {
+    this.setState({
+      addLayerOpen: true
+    });
+  }
+  layerListClose(value) {
+    this.setState({
+      addLayerOpen: false
+    });
+  }
+  leftNavOpen(value) {
+    this.setState({
+      leftNavOpen: true
+    }, function() {
+      map.updateSize();
+    });
+  }
+  leftNavClose(value) {
+    this.setState({
+      leftNavOpen: false
+    }, function() {
+      map.updateSize();
+    });
   }
   render() {
     const {formatMessage} = this.props.intl;
+    const tabList = [
+      <Tab
+        disableTouchRipple={true}
+        key={1}
+        value={1}
+        onActive={this.layerListOpen.bind(this)}
+        label={formatMessage(messages.layerstab)}>
+        <div id='layerlist'>
+          <LayerList
+            inlineDialogs={true}
+            allowStyling={true}
+            expandOnHover={false}
+            icon={<FlatButton label="ADD"/>}
+            showOnStart={true}
+            addLayer={{isDrawer:true, open:this.state.addLayerOpen, onRequestClose:this.layerListClose.bind(this), allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}}
+            allowFiltering={true}
+            showOpacity={true}
+            showDownload={true}
+            showGroupContent={true}
+            showZoomTo={true}
+            allowReordering={true}
+            map={map}/>
+        </div>
+      </Tab>,
+      <Tab disableTouchRipple={true} key={2} value={2} label={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></Tab>,
+      <Tab disableTouchRipple={true} key={3} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable allowEdit={false} height={300} toggleGroup='navigation' ref='table' map={map} /></div></Tab>
+    ];
+    var header = (
+      <Header
+        title='Boundless SDK Quickview'
+        onLeftIconTouchTap={this.leftNavOpen.bind(this)}>
+        <Measure map={map}/>
+        <Select toggleGroup='navigation' map={map}/>
+        <Login />
+        <Navigation toggleGroup='navigation' secondary={true} />
+        <DrawFeature toggleGroup='navigation' map={map} />
+        <MapConfig map={map}/>
+      </Header>);
     return (
         <div id='content'>
-          <Toolbar>
-            <MapConfig firstChild={true} map={map}/>
-            <Measure toggleGroup='navigation' map={map}/>
-            <Select toggleGroup='navigation' map={map}/>
-            <Navigation secondary={true} toggleGroup='navigation' toolId='nav' />
-            <ToolbarGroup lastChild={true}>
-              <Login />
-            </ToolbarGroup>
-          </Toolbar>
-          <div className="row container">
-            <div className="col tabs" id="tabspanel">
-              <Tabs value={this.state.value} onChange={this.handleChange.bind(this)}>
-                <Tab disableTouchRipple={true} value={1} label={formatMessage(messages.layerstab)}><div id='layerlist'><LayerList allowStyling={false} expandOnHover={false} showOnStart={true} addLayer={{allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div></Tab>
-                <Tab disableTouchRipple={true} value={2} label={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></Tab>
-                <Tab disableTouchRipple={true} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable ref='table' map={map} /></div></Tab>
-                <Tab disableTouchRipple={true} value={4} label={formatMessage(messages.wfsttab)}><div id='wfst'><WFST ref='edit' toggleGroup='navigation' showEditForm={true} map={map} /></div></Tab>
-              </Tabs>
-            </div>
-            <div className="col maps">
-              <MapPanel id='map' map={map} />
-              <LoadingPanel map={map} />
-              <div id='globe-button'><Globe map={map} /></div>
-              <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' toolId='nav' infoFormat='application/vnd.ogc.gml' map={map} /></div>
-              <div id='geolocation-control'><Geolocation map={map} /></div>
-              <div id='home-button'><HomeButton map={map} /></div>
-              <div id='zoom-buttons'><Zoom map={map} /></div>
-              <div id='rotate-button'><Rotate map={map} /></div>
-            </div>
+          {header}
+          <LeftNav tabList={tabList} open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
+          <div className='map' style={{left: this.state.leftNavOpen ? 360 : 0, width: this.state.leftNavOpen ? 'calc(100% - 360px)' : '100%'}}>
+            <MapPanel id='map' map={map} />
+            <LoadingPanel map={map} />
+            <div id='globe-button'><Globe map={map} /></div>
+            <div id='editpopup' className='ol-popup'><EditPopup toggleGroup='navigation' map={map} /></div>
+            <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' toolId='nav' infoFormat='application/vnd.ogc.gml' map={map} /></div>
+            <div id='geolocation-control'><Geolocation map={map} /></div>
+            <div id='home-button'><HomeButton map={map} /></div>
+            <div id='zoom-buttons'><Zoom map={map} /></div>
+            <div id='rotate-button'><Rotate map={map} /></div>
           </div>
         </div>
     );

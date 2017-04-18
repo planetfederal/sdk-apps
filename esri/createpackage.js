@@ -1,12 +1,7 @@
 var tools = require('boundless-sdk-tools');
-var readline = require('readline');
-
-var rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-rl.question('Please specify the output file: \n', function (input) {
-  rl.close();
-  tools.createPackage(input);
+process.argv.slice(2).forEach(function (arg) {
+  var flag = arg.split('=')[0];
+  if (flag == '--output-file') {
+    tools.createPackage(arg.split('=')[1]);
+  }
 });

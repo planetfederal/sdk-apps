@@ -1,0 +1,17 @@
+sudo: false
+language: node_js
+node_js:
+- '6'
+env:
+  global:
+  - ENCRYPTION_LABEL: cb39c70670f2
+  - COMMIT_AUTHOR_EMAIL: bartvde@boundlessgeo.com
+before_script:
+- export DISPLAY=:99.0
+script:
+- bash ./test.sh
+after_success:
+- bash ./deploy.sh
+branches:
+  only:
+  - master

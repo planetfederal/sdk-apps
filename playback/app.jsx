@@ -28,7 +28,7 @@ var styleFires = new ol.style.Style({
     anchorXUnits: 'fraction',
     anchorYUnits: 'fraction',
     anchor: [0.5, 0.5],
-    src: '/data/styles/amenity=fire_station2321243910.svg',
+    src: './data/styles/amenity=fire_station2321243910.svg',
     rotation: 0.000000
   })
 });
@@ -63,7 +63,7 @@ var map = new ol.Map({
     new ol.layer.Vector({
       opacity: 1.0,
       source: new ol.source.Vector({
-        url: '/data/fires.json',
+        url: './data/fires.json',
         format: new ol.format.GeoJSON()
       }),
       id: 'lyr00',
@@ -95,7 +95,7 @@ class PlaybackApp extends React.Component {
           <div id='timeline'><Playback map={map} minDate={324511200000} maxDate={1385938800000} /></div>
         </MapPanel>
         <div id='zoom-buttons'><Zoom map={map} /></div>
-        <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
+        <div id='layer-list'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
       </div>
     );
   }

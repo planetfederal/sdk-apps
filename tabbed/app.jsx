@@ -5,7 +5,6 @@ import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from
 import MapPanel from 'boundless-sdk/components/MapPanel';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CustomTheme from './theme';
-import ToolActions from 'boundless-sdk/actions/ToolActions';
 import Zoom from 'boundless-sdk/components/Zoom';
 import LayerList from 'boundless-sdk/components/LayerList';
 import Geocoding from 'boundless-sdk/components/Geocoding';
@@ -21,10 +20,8 @@ import Navigation from 'boundless-sdk/components/Navigation';
 import QGISLegend from 'boundless-sdk/components/QGISLegend';
 import ImageExport from 'boundless-sdk/components/ImageExport';
 import HomeButton from 'boundless-sdk/components/HomeButton';
-import AddLayer from 'boundless-sdk/components/AddLayer';
 import QGISPrint from 'boundless-sdk/components/QGISPrint';
-import {Toolbar} from 'material-ui/Toolbar';
-import RaisedButton from 'material-ui/RaisedButton';
+import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 import Login from 'boundless-sdk/components/Login';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import nlLocaleData from 'react-intl/locale-data/nl';
@@ -35,7 +32,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
-// Check this repo: 
+// Check this repo:
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
@@ -237,7 +234,6 @@ var map = new ol.Map({
   })
 });
 
-var selectedLayer = map.getLayers().item(2);
 var legendData = {
   'lyr03': [{
     title: '',
@@ -385,12 +381,11 @@ class TabbedApp extends React.Component {
   handleChange(value) {
     if (value === parseInt(value, 10)) {
       this.setState({
-        value: value,
+        value: value
       });
     }
   }
   render() {
-    const buttonStyle = {margin: '10px 12px'};
     const {formatMessage} = this.props.intl;
     var charts = [{
       title: formatMessage(messages.chart1),
@@ -410,13 +405,24 @@ class TabbedApp extends React.Component {
     return (
       <div id='content' style={{background: CustomTheme.palette.canvasColor}}>
         <Toolbar>
-          <Login />
-          <ImageExport map={map} />
-          <Measure toggleGroup='navigation' map={map}/>
-          <AddLayer map={map} />
-          <QGISPrint map={map} layouts={printLayouts} />
-          <Select toggleGroup='navigation' map={map}/>
-          <Navigation secondary={true} toggleGroup='navigation' map={map}/>
+          <ToolbarGroup>
+            <Login />
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <ImageExport map={map} />
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <Measure toggleGroup='navigation' map={map}/>
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <QGISPrint map={map} layouts={printLayouts} />
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <Select toggleGroup='navigation' map={map}/>
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <Navigation secondary={true} toggleGroup='navigation' map={map}/>
+          </ToolbarGroup>
         </Toolbar>
         <div className='row container'>
           <div className="col tabs" id="tabs-panel">
@@ -430,8 +436,8 @@ class TabbedApp extends React.Component {
           <div className="col maps">
             <MapPanel id='map' map={map} />
             <LoadingPanel map={map} />
-            <div id='layerlist'><LayerList addLayer={{allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
-            <div id='legend'><QGISLegend map={map} legendBasePath='../../resources/legend/' legendData={legendData} /></div>
+            <div id='layer-list'><LayerList addLayer={{allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
+            <div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} /></div>
             <div id='geolocation-control'><Geolocation map={map} /></div>
             <div id='home-button'><HomeButton map={map} /></div>
             <div id='zoom-buttons'><Zoom map={map} /></div>
