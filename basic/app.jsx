@@ -14,15 +14,15 @@ import FeatureTable from 'boundless-sdk/components/FeatureTable';
 import Chart from 'boundless-sdk/components/Chart';
 import MapConfig from 'boundless-sdk/components/MapConfig';
 import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from 'boundless-sdk/components/Button';
 import TableIcon from 'material-ui/svg-icons/action/view-list';
 import QueryIcon from 'material-ui/svg-icons/action/query-builder';
 import ChartIcon from 'material-ui/svg-icons/editor/insert-chart';
-import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
-import Edit from 'boundless-sdk/components/Edit';
+import DrawFeature from 'boundless-sdk/components/DrawFeature';
 import Globe from 'boundless-sdk/components/Globe';
 import Zoom from 'boundless-sdk/components/Zoom';
 import InfoPopup from 'boundless-sdk/components/InfoPopup';
+import EditPopup from 'boundless-sdk/components/EditPopup';
 import enLocaleData from 'react-intl/locale-data/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enMessages from 'boundless-sdk/locale/en';
@@ -153,6 +153,8 @@ var map = new ol.Map({
     new ol.layer.Vector({
       id: 'lyr01',
       isSelectable: true,
+      geometryType: 'Polygon',
+      attributes: ['cat', 'VEGDESC', 'VEG_ID', 'F_CODEDESC', 'F_CODE', 'AREA_KM2'],
       title: 'trees',
       style: styleTrees,
       source: new ol.source.Vector({
@@ -163,6 +165,8 @@ var map = new ol.Map({
     new ol.layer.Vector({
       id: 'lyr02',
       isSelectable: true,
+      geometryType: 'Point',
+      attributes: ['cat', 'F_CODEDESC', 'F_CODE', 'TYPE'],
       title: 'popp',
       style: stylePopp,
       source: new ol.source.Cluster({
@@ -177,6 +181,8 @@ var map = new ol.Map({
       id: 'lyr03',
       popupInfo: '<b>cat</b>: [cat]<br><b>NA3</b>: [NA3]<br><b>ELEV</b>: [ELEV]<br><b>F_CODE</b>: [F_CODE]<br><b>IKO</b>: [IKO]<br><b>NAME</b>: [NAME]<br><b>USE</b>: [USE]',
       isSelectable: true,
+      geometryType: 'Point',
+      attributes: ['cat', 'NA3', 'ELEV', 'F_CODE', 'IKO', 'NAME', 'USE'],
       style: styleAirports,
       source: new ol.source.Vector({
         format: new ol.format.GeoJSON(),
@@ -229,36 +235,29 @@ class BasicApp extends React.Component {
   _toggleChart() {
     this._toggle(ReactDOM.findDOMNode(this.refs.chartPanel));
   }
-  _toggleEdit() {
-    var node = ReactDOM.findDOMNode(this.refs.editToolPanel);
-    this._toggle(node);
-    if (node.style.display === 'none') {
-      this.refs.edit.getWrappedInstance().disableEditMode();
-    }
-  }
   render() {
     return (
       <div id='content'>
         <Toolbar>
           <MapConfig map={map}/>
-          <ToolbarGroup><RaisedButton icon={<TableIcon />} label='Table' onTouchTap={this._toggleTable.bind(this)} /></ToolbarGroup>
-          <ToolbarGroup><RaisedButton icon={<QueryIcon />} label='Query' onTouchTap={this._toggleQuery.bind(this)} /></ToolbarGroup>
-          <ToolbarGroup><RaisedButton icon={<ChartIcon />} label='Chart' onTouchTap={this._toggleChart.bind(this)} /></ToolbarGroup>
-          <ToolbarGroup><RaisedButton icon={<EditIcon />} label='Edit' onTouchTap={this._toggleEdit.bind(this)} /></ToolbarGroup>
+          <ToolbarGroup><Button buttonType='Icon' tooltip='Table' onTouchTap={this._toggleTable.bind(this)}><TableIcon /></Button></ToolbarGroup>
+          <ToolbarGroup><Button buttonType='Icon' tooltip='Query' onTouchTap={this._toggleQuery.bind(this)}><QueryIcon /></Button></ToolbarGroup>
+          <ToolbarGroup><Button buttonType='Icon' tooltip='Chart' onTouchTap={this._toggleChart.bind(this)}><ChartIcon /></Button></ToolbarGroup>
+          <ToolbarGroup><DrawFeature toggleGroup='navigation' map={map} /></ToolbarGroup>
           <ToolbarGroup><Select toggleGroup='navigation' map={map}/></ToolbarGroup>
           <ToolbarGroup><Navigation secondary={true} toggleGroup='navigation' map={map}/></ToolbarGroup>
           <ToolbarGroup>
             <Geocoding />
           </ToolbarGroup>
         </Toolbar>
-        <MapPanel id='map' map={map}></MapPanel>
+        <MapPanel id='map' map={map}/>
         <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
         <div id='geocoding-results' className='geocoding-results-panel'><GeocodingResults map={map} /></div>
-        <div ref='editToolPanel' className='edit-tool-panel'><Edit ref='edit' toggleGroup='navigation' map={map} /></div>
         <div id='globe-button'><Globe map={map} /></div>
         <div id='zoom-buttons'><Zoom map={map} /></div>
         <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
-        <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable ref='table' map={map} /></div>
+        <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable toggleGroup='navigation' ref='table' map={map} /></div>
+        <div id='editpopup' className='ol-popup'><EditPopup toggleGroup='navigation' map={map} /></div>
         <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' map={map} /></div>
         <div ref='chartPanel' className='chart-panel'><Chart charts={charts} onClose={this._toggleChart.bind(this)}/></div>
       </div>
