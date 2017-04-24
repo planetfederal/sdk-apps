@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {IntlProvider} from 'react-intl';
 import proj4 from 'proj4';
-import InfoPopup from 'boundless-sdk/components/InfoPopup';
-import Zoom from 'boundless-sdk/components/Zoom';
+import InfoPopup from '@boundlessgeo/sdk/components/InfoPopup';
+import Zoom from '@boundlessgeo/sdk/components/Zoom';
 import AppBar from 'material-ui/AppBar';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MapPanel from 'boundless-sdk/components/MapPanel';
+import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -73,7 +73,7 @@ class ProjectionApp extends React.Component {
   render() {
     return (
       <div id='content'>
-        <AppBar showMenuIconButton={false} title="My Web App" />
+        <AppBar showMenuIconButton={false} title="Custom Projection" />
         <MapPanel id='map' map={map} extent={originalExtent}>
           <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>
         </MapPanel>
