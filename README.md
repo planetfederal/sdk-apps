@@ -44,7 +44,7 @@ Go to the node_modules/openlayers subdirectory of the root dir and type:
 
 In your sdk app type:
 
-    npm link boundless-sdk
+    npm link @boundlessgeo/sdk
     npm link react
     npm link openlayers
 
@@ -54,6 +54,9 @@ Go to the root of your sdk checkout and run the watchdog.
 
 This will be the result on file system (check with something like: ```ls -l ~/.nvm/versions/node/v6.9.2/lib/node_modules/```):
 
-    lrwxrwxrwx  1 bartvde bartvde   37 jan  4 17:59 boundless-sdk -> /home/bartvde/opengeo/git/sdk/release
     lrwxrwxrwx  1 bartvde bartvde   53 jan  4 17:59 openlayers -> /home/bartvde/opengeo/git/sdk/node_modules/openlayers
     lrwxrwxrwx  1 bartvde bartvde   48 jan  4 17:59 react -> /home/bartvde/opengeo/git/sdk/node_modules/react
+
+The sdk symlink will be in a subdirectory called @boundlessgeo (```ls -l ~/.nvm/versions/node/v6.9.2/lib/node_modules/@boundlessgeo/```):
+
+    lrwxrwxrwx 1 bartvde bartvde   37 apr 24 13:39 sdk -> /home/bartvde/opengeo/git/sdk/release
