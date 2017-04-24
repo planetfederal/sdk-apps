@@ -4,12 +4,12 @@ import ol from 'openlayers';
 global.ol = ol;
 import ole from 'ole';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from 'boundless-sdk/components/MapPanel';
-import FeatureTable from 'boundless-sdk/components/FeatureTable';
-import Zoom from 'boundless-sdk/components/Zoom';
+import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
+import FeatureTable from '@boundlessgeo/sdk/components/FeatureTable';
+import Zoom from '@boundlessgeo/sdk/components/Zoom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enLocaleData from 'react-intl/locale-data/en';
-import enMessages from 'boundless-sdk/locale/en';
+import enMessages from '@boundlessgeo/sdk/locale/en';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 // Needed for onTouchTap
@@ -107,8 +107,8 @@ class EsriApp extends React.Component {
       <div id='content'>
         <MapPanel id='map' className='row' map={map} />
         <div id='zoom-buttons'><Zoom map={map} /></div>
-        <div ref='tablePanel' id='table-panel' className='row attributes-table'>
-          <FeatureTable ref='table' resizeTo='table-panel' offset={[0, 0]} layer={vector} map={map} />
+        <div id='table-panel' className='row attributes-table'>
+          <FeatureTable allowEdit={false} layer={vector} map={map} />
         </div>
       </div>
     );
