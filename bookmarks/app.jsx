@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from 'boundless-sdk/components/MapPanel';
-import Zoom from 'boundless-sdk/components/Zoom';
-import Bookmarks from 'boundless-sdk/components/Bookmarks';
+import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
+import Zoom from '@boundlessgeo/sdk/components/Zoom';
+import Bookmarks from '@boundlessgeo/sdk/components/Bookmarks';
 import enLocaleData from 'react-intl/locale-data/en';
-import enMessages from 'boundless-sdk/locale/en';
+import enMessages from '@boundlessgeo/sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
