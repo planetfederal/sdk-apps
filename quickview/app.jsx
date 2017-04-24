@@ -194,7 +194,7 @@ class QuickView extends React.Component {
         <Select toggleGroup='navigation' map={map}/>
         <Login />
         <Navigation toggleGroup='navigation' secondary={true} />
-        <DrawFeature toggleGroup='navigation' map={map} />
+        // <DrawFeature toggleGroup='navigation' map={map} />
         <MapConfig map={map}/>
       </Header>);
     return (
