@@ -11,7 +11,7 @@ import LoadingPanel from 'boundless-sdk/components/LoadingPanel';
 import MapPanel from 'boundless-sdk/components/MapPanel';
 import MapConfig from 'boundless-sdk/components/MapConfig';
 import Select from 'boundless-sdk/components/Select';
-import DrawFeature from 'boundless-sdk/components/DrawFeature';
+// import DrawFeature from 'boundless-sdk/components/DrawFeature';
 import LeftNav from 'boundless-sdk/components/LeftNav';
 import Geolocation from 'boundless-sdk/components/Geolocation';
 import Zoom from 'boundless-sdk/components/Zoom';
@@ -194,7 +194,7 @@ class QuickView extends React.Component {
         <Select toggleGroup='navigation' map={map}/>
         <Login />
         <Navigation toggleGroup='navigation' secondary={true} />
-        <DrawFeature toggleGroup='navigation' map={map} />
+        // <DrawFeature toggleGroup='navigation' map={map} />
         <MapConfig map={map}/>
       </Header>);
     return (
