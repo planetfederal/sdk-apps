@@ -1,9 +1,9 @@
 import React from 'react';
 import ol from 'openlayers';
-import ToolUtil from 'boundless-sdk/toolutil';
-import AppDispatcher from 'boundless-sdk/dispatchers/AppDispatcher';
-import ToolActions from 'boundless-sdk/actions/ToolActions';
-import RaisedButton from 'boundless-sdk/components/Button';
+import ToolUtil from '@boundlessgeo/sdk/toolutil';
+import AppDispatcher from '@boundlessgeo/sdk/dispatchers/AppDispatcher';
+import ToolActions from '@boundlessgeo/sdk/actions/ToolActions';
+import RaisedButton from '@boundlessgeo/sdk/components/Button';
 
 class DrawBox extends React.Component {
   constructor(props) {

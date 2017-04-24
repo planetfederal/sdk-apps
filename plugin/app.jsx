@@ -2,17 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import Zoom from 'boundless-sdk/components/Zoom';
+import Zoom from '@boundlessgeo/sdk/components/Zoom';
 import DrawBox from './components/DrawBox';
 import BoxInfo from './components/BoxInfo';
 import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
-import MapPanel from 'boundless-sdk/components/MapPanel';
-import LayerList from 'boundless-sdk/components/LayerList';
-import InfoPopup from 'boundless-sdk/components/InfoPopup';
+import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
+import LayerList from '@boundlessgeo/sdk/components/LayerList';
+import Navigation from '@boundlessgeo/sdk/components/Navigation';
+import InfoPopup from '@boundlessgeo/sdk/components/InfoPopup';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enLocaleData from 'react-intl/locale-data/en';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import enMessages from 'boundless-sdk/locale/en';
+import enMessages from '@boundlessgeo/sdk/locale/en';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -69,6 +70,9 @@ class MyApp extends React.Component {
        <div id='content'>
         <div className='row container'>
           <Toolbar>
+            <ToolbarGroup>
+              <Navigation map={map} />
+            </ToolbarGroup>
             <ToolbarGroup>
               <DrawBox strokeColor='#00FF00' map={map} toggleGroup='navigation' />
             </ToolbarGroup>
