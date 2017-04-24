@@ -13,8 +13,10 @@ import QueryBuilder from '@boundlessgeo/sdk/components/QueryBuilder';
 import FeatureTable from '@boundlessgeo/sdk/components/FeatureTable';
 import Chart from '@boundlessgeo/sdk/components/Chart';
 import MapConfig from '@boundlessgeo/sdk/components/MapConfig';
-import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
+import Header from '@boundlessgeo/sdk/components/Header';
+import LeftNav from '@boundlessgeo/sdk/components/LeftNav';
 import Button from '@boundlessgeo/sdk/components/Button';
+import Tab from 'material-ui/Tabs';
 import TableIcon from 'material-ui/svg-icons/action/view-list';
 import QueryIcon from 'material-ui/svg-icons/action/query-builder';
 import ChartIcon from 'material-ui/svg-icons/editor/insert-chart';
@@ -213,6 +215,10 @@ var charts = [{
 }];
 
 class BasicApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.isLeftNavOpen = true;
+  }
   getChildContext() {
     return {
       muiTheme: getMuiTheme()
@@ -235,27 +241,44 @@ class BasicApp extends React.Component {
   _toggleChart() {
     this._toggle(ReactDOM.findDOMNode(this.refs.chartPanel));
   }
+  leftNavOpen(value) {
+    this.isLeftNavOpen = true;
+    map.updateSize();
+  }
+  leftNavClose(value) {
+    this.isLeftNavOpen = false;
+    map.updateSize();
+  }
   render() {
+    const tabList = [
+      <Tab
+      disableTouchRipple={true}
+      key={1}
+      value={1}
+      label='Layers'>
+      <div id='layerlist'><LayerList inlineDialogs={true} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
+    </Tab>
+    ]
+
     return (
       <div id='content'>
-        <Toolbar>
+        <Header title='Boundless SDK Basic App' onLeftIconTouchTap={this.leftNavOpen.bind(this)}>
           <MapConfig map={map}/>
-          <ToolbarGroup><Button buttonType='Icon' tooltip='Table' onTouchTap={this._toggleTable.bind(this)}><TableIcon /></Button></ToolbarGroup>
-          <ToolbarGroup><Button buttonType='Icon' tooltip='Query' onTouchTap={this._toggleQuery.bind(this)}><QueryIcon /></Button></ToolbarGroup>
-          <ToolbarGroup><Button buttonType='Icon' tooltip='Chart' onTouchTap={this._toggleChart.bind(this)}><ChartIcon /></Button></ToolbarGroup>
-          <ToolbarGroup><DrawFeature toggleGroup='navigation' map={map} /></ToolbarGroup>
-          <ToolbarGroup><Select toggleGroup='navigation' map={map}/></ToolbarGroup>
-          <ToolbarGroup><Navigation secondary={true} toggleGroup='navigation' map={map}/></ToolbarGroup>
-          <ToolbarGroup>
-            <Geocoding />
-          </ToolbarGroup>
-        </Toolbar>
+          <Button buttonType='Icon' tooltip='Table' onTouchTap={this._toggleTable.bind(this)}><TableIcon /></Button>
+          <Button buttonType='Icon' tooltip='Query' onTouchTap={this._toggleQuery.bind(this)}><QueryIcon /></Button>
+          <Button buttonType='Icon' tooltip='Chart' onTouchTap={this._toggleChart.bind(this)}><ChartIcon /></Button>
+          <DrawFeature toggleGroup='navigation' map={map} />
+          <Select toggleGroup='navigation' map={map}/>
+          <Navigation secondary={true} toggleGroup='navigation' map={map}/>
+          <Geocoding />
+
+        </Header>
+        <LeftNav tabList={tabList} open={this.isLeftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
         <MapPanel id='map' map={map}/>
         <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
         <div id='geocoding-results' className='geocoding-results-panel'><GeocodingResults map={map} /></div>
         <div id='globe-button'><Globe map={map} /></div>
         <div id='zoom-buttons'><Zoom map={map} /></div>
-        <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
         <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable toggleGroup='navigation' ref='table' map={map} /></div>
         <div id='editpopup' className='ol-popup'><EditPopup toggleGroup='navigation' map={map} /></div>
         <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' map={map} /></div>
