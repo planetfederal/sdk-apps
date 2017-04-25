@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import RaisedButton from 'material-ui/RaisedButton';
 import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
 import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 import Navigation from '@boundlessgeo/sdk/components/Navigation';
