@@ -12,6 +12,14 @@ body {
   right: 10px;
   top: 66px;
 }
+.layerlistbutton {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+.layer-tree-panel {
+  margin-right: 50px;
+}
 #globe-button {
   z-index: 1111;
   position: absolute;
@@ -71,6 +79,7 @@ html, body {
   height: 50%;
   width: 100%;
   z-index: 101;
+  background-color: white;
 }
 .chart-panel{
   display: none;
