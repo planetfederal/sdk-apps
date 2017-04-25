@@ -29,6 +29,8 @@ import enLocaleData from 'react-intl/locale-data/en';
 import nlMessages from './nl';
 import enMessages from '@boundlessgeo/sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import Header from 'boundless-sdk/components/Header';
+
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -404,26 +406,15 @@ class TabbedApp extends React.Component {
     }];
     return (
       <div id='content' style={{background: CustomTheme.palette.canvasColor}}>
-        <Toolbar>
-          <ToolbarGroup>
-            <Login />
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <ImageExport map={map} />
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <Measure toggleGroup='navigation' map={map}/>
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <QGISPrint map={map} layouts={printLayouts} />
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <Select toggleGroup='navigation' map={map}/>
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <Navigation secondary={true} toggleGroup='navigation' map={map}/>
-          </ToolbarGroup>
-        </Toolbar>
+        <Header>
+          <Login />
+          <ImageExport map={map} />
+          <Measure toggleGroup='navigation' map={map}/>
+          <QGISPrint map={map} layouts={printLayouts} />
+          <Select toggleGroup='navigation' map={map}/>
+          <Navigation secondary={true} toggleGroup='navigation' map={map}/>
+        </Header>
+
         <div className='row container'>
           <div className="col tabs" id="tabs-panel">
             <Tabs value={this.state.value} onChange={this.handleChange.bind(this)}>
