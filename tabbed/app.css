@@ -83,3 +83,11 @@ html, body {
   background-color: white;
   height: 100%;
 }
+.layerlistbutton {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+.layer-tree-panel {
+  margin-right: 50px;
+}
