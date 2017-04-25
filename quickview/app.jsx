@@ -173,7 +173,7 @@ class QuickView extends React.Component {
             expandOnHover={false}
             icon={<FlatButton label="ADD"/>}
             showOnStart={true}
-            addLayer={{isDrawer:true, open:this.state.addLayerOpen, onRequestClose:this.layerListClose.bind(this), allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}}
+            addLayer={{open:this.state.addLayerOpen, onRequestClose:this.layerListClose.bind(this), allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}}
             allowFiltering={true}
             showOpacity={true}
             showDownload={true}
