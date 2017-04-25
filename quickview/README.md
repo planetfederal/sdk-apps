@@ -1,15 +1,15 @@
-#Tutorial: Quickview
+# Tutorial: Quickview
 
-##Introduction
+## Introduction
 This tutorial takes you through the steps to create a BoundlessSDK application.
 
 ## The end game // What you'll build
-[Link](http://boundlessgeo.github.io/sdk-apps/quickview)
+[http://boundlessgeo.github.io/sdk-apps/quickview](http://boundlessgeo.github.io/sdk-apps/quickview)
 
 ## Getting Started
 Follow getting started instructions to create a new app called myapp.
 
-[Link](https://boundlessgeo.github.io/sdk/book/getting_started.html)
+[https://boundlessgeo.github.io/sdk/book/getting_started.html](https://boundlessgeo.github.io/sdk/book/getting_started.html)
 
 This creates a skeleton app and runs a debug server on port 3000.
 
@@ -21,7 +21,7 @@ This creates a skeleton app and runs a debug server on port 3000.
   * Zoom In/Out Buttons
   * `LayerList` Component
 
-##Inside of `myapp/app.jsx`
+## Inside of `myapp/app.jsx`
 `app.jsx` is the main file for this BoundlessSDK app.
 * initial import statements
   ```
@@ -78,7 +78,7 @@ This creates a skeleton app and runs a debug server on port 3000.
   });
   ```
 
-##Adding base maps to `myapp` BoundlessSDK app
+## Adding base maps to `myapp` BoundlessSDK app
 The skeleton app provides two base maps, OSM Streets and ESRI World Imagery. We’ll add two more to `myapp`: Carto DB Light and Carto DB Dark
 
 Add the following layer definitions in `app.jsx` after the existing OSM Streets layer:
@@ -114,10 +114,10 @@ new ol.layer.Tile({
 
 Reload the debug server to see the new base map options we've just added.
 
-##Adding widgets (components) on `myapp` BoundlessSDK app
+## Adding widgets (components) on `myapp` BoundlessSDK app
 The first widget/component we'll add is called `GeoLocation`.
 
-What it does: [Link](https://boundlessgeo.github.io/sdk/book/api/Geolocation.html)
+What it does: [https://boundlessgeo.github.io/sdk/book/api/Geolocation.html](https://boundlessgeo.github.io/sdk/book/api/Geolocation.html)
   * Geolocation uses the current position of the user in the map. Can show the current position on the map, and also track the position.
     `<Geolocation map={map} />`
 
@@ -148,7 +148,7 @@ What it does: [Link](https://boundlessgeo.github.io/sdk/book/api/Geolocation.htm
 
 Reload the debug server and see the new widget we've just added.
 
-##Adding a `Toolbar` to `myapp` BoundlessSDK `myapp`
+## Adding a `Toolbar` to `myapp` BoundlessSDK `myapp`
 The `Toolbar` will be a landing spot at the top of the app page for menu buttons to be added later.
 
 * In `app.jsx`
@@ -209,11 +209,11 @@ The `Toolbar` will be a landing spot at the top of the app page for menu buttons
 
 Reload the debug server to see the new, empty `Toolbar`.
 
-##Adding a menu button to `myapp` BoundlessSDK app
+## Adding a menu button to `myapp` BoundlessSDK app
 The first button will add will be a `Measure` component
 
 What it does:
-[Link](https://boundlessgeo.github.io/sdk/book/api/Measure.html)
+[https://boundlessgeo.github.io/sdk/book/api/Measure.html](https://boundlessgeo.github.io/sdk/book/api/Measure.html)
   * `Measure` adds area and length measure tools as a toolbar (menu) button
     `<Measure map={map}/>`
 
@@ -232,11 +232,11 @@ What it does:
 
 Reload the debug server and try out the `Measure` button
 
-##Adding a widget from `ol.Map` object in `myapp` BoundlessSDK app
+## Adding a widget from `ol.Map` object in `myapp` BoundlessSDK app
 First we'll add a `ScaleLine` directly into our `ol.Map` object
 
 What it does:
-[Link](https://openlayers.org/en/latest/apidoc/ol.control.ScaleLine.html)
+[https://openlayers.org/en/latest/apidoc/ol.control.ScaleLine.html](https://openlayers.org/en/latest/apidoc/ol.control.ScaleLine.html)
   * `ScaleLine` is a control displaying rough y-axis distances, calculated for the center of the viewport.
     `ol.control.ScaleLine()`
 
@@ -259,4 +259,4 @@ What it does:
 
     ```
 
-Reload the server too see the new widget
+Reload the server to see the new widget
