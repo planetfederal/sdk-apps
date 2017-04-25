@@ -92,7 +92,7 @@ class PlaybackApp extends React.Component {
     return (
       <div id='content'>
         <MapPanel id='map' map={map}>
-          <div id='timeline'><Playback map={map} minDate={324511200000} maxDate={1385938800000} /></div>
+          <div id='timeline'><Playback title='Fires' map={map} minDate={324511200000} maxDate={1385938800000} /></div>
         </MapPanel>
         <div id='zoom-buttons'><Zoom map={map} /></div>
         <div id='layer-list'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
