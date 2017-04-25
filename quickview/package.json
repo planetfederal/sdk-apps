@@ -20,7 +20,7 @@
   "author": "Boundless Spatial, Inc.",
   "license": "Apache-2.0",
   "dependencies": {
-    "boundless-sdk": "^0.10.2",
+    "@boundlessgeo/sdk": "^0.10.35",
     "material-ui": "^0.16.4",
     "ol3-cesium": "3.9.4",
     "openlayers": "4.0.1",
@@ -44,7 +44,7 @@
     "minifyify": "^7.1.0",
     "npm-run-all": "1.3.1",
     "replacestream": "4.0.0",
-    "boundless-sdk-tools": "^0.9.0",
+    "@boundlessgeo/sdk-tools": "^0.10.2",
     "through": "^2.3.8",
     "watchify": "^3.2.0"
   },
