@@ -26,29 +26,30 @@ Applications that need access to a local GeoServer will need to run (in addition
 ```npm run start:proxy``` this will start up the application at http://localhost:4000/ and will have a proxy to a local geoserver on port 8080 (proxy-config.json).
 
 # Linking to a github directory of the sdk
-Go to the directory of your sdk git checkout and type:
+Add a NPM link to the SDK release directory. Go to the directory of your SDK git checkout and type:
 
     npm run release
     cd release
     npm link
 
-Go to the node_modules/react subdirectory of the root dir and type:
+
+Add a NPM link to the SDK node_modules/react subdirectory:
 
     cd ../node_modules/react
     npm link
 
-Go to the node_modules/openlayers subdirectory of the root dir and type:
+Add a NPM linkGo to the SDK node_modules/openlayers subdirectory:
 
     cd ../openlayers
     npm link
 
-In your sdk app type:
+Add the links to your SDK apps. After changing the current working directory to your sdk app type:
 
     npm link @boundlessgeo/sdk
     npm link react
     npm link openlayers
 
-Go to the root of your sdk checkout and run the watchdog.
+Once complete go to the root of your sdk checkout and run the watchdog.
 
     npm start
 
