@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from 'boundless-sdk/components/MapPanel';
-import LayerList from 'boundless-sdk/components/LayerList';
-import Zoom from 'boundless-sdk/components/Zoom';
-import Playback from 'boundless-sdk/components/Playback';
+import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
+import LayerList from '@boundlessgeo/sdk/components/LayerList';
+import Zoom from '@boundlessgeo/sdk/components/Zoom';
+import Playback from '@boundlessgeo/sdk/components/Playback';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enLocaleData from 'react-intl/locale-data/en';
-import enMessages from 'boundless-sdk/locale/en';
+import enMessages from '@boundlessgeo/sdk/locale/en';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 // Needed for onTouchTap
