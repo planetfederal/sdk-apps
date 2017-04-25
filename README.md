@@ -38,7 +38,7 @@ Add a NPM link to the SDK node_modules/react subdirectory:
     cd ../node_modules/react
     npm link
 
-Add a NPM linkGo to the SDK node_modules/openlayers subdirectory:
+Add a NPM link to the SDK node_modules/openlayers subdirectory:
 
     cd ../openlayers
     npm link
