@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from 'boundless-sdk/components/MapPanel';
-import Zoom from 'boundless-sdk/components/Zoom';
-import FeatureTable from 'boundless-sdk/components/FeatureTable';
+import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
+import Zoom from '@boundlessgeo/sdk/components/Zoom';
+import FeatureTable from '@boundlessgeo/sdk/components/FeatureTable';
 import enLocaleData from 'react-intl/locale-data/en';
-import enMessages from 'boundless-sdk/locale/en';
+import enMessages from '@boundlessgeo/sdk/locale/en';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -185,7 +185,7 @@ class SimpleApp extends React.Component {
     return (
       <div id='content'>
         <MapPanel id='map' className='row' map={map} />
-        <div id='table-panel' className='row attributes-table'><FeatureTable resizeTo='table-panel' offset={[0, 0]} layer={selectedLayer} map={map} /></div>
+        <div id='table-panel' className='row attributes-table'><FeatureTable allowEdit={false} layer={selectedLayer} map={map} /></div>
         <div id='zoom-buttons'><Zoom map={map} /></div>
       </div>
     );
