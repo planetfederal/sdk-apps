@@ -31,7 +31,7 @@
 #geocoding-tab {
   padding: 10px;
 }
-.maps {
+/*.maps {
   height: calc(100% - 56px);
   width: 60%;
   position: absolute;
@@ -53,7 +53,7 @@
 }
 .tabs > div > div:last-child > div{
   height: 100%;
-}
+}*/
 #geolocation-control {
   margin-left: 20px;
   position: absolute;
@@ -79,9 +79,9 @@ html, body {
   padding: 0;
   margin: 0;
 }
-#map {
-  background-color: white;
-  height: 100%;
+.map {
+  position: absolute;
+  height: calc(100% - 64px);
 }
 .layerlistbutton {
   position: absolute;

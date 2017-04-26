@@ -28,6 +28,7 @@ import EditPopup from '@boundlessgeo/sdk/components/EditPopup';
 import enLocaleData from 'react-intl/locale-data/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enMessages from '@boundlessgeo/sdk/locale/en';
+import FlatButton from 'material-ui/FlatButton';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -241,6 +242,16 @@ class BasicApp extends React.Component {
   _toggleChart() {
     this._toggle(ReactDOM.findDOMNode(this.refs.chartPanel));
   }
+  layerListOpen(value) {
+    this.setState({
+      addLayerOpen: true
+    });
+  }
+  layerListClose(value) {
+    this.setState({
+      addLayerOpen: false
+    });
+  }
   leftNavOpen(value) {
     this.isLeftNavOpen = true;
     map.updateSize();
@@ -252,15 +263,26 @@ class BasicApp extends React.Component {
   render() {
     const tabList = [
       <Tab
-
-      disableTouchRipple={true}
-      key={1}
-      value={1}
-      label='Layers'>
-      <div id='layerlist'><LayerList inlineDialogs={true} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
-    </Tab>
-    ]
-
+        disableTouchRipple={true}
+        key={1}
+        value={1}
+        onActive={this.layerListOpen.bind(this)}
+        label='Layers List'>
+        <div id='layerlist'>
+          <LayerList
+            icon={<FlatButton label="ADD"/>}
+            inlineDialogs={true}
+            allowFiltering={true}
+            showOpacity={true}
+            showDownload={true}
+            showGroupContent={true}
+            showZoomTo={true}
+            allowReordering={true}
+            map={map} />
+        </div>
+      </Tab>,
+      <Tab disableTouchRipple={true} key={2} value={2} label='test'><div id='legend'>TEST</div></Tab>
+    ];
 
     return (
       <div id='content'>
