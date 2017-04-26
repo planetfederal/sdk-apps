@@ -6,6 +6,7 @@ import proj4 from 'proj4';
 import InfoPopup from '@boundlessgeo/sdk/components/InfoPopup';
 import Zoom from '@boundlessgeo/sdk/components/Zoom';
 import AppBar from 'material-ui/AppBar';
+import Header from '@boundlessgeo/sdk/components/Header';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
@@ -73,7 +74,8 @@ class ProjectionApp extends React.Component {
   render() {
     return (
       <div id='content'>
-        <AppBar showMenuIconButton={false} title="Custom Projection" />
+        <Header showMenuIconButton={false} title="Custom Projection"></Header>
+        {/*<AppBar showMenuIconButton={false} title="Custom Projection" />*/}
         <MapPanel id='map' map={map} extent={originalExtent}>
           <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>
         </MapPanel>
