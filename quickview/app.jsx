@@ -184,7 +184,11 @@ class QuickView extends React.Component {
         </div>
       </Tab>,
       <Tab disableTouchRipple={true} key={2} value={2} label={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></Tab>,
-      <Tab disableTouchRipple={true} key={3} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable allowEdit={false} height={300} toggleGroup='navigation' ref='table' map={map} /></div></Tab>
+      <Tab disableTouchRipple={true} key={3} value={3} label={formatMessage(messages.attributestab)}>
+        <div id="attributes-table-tab" style={{height: '100%'}}>
+          <FeatureTable allowEdit={false} height={300} toggleGroup='navigation' ref='table' map={map} />
+        </div>
+      </Tab>
     ];
     var header = (
       <Header

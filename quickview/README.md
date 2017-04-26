@@ -30,12 +30,12 @@ This creates a skeleton app and runs a debug server on port 3000.
   import ol from 'openlayers';
   import {addLocaleData, IntlProvider} from 'react-intl';
   import getMuiTheme from 'material-ui/styles/getMuiTheme';
-  import Zoom from 'boundless-sdk/components/Zoom';
-  import MapPanel from 'boundless-sdk/components/MapPanel';
-  import LayerList from 'boundless-sdk/components/LayerList';
+  import Zoom from '@boundlessgeo/sdk/components/Zoom';
+  import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
+  import LayerList from '@boundlessgeo/sdk/components/LayerList';
   import injectTapEventPlugin from 'react-tap-event-plugin';
   import enLocaleData from 'react-intl/locale-data/en';
-  import enMessages from 'boundless-sdk/locale/en';
+  import enMessages from '@boundlessgeo/sdk/locale/en';
   ```
 * `ol.Map` definition
   * The Map gets defined with a layer group, that combines the OSM streets and ESRI world imagery layers.
@@ -126,47 +126,50 @@ What it does: [https://boundlessgeo.github.io/sdk/book/api/Geolocation.html](htt
   * import the component
     * import the `Geolocation` component by adding an import statement to the top of `app.jsx`, after the existing import statements
 
-    `import Geolocation from 'boundless-sdk/components/Geolocation'`
+          `import Geolocation from '@boundlessgeo/sdk/components/Geolocation';`
 
   * update the render function
     * In the render function of `myapp`, we need to add the definition of our new component, `Geolocation`, after the existing `Zoom` component
 
-    `<div id='geolocation-control'><Geolocation map={map} /></div>`
+          `<div id='geolocation-control'><Geolocation map={map} /></div>`
 
 * In `app.css`
 
   * adjust style
     * in `app.css`, we'll adjust the styling to give the new `Geolocation` component a position on the MapPanel
 
-    ```
-    #geolocation-control {
-      position: absolute;
-      margin-left: 20px;
-      top: 129px;
-    }
-    ```
+
+          ```
+          #geolocation-control {
+            position: absolute;
+            margin-left: 20px;
+            top: 129px;
+          }
+          ```
 
 Reload the debug server and see the new widget we've just added.
 
-## Adding a `Toolbar` to `myapp` BoundlessSDK `myapp`
-The `Toolbar` will be a landing spot at the top of the app page for menu buttons to be added later.
+## Adding a `Header` to `myapp` BoundlessSDK `myapp`
+The `Header` will be a landing spot at the top of the app page for menu buttons to be added later.
 
 * In `app.jsx`
 
   * import the component
-    * `import Toolbar from 'material-ui/Toolbar/Toolbar';`
+    * `import Header from '@boundlessgeo/sdk/components/Header';`
 
   * update the render function
-    * In our render function, make a new `var toolbar` to house the `Toolbar` component and all children components to be added later
+    * In our render function, make a new `var header` to house the `Header` component and all children components to be added later
+
+    * We'll give the `Header` component a `title` property to name our app, in this case, we'll call it 'Boundless SDK Quickview':
 
     ```
     render() {
-      var toolbar = (
-        <Toolbar/>
+      var header = (
+        <Header title='Boundless SDK Quickview/>
       );
       return (
          <div id='content'>
-           {toolbar}
+           {header}
           <MapPanel id='map' map={map} />
           <div id='layer-list'><LayerList collapsible={false} map={map} /></div>
           <div id='zoom-buttons'><Zoom map={map} /></div>
@@ -207,25 +210,25 @@ The `Toolbar` will be a landing spot at the top of the app page for menu buttons
     }
     ```
 
-Reload the debug server to see the new, empty `Toolbar`.
+Reload the debug server to see the new `Header`.
 
 ## Adding a menu button to `myapp` BoundlessSDK app
 The first button will add will be a `Measure` component
 
 What it does:
 [https://boundlessgeo.github.io/sdk/book/api/Measure.html](https://boundlessgeo.github.io/sdk/book/api/Measure.html)
-  * `Measure` adds area and length measure tools as a toolbar (menu) button
+  * `Measure` adds area and length measure tools as a menu button
     `<Measure map={map}/>`
 
 * In `app.jsx`
 
   * import the component
-    * `import Measure from 'boundless-sdk/components/Measure';`
+    `import Measure from '@boundlessgeo/sdk/components/Measure';`
 
   * update the render function
-    * ```
-    var toolbar = (
-      <Toolbar><Measure map={map}/></Toolbar>
+    ```
+    var header = (
+      <Header><Measure map={map}/></Header>
     );
     ```
 * No style updates needed for this addition
@@ -245,7 +248,6 @@ What it does:
   * Update the `ol.Map` controls array to include the `ScaleLine`
     ```
     controls: [new ol.control.Attribution({collapsible: false}), new ol.control.ScaleLine()],
-
     ```
 
 * In `app.css`
@@ -256,7 +258,123 @@ What it does:
     .ol-scale-line {
       background-color: #0097a7;
     }
-
     ```
 
 Reload the server to see the new widget
+
+## Adding the `LeftNav` component
+
+Quickview uses a `LeftNav` to display the `LayerList` and other tabs. First, we'll walkthrough displaying the empty `LeftNav` component.
+
+* In `app.jsx`
+
+  * import the component
+
+    `import LeftNav from '@boundlessgeo/sdk/components/LeftNav';`
+
+  * update the render function
+
+    `<LeftNav open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>`
+
+    `LeftNav` will take two properties, `open` and `onRequestClose`.
+
+    * `open`: for open, we'll need to set state.
+
+      At the top of the `MyApp` class, add a constructor:
+
+        ```
+        constructor(props){
+          super(props);
+          this.state = {
+            leftNavOpen: true
+          };
+        }
+        ```
+
+      After the constructor, we'll need to define `leftNavOpen` and `leftNavClose`.
+
+        ```
+        leftNavOpen(value) {
+          this.setState({
+            leftNavOpen: true
+            }, function() {
+              map.updateSize();
+            });
+        }
+        leftNavClose(value) {
+          this.setState({
+            leftNavOpen: false
+            }, function() {
+              map.updateSize();
+            });
+        }
+        ```
+
+      Next, add a `onLeftIconTouchTap` property to the `Header` component to open/close the `LeftNav`.
+
+        `onLeftIconTouchTap={this.leftNavOpen.bind(this)}`
+
+     Finally, we'll update the style directly in `app.jsx` by adding a new `div` inside of `<div id='content'>`, to contain the `MapPanel` and other components that appear on the map.
+
+     ```
+     <div id='content'>
+       {header}
+       <LeftNav open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
+       <div className='map' style={{left: this.state.leftNavOpen ? 360 : 0, width: this.state.leftNavOpen ? 'calc(100% - 360px)' : '100%'}}>
+         <MapPanel id='map' map={map} />
+         <div id='layer-list'><LayerList collapsible={false} map={map} /></div>
+         <div id='zoom-buttons'><Zoom map={map} /></div>
+         <div id='geolocation-control'><Geolocation map={map} /></div>
+       </div>
+     </div>
+     ```
+
+Reload the server to see the new `LeftNav` in place.
+
+## Adding `Tablist` and `Tabs` to `myapp` BoundlessSDK app
+
+QuickView app uses a `Tablist` component to manage its `Layerlist`, `Legend`, and `FeatureTable` components.
+
+* In `app.jsx`
+
+  * import the component
+
+      `import {Tab} from 'material-ui/Tabs';`
+
+  * update the render function
+
+      * At the top of render, we'll add a new `const` called `tabList`
+
+        ```
+        const tabList = [
+          <Tab
+            disableTouchRipple={true}
+            key={1}
+            value={1}>
+            <div id='layer-list'>
+              <LayerList
+                inlineDialogs={true}
+                allowStyling={true}
+                expandOnHover={false}
+                showOnStart={true}
+                allowFiltering={true}
+                showOpacity={true}
+                showDownload={true}
+                showGroupContent={true}
+                showZoomTo={true}
+                allowReordering={true}
+                map={map} />
+            </div>
+          </Tab>
+        ]
+        ```
+
+      Inside of return,
+
+## Adding internationalization to `myapp` BoundlessSDK app
+
+BoundlessSDK supports internationalization (i18n) should you wish to adapt your app to support any language than English.
+
+For a working example, see the Tabbed App demo.
+
+[http://boundlessgeo.github.io/sdk-apps/tabbed/#map=9783.93962050256/-16839563.6/8850169.51/0](http://boundlessgeo.github.io/sdk-apps/tabbed/#map=9783.93962050256/-16839563.6/8850169.51/0)
