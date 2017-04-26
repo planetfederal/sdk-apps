@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from 'boundless-sdk/components/MapPanel';
-import HomeButton from 'boundless-sdk/components/HomeButton';
-import Zoom from 'boundless-sdk/components/Zoom';
-import LayerList from 'boundless-sdk/components/LayerList';
-import AppBar from 'material-ui/AppBar';
+import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
+import HomeButton from '@boundlessgeo/sdk/components/HomeButton';
+import Zoom from '@boundlessgeo/sdk/components/Zoom';
+import LayerList from '@boundlessgeo/sdk/components/LayerList';
+import Header from '@boundlessgeo/sdk/components/Header';
 import enLocaleData from 'react-intl/locale-data/en';
-import enMessages from 'boundless-sdk/locale/en';
+import enMessages from '@boundlessgeo/sdk/locale/en';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -109,7 +109,9 @@ class MyApp extends React.Component {
   render() {
     return (
       <div id='content'>
-        <AppBar iconElementLeft={<img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />} title="Boundless Content Services: Basemaps (beta)" />
+        <Header title="Boundless Content Services: Basemaps (beta)" >
+          <img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />
+        </Header>
         <MapPanel id='map' map={map} useHistory={false}>
         </MapPanel>
         <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} expandOnHover={false} map={map} /></div>
