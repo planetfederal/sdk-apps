@@ -1,1 +1,1 @@
-require('boundless-sdk-tools').createBuildDir();
+require('@boundlessgeo/sdk-tools').createBuildDir();

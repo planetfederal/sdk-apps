@@ -2,14 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import RaisedButton from 'material-ui/RaisedButton';
-import MapPanel from 'boundless-sdk/components/MapPanel';
+import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
 import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
-import Navigation from 'boundless-sdk/components/Navigation';
-import Zoom from 'boundless-sdk/components/Zoom';
-import WFST from 'boundless-sdk/components/WFST';
+import Navigation from '@boundlessgeo/sdk/components/Navigation';
+import Zoom from '@boundlessgeo/sdk/components/Zoom';
+import EditPopup from '@boundlessgeo/sdk/components/EditPopup';
+import DrawFeature from '@boundlessgeo/sdk/components/DrawFeature';
+import FeatureTable from '@boundlessgeo/sdk/components/FeatureTable';
 import enLocaleData from 'react-intl/locale-data/en';
-import enMessages from 'boundless-sdk/locale/en';
+import enMessages from '@boundlessgeo/sdk/locale/en';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -28,7 +29,7 @@ var vectorSource = new ol.source.Vector({
   format: new ol.format.GeoJSON(),
   url: function(extent, resolution, projection) {
     return '/geoserver/wfs?service=WFS&' +
-        'version=1.1.0&request=GetFeature&typename=usa:states&' +
+        'version=1.1.0&request=GetFeature&typename=topp:states&' +
         'outputFormat=application/json&srsname=EPSG:3857&' +
         'bbox=' + extent.join(',') + ',EPSG:3857';
   },
@@ -42,9 +43,10 @@ var vector = new ol.layer.Vector({
   source: vectorSource,
   id: 'wfst',
   wfsInfo: {
-    featureNS: 'http://census.gov',
+    featureNS: 'http://www.openplans.org/topp',
+    attributes: ['STATE_NAME', 'STATE_FIPS', 'SUB_REGION', 'STATE_ABBR', 'LAND_KM', 'WATER_KM', 'PERSONS', 'FAMILIES', 'HOUSEHOLD', 'MALE', 'FEMALE', 'WORKERS', 'DRVALONE', 'CARPOOL'],
     featureType: 'states',
-    featurePrefix: 'usa',
+    featurePrefix: 'topp',
     geometryType: 'MultiPolygon',
     geometryName: 'the_geom',
     url: '/geoserver/wfs'
@@ -94,24 +96,14 @@ var map = new ol.Map({
   })
 });
 
+const style = new ol.style.Style({fill: new ol.style.Fill({color: 'orange'}), stroke: new ol.style.Stroke({color: 'black', width: 1})});
 class WFSTApp extends React.Component {
   getChildContext() {
     return {
       muiTheme: getMuiTheme()
     };
   }
-  _toggle(el) {
-    if (el.style.display === 'block') {
-      el.style.display = 'none';
-    } else {
-      el.style.display = 'block';
-    }
-  }
-  _toggleWFST() {
-    this._toggle(ReactDOM.findDOMNode(this.refs.wfstPanel));
-  }
   render() {
-    const buttonStyle = {margin: '10px 12px'};
     return (
       <div id='content'>
         <Toolbar>
@@ -119,12 +111,13 @@ class WFSTApp extends React.Component {
             <Navigation toggleGroup='nav' secondary={true} />
           </ToolbarGroup>
           <ToolbarGroup>
-            <RaisedButton style={buttonStyle} onTouchTap={this._toggleWFST.bind(this)} label='WFS-T' />
+            <DrawFeature toggleGroup='nav' map={map} />
           </ToolbarGroup>
         </Toolbar>
-        <div id='wfst' ref='wfstPanel'><WFST toggleGroup='nav' map={map} /></div>
         <MapPanel id='map' map={map} />
+        <div id='editpopup' className='ol-popup'><EditPopup toggleGroup='nav' map={map} /></div>
         <div id='zoom-buttons'><Zoom map={map} /></div>
+        <div id='table'><FeatureTable modifyStyle={style} layer={vector} toggleGroup='nav' map={map} /></div>
       </div>
     );
   }

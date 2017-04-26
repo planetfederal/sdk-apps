@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from 'boundless-sdk/components/MapPanel';
-import LayerList from 'boundless-sdk/components/LayerList';
-import Zoom from 'boundless-sdk/components/Zoom';
-import Playback from 'boundless-sdk/components/Playback';
+import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
+import LayerList from '@boundlessgeo/sdk/components/LayerList';
+import Zoom from '@boundlessgeo/sdk/components/Zoom';
+import Playback from '@boundlessgeo/sdk/components/Playback';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enLocaleData from 'react-intl/locale-data/en';
-import enMessages from 'boundless-sdk/locale/en';
+import enMessages from '@boundlessgeo/sdk/locale/en';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 // Needed for onTouchTap
@@ -92,7 +92,7 @@ class PlaybackApp extends React.Component {
     return (
       <div id='content'>
         <MapPanel id='map' map={map}>
-          <div id='timeline'><Playback map={map} minDate={324511200000} maxDate={1385938800000} /></div>
+          <div id='timeline'><Playback title='Fires' map={map} minDate={324511200000} maxDate={1385938800000} /></div>
         </MapPanel>
         <div id='zoom-buttons'><Zoom map={map} /></div>
         <div id='layer-list'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>

@@ -252,6 +252,7 @@ class BasicApp extends React.Component {
   render() {
     const tabList = [
       <Tab
+
       disableTouchRipple={true}
       key={1}
       value={1}
@@ -259,6 +260,7 @@ class BasicApp extends React.Component {
       <div id='layerlist'><LayerList inlineDialogs={true} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
     </Tab>
     ]
+
 
     return (
       <div id='content'>

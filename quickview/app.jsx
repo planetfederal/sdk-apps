@@ -2,32 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
-import LayerList from 'boundless-sdk/components/LayerList';
+import LayerList from '@boundlessgeo/sdk/components/LayerList';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CustomTheme from './theme';
-import FeatureTable from 'boundless-sdk/components/FeatureTable';
-import Measure from 'boundless-sdk/components/Measure';
-import LoadingPanel from 'boundless-sdk/components/LoadingPanel';
-import MapPanel from 'boundless-sdk/components/MapPanel';
-import MapConfig from 'boundless-sdk/components/MapConfig';
-import Select from 'boundless-sdk/components/Select';
-import DrawFeature from 'boundless-sdk/components/DrawFeature';
-import LeftNav from 'boundless-sdk/components/LeftNav';
-import Geolocation from 'boundless-sdk/components/Geolocation';
-import Zoom from 'boundless-sdk/components/Zoom';
-import Rotate from 'boundless-sdk/components/Rotate';
-import HomeButton from 'boundless-sdk/components/HomeButton';
-import InfoPopup from 'boundless-sdk/components/InfoPopup';
-import EditPopup from 'boundless-sdk/components/EditPopup';
-import Globe from 'boundless-sdk/components/Globe';
-import Legend from 'boundless-sdk/components/Legend';
-import Login from 'boundless-sdk/components/Login';
-import Header from 'boundless-sdk/components/Header';
+import FeatureTable from '@boundlessgeo/sdk/components/FeatureTable';
+import Measure from '@boundlessgeo/sdk/components/Measure';
+import LoadingPanel from '@boundlessgeo/sdk/components/LoadingPanel';
+import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
+import MapConfig from '@boundlessgeo/sdk/components/MapConfig';
+import Select from '@boundlessgeo/sdk/components/Select';
+import DrawFeature from '@boundlessgeo/sdk/components/DrawFeature';
+import LeftNav from '@boundlessgeo/sdk/components/LeftNav';
+import Geolocation from '@boundlessgeo/sdk/components/Geolocation';
+import Zoom from '@boundlessgeo/sdk/components/Zoom';
+import Rotate from '@boundlessgeo/sdk/components/Rotate';
+import HomeButton from '@boundlessgeo/sdk/components/HomeButton';
+import InfoPopup from '@boundlessgeo/sdk/components/InfoPopup';
+import EditPopup from '@boundlessgeo/sdk/components/EditPopup';
+import Globe from '@boundlessgeo/sdk/components/Globe';
+import Legend from '@boundlessgeo/sdk/components/Legend';
+import Login from '@boundlessgeo/sdk/components/Login';
+import Header from '@boundlessgeo/sdk/components/Header';
 import {Tab} from 'material-ui/Tabs';
 import FlatButton from 'material-ui/FlatButton';
-import Navigation from 'boundless-sdk/components/Navigation';
+import Navigation from '@boundlessgeo/sdk/components/Navigation';
 import enLocaleData from 'react-intl/locale-data/en';
-import enMessages from 'boundless-sdk/locale/en';
+import enMessages from '@boundlessgeo/sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
@@ -173,7 +173,7 @@ class QuickView extends React.Component {
             expandOnHover={false}
             icon={<FlatButton label="ADD"/>}
             showOnStart={true}
-            addLayer={{isDrawer:true, open:this.state.addLayerOpen, onRequestClose:this.layerListClose.bind(this), allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}}
+            addLayer={{open:this.state.addLayerOpen, onRequestClose:this.layerListClose.bind(this), allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}}
             allowFiltering={true}
             showOpacity={true}
             showDownload={true}
@@ -184,7 +184,7 @@ class QuickView extends React.Component {
         </div>
       </Tab>,
       <Tab disableTouchRipple={true} key={2} value={2} label={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></Tab>,
-      <Tab disableTouchRipple={true} key={3} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable allowEdit={false} height={300} toggleGroup='navigation' ref='table' map={map} /></div></Tab>
+      <Tab disableTouchRipple={true} key={3} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable toggleGroup='navigation' ref='table' map={map} /></div></Tab>
     ];
     var header = (
       <Header

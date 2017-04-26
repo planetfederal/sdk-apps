@@ -2,33 +2,35 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider, defineMessages, injectIntl, intlShape} from 'react-intl';
-import MapPanel from 'boundless-sdk/components/MapPanel';
+import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CustomTheme from './theme';
-import Zoom from 'boundless-sdk/components/Zoom';
-import LayerList from 'boundless-sdk/components/LayerList';
-import Geocoding from 'boundless-sdk/components/Geocoding';
-import GeocodingResults from 'boundless-sdk/components/GeocodingResults';
-import FeatureTable from 'boundless-sdk/components/FeatureTable';
-import Measure from 'boundless-sdk/components/Measure';
-import LoadingPanel from 'boundless-sdk/components/LoadingPanel';
-import Select from 'boundless-sdk/components/Select';
-import QueryBuilder from 'boundless-sdk/components/QueryBuilder';
-import Chart from 'boundless-sdk/components/Chart';
-import Geolocation from 'boundless-sdk/components/Geolocation';
-import Navigation from 'boundless-sdk/components/Navigation';
-import QGISLegend from 'boundless-sdk/components/QGISLegend';
-import ImageExport from 'boundless-sdk/components/ImageExport';
-import HomeButton from 'boundless-sdk/components/HomeButton';
-import QGISPrint from 'boundless-sdk/components/QGISPrint';
+import Zoom from '@boundlessgeo/sdk/components/Zoom';
+import LayerList from '@boundlessgeo/sdk/components/LayerList';
+import Geocoding from '@boundlessgeo/sdk/components/Geocoding';
+import GeocodingResults from '@boundlessgeo/sdk/components/GeocodingResults';
+import FeatureTable from '@boundlessgeo/sdk/components/FeatureTable';
+import Measure from '@boundlessgeo/sdk/components/Measure';
+import LoadingPanel from '@boundlessgeo/sdk/components/LoadingPanel';
+import Select from '@boundlessgeo/sdk/components/Select';
+import QueryBuilder from '@boundlessgeo/sdk/components/QueryBuilder';
+import Chart from '@boundlessgeo/sdk/components/Chart';
+import Geolocation from '@boundlessgeo/sdk/components/Geolocation';
+import Navigation from '@boundlessgeo/sdk/components/Navigation';
+import QGISLegend from '@boundlessgeo/sdk/components/QGISLegend';
+import ImageExport from '@boundlessgeo/sdk/components/ImageExport';
+import HomeButton from '@boundlessgeo/sdk/components/HomeButton';
+import QGISPrint from '@boundlessgeo/sdk/components/QGISPrint';
 import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
-import Login from 'boundless-sdk/components/Login';
+import Login from '@boundlessgeo/sdk/components/Login';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import nlLocaleData from 'react-intl/locale-data/nl';
 import enLocaleData from 'react-intl/locale-data/en';
 import nlMessages from './nl';
-import enMessages from 'boundless-sdk/locale/en';
+import enMessages from '@boundlessgeo/sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import Header from 'boundless-sdk/components/Header';
+
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -404,26 +406,15 @@ class TabbedApp extends React.Component {
     }];
     return (
       <div id='content' style={{background: CustomTheme.palette.canvasColor}}>
-        <Toolbar>
-          <ToolbarGroup>
-            <Login />
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <ImageExport map={map} />
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <Measure toggleGroup='navigation' map={map}/>
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <QGISPrint map={map} layouts={printLayouts} />
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <Select toggleGroup='navigation' map={map}/>
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <Navigation secondary={true} toggleGroup='navigation' map={map}/>
-          </ToolbarGroup>
-        </Toolbar>
+        <Header>
+          <Login />
+          <ImageExport map={map} />
+          <Measure toggleGroup='navigation' map={map}/>
+          <QGISPrint map={map} layouts={printLayouts} />
+          <Select toggleGroup='navigation' map={map}/>
+          <Navigation secondary={true} toggleGroup='navigation' map={map}/>
+        </Header>
+
         <div className='row container'>
           <div className="col tabs" id="tabs-panel">
             <Tabs value={this.state.value} onChange={this.handleChange.bind(this)}>

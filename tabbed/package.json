@@ -20,7 +20,7 @@
   "author": "Boundless Spatial, Inc.",
   "license": "Apache-2.0",
   "dependencies": {
-    "boundless-sdk": "^0.10.2",
+    "@boundlessgeo/sdk": "^0.10.35",
     "react": "15.3.2",
     "react-dom": "15.3.2",
     "material-ui": "^0.16.4",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "archiver": "^0.21.0",
-    "boundless-sdk-tools": "^0.9.0",
+    "@boundlessgeo/sdk-tools": "^0.10.2",
     "babel-eslint": "^4.1.6",
     "babel-plugin-react-intl": "1.0.0",
     "babelify": "^6.0.2",
