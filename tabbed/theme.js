@@ -5,7 +5,7 @@ import spacing from 'material-ui/styles/spacing';
 
 export default {
   spacing: spacing,
-  zIndex: zIndex,  
+  zIndex: zIndex,
   fontFamily: 'Roboto, sans-serif',
   palette: {
     primary1Color: '#28728D',

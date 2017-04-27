@@ -24,7 +24,7 @@ import HomeButton from '@boundlessgeo/sdk/components/HomeButton';
 import QGISPrint from '@boundlessgeo/sdk/components/QGISPrint';
 import Header from '@boundlessgeo/sdk/components/Header';
 import Login from '@boundlessgeo/sdk/components/Login';
-import {Tabs, Tab} from 'material-ui/Tabs';
+import {Tab} from 'material-ui/Tabs';
 import nlLocaleData from 'react-intl/locale-data/nl';
 import enLocaleData from 'react-intl/locale-data/en';
 import nlMessages from './nl';
@@ -372,7 +372,8 @@ class TabbedApp extends React.Component {
   constructor(props, context) {
     super(props);
     this.state = {
-      value: 2
+      value: 1,
+      leftNavOpen: true
     };
   }
   getChildContext() {
@@ -418,11 +419,28 @@ class TabbedApp extends React.Component {
       displayMode: 1,
       operation: 2
     }];
-    var tabList = [<Tab key={1} value={1} label={formatMessage(messages.geocodingtab)}><div style={{background: CustomTheme.palette.canvasColor}} id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></Tab>,
-                  <Tab key={2} value={2} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable ref='table' map={map} /></div></Tab>,
-                  <Tab key={3} value={3} label={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></Tab>,
-                  <Tab key={4} value={4} label={formatMessage(messages.charttab)}><div id='charts-tab'><Chart combo={true} charts={charts}/></div></Tab>
-                ];
+    var tabList = [
+      <Tab key={1} value={1} label='LayerList'>
+        <div id='layer-list'>
+          <LayerList
+            inlineDialogs={true}
+            addLayer={{
+              allowUserInput: true,
+              sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}}
+              allowFiltering={true}
+              showOpacity={true}
+              showDownload={true}
+              showGroupContent={true}
+              showZoomTo={true}
+              allowReordering={true}
+              map={map} />
+          </div>
+        </Tab>,
+      <Tab key={2} value={2} label={formatMessage(messages.geocodingtab)}><div style={{background: CustomTheme.palette.canvasColor}} id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></Tab>,
+      <Tab key={3} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable ref='table' map={map} /></div></Tab>,
+      <Tab key={4} value={4} label={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></Tab>,
+      <Tab key={5} value={5} label={formatMessage(messages.charttab)}><div id='charts-tab'><Chart combo={true} charts={charts}/></div></Tab>
+    ];
     return (
       <div id='content' style={{background: CustomTheme.palette.canvasColor}}>
         <Header title='Boundless SDK TabbedApp' onLeftIconTouchTap={this.leftNavOpen.bind(this)}>
@@ -437,7 +455,6 @@ class TabbedApp extends React.Component {
         <div className='map' style={{left: this.state.leftNavOpen ? 360 : 0, width: this.state.leftNavOpen ? 'calc(100% - 360px)' : '100%'}}>
           <MapPanel id='map' map={map} />
           <LoadingPanel map={map} />
-          <div id='layer-list'><LayerList addLayer={{allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
           <div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} /></div>
           <div id='geolocation-control'><Geolocation map={map} /></div>
           <div id='home-button'><HomeButton map={map} /></div>
