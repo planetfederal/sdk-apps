@@ -73,7 +73,7 @@ class ProjectionApp extends React.Component {
   render() {
     return (
       <div id='content'>
-        <Header showMenuIconButton={false} title="Custom Projection"></Header>
+        <Header showLeftIcon={false} title="Custom Projection"></Header>
         <MapPanel id='map' map={map} extent={originalExtent}>
           <div id='popup' className='ol-popup'><InfoPopup map={map} hover={false}/></div>
         </MapPanel>

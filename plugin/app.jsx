@@ -69,7 +69,7 @@ class MyApp extends React.Component {
     return (
        <div id='content'>
         <div className='row container'>
-          <Header>
+          <Header showLeftIcon={false} title='Boundless SDK'>
             <Navigation map={map} />
             <DrawBox strokeColor='#00FF00' map={map} toggleGroup='navigation' />
           </Header>
