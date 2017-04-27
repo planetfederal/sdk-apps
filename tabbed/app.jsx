@@ -25,6 +25,7 @@ import QGISPrint from '@boundlessgeo/sdk/components/QGISPrint';
 import Header from '@boundlessgeo/sdk/components/Header';
 import Login from '@boundlessgeo/sdk/components/Login';
 import {Tab} from 'material-ui/Tabs';
+import FlatButton from 'material-ui/FlatButton';
 import nlLocaleData from 'react-intl/locale-data/nl';
 import enLocaleData from 'react-intl/locale-data/en';
 import nlMessages from './nl';
@@ -388,6 +389,16 @@ class TabbedApp extends React.Component {
       });
     }
   }
+  layerListOpen(value) {
+    this.setState({
+      addLayerOpen: true
+    });
+  }
+  layerListClose(value) {
+    this.setState({
+      addLayerOpen: false
+    });
+  }
   leftNavOpen(value) {
     this.setState({
       leftNavOpen: true
@@ -420,11 +431,14 @@ class TabbedApp extends React.Component {
       operation: 2
     }];
     var tabList = [
-      <Tab key={1} value={1} label='LayerList'>
+      <Tab key={1} value={1} label='LayerList' onActive={this.layerListOpen.bind(this)}>
         <div id='layer-list'>
           <LayerList
             inlineDialogs={true}
+            icon={<FlatButton label="ADD"/>}
             addLayer={{
+              open:this.state.addLayerOpen,
+              onRequestClose:this.layerListClose.bind(this),
               allowUserInput: true,
               sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}}
               allowFiltering={true}
