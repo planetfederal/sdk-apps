@@ -15,7 +15,6 @@ import Chart from '@boundlessgeo/sdk/components/Chart';
 import MapConfig from '@boundlessgeo/sdk/components/MapConfig';
 import Header from '@boundlessgeo/sdk/components/Header';
 import Button from '@boundlessgeo/sdk/components/Button';
-import TableIcon from 'material-ui/svg-icons/action/view-list';
 import QueryIcon from 'material-ui/svg-icons/action/query-builder';
 import ChartIcon from 'material-ui/svg-icons/editor/insert-chart';
 import DrawFeature from '@boundlessgeo/sdk/components/DrawFeature';
@@ -240,9 +239,9 @@ class BasicApp extends React.Component {
       <div id='content'>
         <Header showLeftIcon={false} title='Boundless SDK Basic Application'>
           <MapConfig map={map}/>
-          <Button toggleGroup='navigation' buttonType='Icon' iconClassName='headerIcons ms ms-table' tooltip='Table' onTouchTap={this._toggleTable.bind(this)}></Button>
-          <Button toggleGroup='navigation' buttonType='Icon' iconClassName='headerIcons fa fa-filter' tooltip='Query' onTouchTap={this._toggleQuery.bind(this)}><QueryIcon /></Button>
-          <Button toggleGroup='navigation' buttonType='Icon' iconClassName='headerIcons ms ms-bar-chart' tooltip='Chart' onTouchTap={this._toggleChart.bind(this)}><ChartIcon /></Button>
+          <Button toggleGroup='navigation' buttonType='Icon' iconClassName='headerIcons ms ms-table' tooltip='Table' onTouchTap={this._toggleTable.bind(this)}/>
+          <Button toggleGroup='navigation' buttonType='Icon' iconClassName='headerIcons fa fa-filter' tooltip='Query' onTouchTap={this._toggleQuery.bind(this)}/>
+          <Button toggleGroup='navigation' buttonType='Icon' iconClassName='headerIcons ms ms-bar-chart' tooltip='Chart' onTouchTap={this._toggleChart.bind(this)}/>
           <DrawFeature toggleGroup='navigation' map={map} />
           <Select toggleGroup='navigation' map={map}/>
           <Navigation secondary={true} toggleGroup='navigation' map={map}/>

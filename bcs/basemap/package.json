@@ -20,11 +20,12 @@
   "author": "Boundless Spatial, Inc.",
   "license": "Apache-2.0",
   "dependencies": {
-    "@boundlessgeo/sdk": "^0.10.32",
+    "@boundlessgeo/sdk": "^0.10.35",
     "material-ui": "^0.16.4",
-    "openlayers": "4.0.1",
     "react": "15.3.2",
     "react-dom": "15.3.2",
+    "ol3-cesium": "3.9.4",
+    "openlayers": "4.0.1",
     "react-intl": "^2.1.5",
     "react-tap-event-plugin": "^1.0.0"
   },
