@@ -109,9 +109,7 @@ class MyApp extends React.Component {
   render() {
     return (
       <div id='content'>
-        <Header title="Boundless Content Services: Basemaps (beta)" >
-          <img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />
-        </Header>
+        <Header iconElementLeft={<img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />} title="Boundless Content Services: Basemaps (beta)" />
         <MapPanel id='map' map={map} useHistory={false}>
         </MapPanel>
         <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} expandOnHover={false} map={map} /></div>
