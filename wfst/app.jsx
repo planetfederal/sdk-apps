@@ -106,7 +106,7 @@ class WFSTApp extends React.Component {
   render() {
     return (
       <div id='content'>
-        <Header showLeftIcon={false}>
+        <Header showLeftIcon={false} title='Boundless SDK WFS-T Application'>
           <Navigation toggleGroup='nav' secondary={true} />
           <DrawFeature toggleGroup='nav' map={map} />
         </Header>
