@@ -27,3 +27,5 @@ Edit package.json and change ```-p 4000```.
     npm run package
 
 Specify an output file name when prompted, e.g. /tmp/app-basemap.war
+
+Works with Boundless Connect Services
