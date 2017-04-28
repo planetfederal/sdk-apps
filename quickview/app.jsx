@@ -190,7 +190,7 @@ class QuickView extends React.Component {
       <Header
         title='Boundless SDK Quickview'
         onLeftIconTouchTap={this.leftNavOpen.bind(this)}>
-        <Measure map={map}/>
+        <Measure toggleGroup='navigation' map={map}/>
         <Select toggleGroup='navigation' map={map}/>
         <Login />
         <Navigation toggleGroup='navigation' secondary={true} />
