@@ -15,8 +15,6 @@ import Chart from '@boundlessgeo/sdk/components/Chart';
 import MapConfig from '@boundlessgeo/sdk/components/MapConfig';
 import Header from '@boundlessgeo/sdk/components/Header';
 import Button from '@boundlessgeo/sdk/components/Button';
-import QueryIcon from 'material-ui/svg-icons/action/query-builder';
-import ChartIcon from 'material-ui/svg-icons/editor/insert-chart';
 import DrawFeature from '@boundlessgeo/sdk/components/DrawFeature';
 import Globe from '@boundlessgeo/sdk/components/Globe';
 import Zoom from '@boundlessgeo/sdk/components/Zoom';
