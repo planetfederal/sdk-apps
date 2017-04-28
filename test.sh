@@ -8,3 +8,4 @@ for i in $( ls **/app.jsx ); do
   npm run test
   cd .. ) &
 done
+wait
