@@ -1,25 +1,15 @@
-/* Dead Simple Grid (c) 2015 Vladimir Agafonkin */
-.row .row { margin:  0 -1.5em; }
-.col      { padding: 0  0em; }
-
-.row:after {
-    content: "";
-    clear: both;
-    display: table;
+.ol-attribution img {
+  max-width: 2em;
+}
+.ol-scale-line {
+  background-color: #0097a7;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
 }
 
-@media only screen { .col {
-    float: left;
-    width: 100%;
-    box-sizing: border-box;
-}}
-/* end Dead Simple Grid */
-
-.loading-panel {
-  left: 68% !important;
-  top: 45% !important;
-}
-.container {
+#map {
   height: 100%;
 }
 #content {
@@ -28,41 +18,10 @@
   position: fixed;
   bottom: 0px;
 }
-#geocoding-tab {
-  padding: 10px;
-}
-.maps {
-  height: calc(100% - 56px);
-  width: 60%;
-  position: absolute;
-  top: 56px;
-  left: 40%;
-}
-.tabs {
-  height: calc(100% - 56px);
-  width: 40%;
-  position: absolute;
-  top: 56px;
-  left: 0px;
-}
-.tabs > div {
-  height: 100%;
-}
-.tabs > div > div:last-child {
-  height: calc(100% - 50px);
-}
-.tabs > div > div:last-child > div{
-  height: 100%;
-}
 #geolocation-control {
   margin-left: 20px;
   position: absolute;
   top: 128px;
-}
-#layer-list {
-  position: absolute;
-  right: 20px;
-  top: 20px;
 }
 #zoom-buttons {
   margin-left: 20px;
@@ -74,20 +33,7 @@
   position: absolute;
   top: 180px;
 }
-html, body {
-  height: 100%;
-  padding: 0;
-  margin: 0;
-}
-#map {
-  background-color: white;
-  height: 100%;
-}
-.layerlistbutton {
+.map {
   position: absolute;
-  right: 0px;
-  top: 0px;
-}
-.layer-tree-panel {
-  margin-right: 50px;
+  height: calc(100% - 64px);
 }

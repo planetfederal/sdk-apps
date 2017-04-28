@@ -47,6 +47,3 @@ body {
   position: absolute;
   height: calc(100% - 64px);
 }
-.layerlistbutton {
-  display: none !important;
-}
