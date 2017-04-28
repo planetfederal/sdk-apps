@@ -5,7 +5,7 @@ import {addLocaleData, IntlProvider} from 'react-intl';
 import Zoom from '@boundlessgeo/sdk/components/Zoom';
 import DrawBox from './components/DrawBox';
 import BoxInfo from './components/BoxInfo';
-import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
+import Header from '@boundlessgeo/sdk/components/Header';
 import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
 import LayerList from '@boundlessgeo/sdk/components/LayerList';
 import Navigation from '@boundlessgeo/sdk/components/Navigation';
@@ -69,14 +69,10 @@ class MyApp extends React.Component {
     return (
        <div id='content'>
         <div className='row container'>
-          <Toolbar>
-            <ToolbarGroup>
-              <Navigation map={map} />
-            </ToolbarGroup>
-            <ToolbarGroup>
-              <DrawBox strokeColor='#00FF00' map={map} toggleGroup='navigation' />
-            </ToolbarGroup>
-          </Toolbar>
+          <Header showLeftIcon={false} title='Boundless SDK'>
+            <Navigation map={map} />
+            <DrawBox strokeColor='#00FF00' map={map} toggleGroup='navigation' />
+          </Header>
           <MapPanel id='map' map={map}/>
           <div id='layer-list'><LayerList map={map} /></div>
           <div id='zoom-buttons'><Zoom map={map} /></div>

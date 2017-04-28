@@ -13,9 +13,8 @@ import QueryBuilder from '@boundlessgeo/sdk/components/QueryBuilder';
 import FeatureTable from '@boundlessgeo/sdk/components/FeatureTable';
 import Chart from '@boundlessgeo/sdk/components/Chart';
 import MapConfig from '@boundlessgeo/sdk/components/MapConfig';
-import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
+import Header from '@boundlessgeo/sdk/components/Header';
 import Button from '@boundlessgeo/sdk/components/Button';
-import TableIcon from 'material-ui/svg-icons/action/view-list';
 import QueryIcon from 'material-ui/svg-icons/action/query-builder';
 import ChartIcon from 'material-ui/svg-icons/editor/insert-chart';
 import DrawFeature from '@boundlessgeo/sdk/components/DrawFeature';
@@ -238,18 +237,16 @@ class BasicApp extends React.Component {
   render() {
     return (
       <div id='content'>
-        <Toolbar>
+        <Header showLeftIcon={false} title='Boundless SDK Basic Application'>
           <MapConfig map={map}/>
-          <ToolbarGroup><Button buttonType='Icon' tooltip='Table' onTouchTap={this._toggleTable.bind(this)}><TableIcon /></Button></ToolbarGroup>
-          <ToolbarGroup><Button buttonType='Icon' tooltip='Query' onTouchTap={this._toggleQuery.bind(this)}><QueryIcon /></Button></ToolbarGroup>
-          <ToolbarGroup><Button buttonType='Icon' tooltip='Chart' onTouchTap={this._toggleChart.bind(this)}><ChartIcon /></Button></ToolbarGroup>
-          <ToolbarGroup><DrawFeature toggleGroup='navigation' map={map} /></ToolbarGroup>
-          <ToolbarGroup><Select toggleGroup='navigation' map={map}/></ToolbarGroup>
-          <ToolbarGroup><Navigation secondary={true} toggleGroup='navigation' map={map}/></ToolbarGroup>
-          <ToolbarGroup>
-            <Geocoding />
-          </ToolbarGroup>
-        </Toolbar>
+          <Button toggleGroup='navigation' buttonType='Icon' iconClassName='headerIcons ms ms-table' tooltip='Table' onTouchTap={this._toggleTable.bind(this)}/>
+          <Button toggleGroup='navigation' buttonType='Icon' iconClassName='headerIcons fa fa-filter' tooltip='Query' onTouchTap={this._toggleQuery.bind(this)}/>
+          <Button toggleGroup='navigation' buttonType='Icon' iconClassName='headerIcons ms ms-bar-chart' tooltip='Chart' onTouchTap={this._toggleChart.bind(this)}/>
+          <DrawFeature toggleGroup='navigation' map={map} />
+          <Select toggleGroup='navigation' map={map}/>
+          <Navigation secondary={true} toggleGroup='navigation' map={map}/>
+          <Geocoding />
+        </Header>
         <MapPanel id='map' map={map}/>
         <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
         <div id='geocoding-results' className='geocoding-results-panel'><GeocodingResults map={map} /></div>

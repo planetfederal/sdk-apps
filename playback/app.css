@@ -33,3 +33,11 @@ body {
   top: 20px;
   right: 20px;
 }
+.layerlistbutton {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+.layer-tree-panel {
+  margin-right: 50px;
+}

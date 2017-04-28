@@ -7,6 +7,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CustomTheme from './theme';
 import Zoom from '@boundlessgeo/sdk/components/Zoom';
 import LayerList from '@boundlessgeo/sdk/components/LayerList';
+import LeftNav from '@boundlessgeo/sdk/components/LeftNav';
 import Geocoding from '@boundlessgeo/sdk/components/Geocoding';
 import GeocodingResults from '@boundlessgeo/sdk/components/GeocodingResults';
 import FeatureTable from '@boundlessgeo/sdk/components/FeatureTable';
@@ -21,14 +22,16 @@ import QGISLegend from '@boundlessgeo/sdk/components/QGISLegend';
 import ImageExport from '@boundlessgeo/sdk/components/ImageExport';
 import HomeButton from '@boundlessgeo/sdk/components/HomeButton';
 import QGISPrint from '@boundlessgeo/sdk/components/QGISPrint';
-import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
+import Header from '@boundlessgeo/sdk/components/Header';
 import Login from '@boundlessgeo/sdk/components/Login';
-import {Tabs, Tab} from 'material-ui/Tabs';
+import {Tab} from 'material-ui/Tabs';
+import FlatButton from 'material-ui/FlatButton';
 import nlLocaleData from 'react-intl/locale-data/nl';
 import enLocaleData from 'react-intl/locale-data/en';
 import nlMessages from './nl';
 import enMessages from '@boundlessgeo/sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -370,7 +373,8 @@ class TabbedApp extends React.Component {
   constructor(props, context) {
     super(props);
     this.state = {
-      value: 2
+      value: 1,
+      leftNavOpen: true
     };
   }
   getChildContext() {
@@ -384,6 +388,30 @@ class TabbedApp extends React.Component {
         value: value
       });
     }
+  }
+  layerListOpen(value) {
+    this.setState({
+      addLayerOpen: true
+    });
+  }
+  layerListClose(value) {
+    this.setState({
+      addLayerOpen: false
+    });
+  }
+  leftNavOpen(value) {
+    this.setState({
+      leftNavOpen: true
+    }, function() {
+      map.updateSize();
+    });
+  }
+  leftNavClose(value) {
+    this.setState({
+      leftNavOpen: false
+    }, function() {
+      map.updateSize();
+    });
   }
   render() {
     const {formatMessage} = this.props.intl;
@@ -402,46 +430,49 @@ class TabbedApp extends React.Component {
       displayMode: 1,
       operation: 2
     }];
+    var tabList = [
+      <Tab key={1} value={1} label='LayerList' onActive={this.layerListOpen.bind(this)}>
+        <div id='layer-list'>
+          <LayerList
+            inlineDialogs={true}
+            icon={<FlatButton label="ADD"/>}
+            addLayer={{
+              open:this.state.addLayerOpen,
+              onRequestClose:this.layerListClose.bind(this),
+              allowUserInput: true,
+              sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}}
+              allowFiltering={true}
+              showOpacity={true}
+              showDownload={true}
+              showGroupContent={true}
+              showZoomTo={true}
+              allowReordering={true}
+              map={map} />
+          </div>
+        </Tab>,
+      <Tab key={2} value={2} label={formatMessage(messages.geocodingtab)}><div style={{background: CustomTheme.palette.canvasColor}} id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></Tab>,
+      <Tab key={3} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable ref='table' map={map} /></div></Tab>,
+      <Tab key={4} value={4} label={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></Tab>,
+      <Tab key={5} value={5} label={formatMessage(messages.charttab)}><div id='charts-tab'><Chart combo={true} charts={charts}/></div></Tab>
+    ];
     return (
       <div id='content' style={{background: CustomTheme.palette.canvasColor}}>
-        <Toolbar>
-          <ToolbarGroup>
-            <Login />
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <ImageExport map={map} />
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <Measure toggleGroup='navigation' map={map}/>
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <QGISPrint map={map} layouts={printLayouts} />
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <Select toggleGroup='navigation' map={map}/>
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <Navigation secondary={true} toggleGroup='navigation' map={map}/>
-          </ToolbarGroup>
-        </Toolbar>
-        <div className='row container'>
-          <div className="col tabs" id="tabs-panel">
-            <Tabs value={this.state.value} onChange={this.handleChange.bind(this)}>
-              <Tab value={1} label={formatMessage(messages.geocodingtab)}><div style={{background: CustomTheme.palette.canvasColor}} id='geocoding-tab'><Geocoding /></div><div id='geocoding-results' className='geocoding-results'><GeocodingResults map={map} /></div></Tab>
-              <Tab value={2} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable ref='table' map={map} /></div></Tab>
-              <Tab value={3} label={formatMessage(messages.querytab)}><div id='query-panel' className='query-panel'><QueryBuilder map={map} /></div></Tab>
-              <Tab value={4} label={formatMessage(messages.charttab)}><div id='charts-tab'><Chart combo={true} charts={charts}/></div></Tab>
-            </Tabs>
-          </div>
-          <div className="col maps">
-            <MapPanel id='map' map={map} />
-            <LoadingPanel map={map} />
-            <div id='layer-list'><LayerList addLayer={{allowUserInput: true, sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}} allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
-            <div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} /></div>
-            <div id='geolocation-control'><Geolocation map={map} /></div>
-            <div id='home-button'><HomeButton map={map} /></div>
-            <div id='zoom-buttons'><Zoom map={map} /></div>
-          </div>
+        <Header title='Boundless SDK TabbedApp' onLeftIconTouchTap={this.leftNavOpen.bind(this)}>
+          <Login />
+          <ImageExport map={map} />
+          <Measure toggleGroup='navigation' map={map}/>
+          <QGISPrint map={map} layouts={printLayouts} />
+          <Select toggleGroup='navigation' map={map}/>
+          <Navigation secondary={true} toggleGroup='navigation' map={map}/>
+        </Header>
+        <LeftNav tabList={tabList} open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
+        <div className='map' style={{left: this.state.leftNavOpen ? 360 : 0, width: this.state.leftNavOpen ? 'calc(100% - 360px)' : '100%'}}>
+          <MapPanel id='map' map={map} />
+          <LoadingPanel map={map} />
+          <div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} /></div>
+          <div id='geolocation-control'><Geolocation map={map} /></div>
+          <div id='home-button'><HomeButton map={map} /></div>
+          <div id='zoom-buttons'><Zoom map={map} /></div>
         </div>
       </div>
     );

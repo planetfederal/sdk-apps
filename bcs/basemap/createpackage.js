@@ -1,4 +1,4 @@
-var tools = require('boundless-sdk-tools');
+var tools = require('@boundlessgeo/sdk-tools');
 var readline = require('readline');
 
 var rl = readline.createInterface({

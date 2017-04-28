@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
-import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
+import Header from '@boundlessgeo/sdk/components/Header';
 import Navigation from '@boundlessgeo/sdk/components/Navigation';
 import Zoom from '@boundlessgeo/sdk/components/Zoom';
 import EditPopup from '@boundlessgeo/sdk/components/EditPopup';
@@ -106,14 +106,10 @@ class WFSTApp extends React.Component {
   render() {
     return (
       <div id='content'>
-        <Toolbar>
-          <ToolbarGroup>
-            <Navigation toggleGroup='nav' secondary={true} />
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <DrawFeature toggleGroup='nav' map={map} />
-          </ToolbarGroup>
-        </Toolbar>
+        <Header showLeftIcon={false} title='Boundless SDK WFS-T Application'>
+          <Navigation toggleGroup='nav' secondary={true} />
+          <DrawFeature toggleGroup='nav' map={map} />
+        </Header>
         <MapPanel id='map' map={map} />
         <div id='editpopup' className='ol-popup'><EditPopup toggleGroup='nav' map={map} /></div>
         <div id='zoom-buttons'><Zoom map={map} /></div>

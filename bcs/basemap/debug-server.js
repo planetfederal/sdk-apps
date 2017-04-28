@@ -1,1 +1,1 @@
-require('boundless-sdk-tools').startServer();
+require('@boundlessgeo/sdk-tools').startServer();
