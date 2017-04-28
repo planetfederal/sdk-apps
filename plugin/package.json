@@ -1,6 +1,6 @@
 {
   "name": "plugin",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "createdir": "node createbuild.js",
     "start:debug": "node debug-server.js",
@@ -12,7 +12,7 @@
     "package": "node_modules/.bin/npm-run-all build createzip"
   },
   "dependencies": {
-    "@boundlessgeo/sdk": "^0.10.35",
+    "@boundlessgeo/sdk": "^1.0.0",
     "material-ui": "^0.16.4",
     "openlayers": "4.0.1",
     "react": "15.3.2",
@@ -34,7 +34,7 @@
     "minifyify": "^7.1.0",
     "npm-run-all": "1.3.1",
     "replacestream": "4.0.0",
-    "@boundlessgeo/sdk-tools": "^0.10.1",
+    "@boundlessgeo/sdk-tools": "^1.0.0",
     "through": "^2.3.8",
     "watchify": "^3.2.0"
   },
