@@ -31,12 +31,14 @@ body {
   top: 66px;
 }
 .layerlistbutton {
-  position: absolute;
-  right: 0px;
-  top: 0px;
+  position: absolute !important;
+  right: 10px;
+  top: 20px;
 }
 .layer-tree-panel {
   margin-right: 50px;
+  max-height: 500px;
+  overflow-y: auto;
 }
 .layer-switcher {
   top: 66px !important;
