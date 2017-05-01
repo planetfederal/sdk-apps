@@ -1,9 +1,8 @@
-## Basic Application
+# Basic Application
 
-[http://boundlessgeo.github.io/sdk-apps/basic/#map=9783.93962050256/-16839563.6/8850169.51/0](http://boundlessgeo.github.io/sdk-apps/basic/#map=9783.93962050256/-16839563.6/8850169.51/0)
+[http://boundlessgeo.github.io/sdk-apps/basic](http://boundlessgeo.github.io/sdk-apps/basic)
 
-# Intro
-Basic application displays a nontabbed layout.
+Basic application displays a non-tabbed layout.
 
 This sample includes menu buttons for
 
@@ -19,4 +18,4 @@ The menu/header also contains a Geocoding component to search by placename.
 The basic application includes two basemaps: Aerial and Streets.
 And three vector layers: airports, popp, and trees.
 All layers can be made visible and not visible.
-The vector layers have additional functions to zoom to, show opacity, download, and filter.
+The vector layers have additional functions to zoom to, show opacity, download, filter, and drag and drop.
