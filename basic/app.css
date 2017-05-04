@@ -3,17 +3,17 @@ body {
 }
 #zoom-buttons {
   position: absolute;
-  top: 66px;
-  margin-left: 10px;
+  top: 86px;
+  margin-left: 20px;
   z-index: 1111;
 }
 #layerlist {
   position: absolute;
-  right: 10px;
-  top: 66px;
+  right: 20px;
+  top: 86px;
 }
 .layerlistbutton {
-  position: absolute;
+  position: absolute !important;
   right: 0px;
   top: 0px;
 }
@@ -23,11 +23,11 @@ body {
 #globe-button {
   z-index: 1111;
   position: absolute;
-  top: 180px;
-  margin-left: 10px;
+  top: 195px;
+  margin-left: 20px;
 }
 .layer-switcher {
-  top: 66px !important;
+  top: 76px !important;
 }
 .edit-tool-panel {
   display: none;
