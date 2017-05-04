@@ -37,3 +37,8 @@ body {
   position: absolute;
   height: calc(100% - 64px);
 }
+#legend{
+  margin-left: 20px;
+  position: absolute;
+  top: 232px;
+}

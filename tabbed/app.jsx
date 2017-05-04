@@ -469,10 +469,10 @@ class TabbedApp extends React.Component {
         <div className='map' style={{left: this.state.leftNavOpen ? 360 : 0, width: this.state.leftNavOpen ? 'calc(100% - 360px)' : '100%'}}>
           <MapPanel id='map' map={map} />
           <LoadingPanel map={map} />
-          <div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} /></div>
           <div id='geolocation-control'><Geolocation map={map} /></div>
           <div id='home-button'><HomeButton map={map} /></div>
           <div id='zoom-buttons'><Zoom map={map} /></div>
+          <div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} /></div>
         </div>
       </div>
     );
