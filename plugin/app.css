@@ -48,11 +48,11 @@ html, body {
 #zoom-buttons {
   margin-left: 20px;
   position: absolute;
-  top: 76px;
+  top: 86px;
 }
 #layer-list {
   position: absolute;
-  top: 76px;
+  top: 86px;
   right: 20px;
 }
 .layerlistbutton {
