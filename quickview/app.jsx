@@ -125,7 +125,7 @@ class QuickView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      leftNavOpen: true
+      leftNavOpen: false
     };
   }
   getChildContext() {
@@ -186,6 +186,7 @@ class QuickView extends React.Component {
       <Tab disableTouchRipple={true} key={2} value={2} label={formatMessage(messages.legendtab)}><div id='legend'><Legend map={map} /></div></Tab>,
       <Tab disableTouchRipple={true} key={3} value={3} label={formatMessage(messages.attributestab)}><div id="attributes-table-tab" style={{height: '100%'}}><FeatureTable toggleGroup='navigation' ref='table' map={map} /></div></Tab>
     ];
+    var leftNavWidth = 360;
     var header = (
       <Header
         title='Boundless SDK Quickview'
@@ -199,18 +200,20 @@ class QuickView extends React.Component {
       </Header>);
     return (
         <div id='content'>
-          {header}
-          <LeftNav tabList={tabList} open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
-          <div className='map' style={{left: this.state.leftNavOpen ? 360 : 0, width: this.state.leftNavOpen ? 'calc(100% - 360px)' : '100%'}}>
-            <MapPanel id='map' map={map} />
-            <LoadingPanel map={map} />
-            <div id='globe-button'><Globe map={map} /></div>
-            <div id='editpopup' className='ol-popup'><EditPopup toggleGroup='navigation' map={map} /></div>
-            <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' toolId='nav' infoFormat='application/vnd.ogc.gml' map={map} /></div>
-            <div id='geolocation-control'><Geolocation map={map} /></div>
-            <div id='home-button'><HomeButton map={map} /></div>
-            <div id='zoom-buttons'><Zoom map={map} /></div>
-            <div id='rotate-button'><Rotate map={map} /></div>
+          <LeftNav width={leftNavWidth} tabList={tabList} open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
+          <div>
+            {header}
+            <div className='map' >
+              <MapPanel id='map' map={map} />
+              <LoadingPanel map={map} />
+              <div id='globe-button'><Globe map={map} /></div>
+              <div id='editpopup' className='ol-popup'><EditPopup toggleGroup='navigation' map={map} /></div>
+              <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' toolId='nav' infoFormat='application/vnd.ogc.gml' map={map} /></div>
+              <div id='geolocation-control'><Geolocation map={map} /></div>
+              <div id='home-button'><HomeButton map={map} /></div>
+              <div id='zoom-buttons'><Zoom map={map} /></div>
+              <div id='rotate-button'><Rotate map={map} /></div>
+            </div>
           </div>
         </div>
     );

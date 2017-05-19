@@ -374,7 +374,7 @@ class TabbedApp extends React.Component {
     super(props);
     this.state = {
       value: 1,
-      leftNavOpen: true
+      leftNavOpen: false
     };
   }
   getChildContext() {
@@ -430,6 +430,7 @@ class TabbedApp extends React.Component {
       displayMode: 1,
       operation: 2
     }];
+    var leftNavWidth = 360;
     var tabList = [
       <Tab key={1} value={1} label='LayerList' onActive={this.layerListOpen.bind(this)}>
         <div id='layer-list'>
@@ -457,7 +458,10 @@ class TabbedApp extends React.Component {
     ];
     return (
       <div id='content' style={{background: CustomTheme.palette.canvasColor}}>
-        <Header title='Boundless SDK TabbedApp' onLeftIconTouchTap={this.leftNavOpen.bind(this)}>
+        <Header
+          title='Boundless SDK TabbedApp'
+          style={{left: this.state.leftNavOpen ? 360 : 0, width: this.state.leftNavOpen ? 'calc(100% - ' + leftNavWidth + 'px)' : '100%'}}
+          onLeftIconTouchTap={this.leftNavOpen.bind(this)}>
           <Login />
           <ImageExport map={map} />
           <Measure toggleGroup='navigation' map={map}/>
@@ -466,7 +470,7 @@ class TabbedApp extends React.Component {
           <Navigation secondary={true} toggleGroup='navigation' map={map}/>
         </Header>
         <LeftNav tabList={tabList} open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
-        <div className='map' style={{left: this.state.leftNavOpen ? 360 : 0, width: this.state.leftNavOpen ? 'calc(100% - 360px)' : '100%'}}>
+        <div className='map' style={{left: this.state.leftNavOpen ? 360 : 0, width: this.state.leftNavOpen ? 'calc(100% - ' + leftNavWidth + 'px)' : '100%'}}>
           <MapPanel id='map' map={map} />
           <LoadingPanel map={map} />
           <div id='legend'><QGISLegend map={map} legendBasePath='./resources/legend/' legendData={legendData} /></div>
