@@ -190,6 +190,7 @@ class QuickView extends React.Component {
     var header = (
       <Header
         title='Boundless SDK Quickview'
+        style={{left: this.state.leftNavOpen ? 360 : 0, width: this.state.leftNavOpen ? 'calc(100% - ' + leftNavWidth + 'px)' : '100%'}}
         onLeftIconTouchTap={this.leftNavOpen.bind(this)}>
         <Measure toggleGroup='navigation' map={map}/>
         <Select toggleGroup='navigation' map={map}/>
@@ -203,7 +204,7 @@ class QuickView extends React.Component {
           <LeftNav width={leftNavWidth} tabList={tabList} open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
           <div>
             {header}
-            <div className='map' >
+            <div className='map' style={{left: this.state.leftNavOpen ? 360 : 0, width: this.state.leftNavOpen ? 'calc(100% - ' + leftNavWidth + 'px)' : '100%'}}>
               <MapPanel id='map' map={map} />
               <LoadingPanel map={map} />
               <div id='globe-button'><Globe map={map} /></div>
