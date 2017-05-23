@@ -190,6 +190,8 @@ class QuickView extends React.Component {
     var header = (
       <Header
         title='Boundless SDK Quickview'
+        logo='tonym.gif'
+        showLeftIcon={!this.state.leftNavOpen}
         style={{left: this.state.leftNavOpen ? leftNavWidth : 0, width: this.state.leftNavOpen ? 'calc(100% - ' + leftNavWidth + 'px)' : '100%'}}
         onLeftIconTouchTap={this.leftNavOpen.bind(this)}>
         <Measure toggleGroup='navigation' map={map}/>
