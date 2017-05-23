@@ -460,6 +460,7 @@ class TabbedApp extends React.Component {
       <div id='content' style={{background: CustomTheme.palette.canvasColor}}>
         <Header
           title='Boundless SDK TabbedApp'
+          showLeftIcon={!this.state.leftNavOpen}
           style={{left: this.state.leftNavOpen ? leftNavWidth : 0, width: this.state.leftNavOpen ? 'calc(100% - ' + leftNavWidth + 'px)' : '100%'}}
           onLeftIconTouchTap={this.leftNavOpen.bind(this)}>
           <Login />
