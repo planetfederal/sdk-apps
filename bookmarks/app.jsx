@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
-import Zoom from '@boundlessgeo/sdk/components/Zoom';
 import Bookmarks from '@boundlessgeo/sdk/components/Bookmarks';
 import enLocaleData from 'react-intl/locale-data/en';
 import enMessages from '@boundlessgeo/sdk/locale/en';
@@ -79,12 +78,11 @@ class BookmarkApp extends React.Component {
   }
   render() {
     return (
-      <div id='content'>
-        <MapPanel id='map' map={map}>
-          <div id='bookmarks-panel'><Bookmarks introTitle='Paris bakeries' introDescription='Explore the best bakeries of the capital of France' map={map} bookmarks={bookmarks} /></div>
-        </MapPanel>
-        <div id='zoom-buttons'><Zoom map={map} /></div>
-      </div>
+      <MapPanel id='content' map={map}>
+        <div>
+          <div id='bookmarks-panel'><Bookmarks menu={true} bookmarks={bookmarks}/></div>
+        </div>
+      </MapPanel>
     );
   }
 }
