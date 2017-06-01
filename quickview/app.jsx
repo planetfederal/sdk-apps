@@ -22,6 +22,9 @@ import EditPopup from '@boundlessgeo/sdk/components/EditPopup';
 import Globe from '@boundlessgeo/sdk/components/Globe';
 import Legend from '@boundlessgeo/sdk/components/Legend';
 import Login from '@boundlessgeo/sdk/components/Login';
+import BoundlessSdk from '@boundlessgeo/sdk/components/BoundlessSdk';
+import Geocoding from '@boundlessgeo/sdk/components/Geocoding';
+import GeocodingResults from '@boundlessgeo/sdk/components/GeocodingResults';
 import Header from '@boundlessgeo/sdk/components/Header';
 import {Tab} from 'material-ui/Tabs';
 import FlatButton from 'material-ui/FlatButton';
@@ -200,8 +203,10 @@ class QuickView extends React.Component {
         <Navigation toggleGroup='navigation' secondary={true} />
         <DrawFeature toggleGroup='navigation' map={map} />
         <MapConfig map={map}/>
+        <Geocoding />
       </Header>);
     return (
+      <BoundlessSdk>
         <div id='content'>
           <LeftNav width={leftNavWidth} tabList={tabList} open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
           <div>
@@ -216,9 +221,12 @@ class QuickView extends React.Component {
               <div id='home-button'><HomeButton map={map} /></div>
               <div id='zoom-buttons'><Zoom map={map} /></div>
               <div id='rotate-button'><Rotate map={map} /></div>
+              <GeocodingResults/>
             </div>
           </div>
         </div>
+      </BoundlessSdk>
+
     );
   }
 }
