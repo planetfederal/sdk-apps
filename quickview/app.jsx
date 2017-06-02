@@ -197,13 +197,13 @@ class QuickView extends React.Component {
         showLeftIcon={!this.state.leftNavOpen}
         style={{left: this.state.leftNavOpen ? leftNavWidth : 0, width: this.state.leftNavOpen ? 'calc(100% - ' + leftNavWidth + 'px)' : '100%'}}
         onLeftIconTouchTap={this.leftNavOpen.bind(this)}>
-        <Measure toggleGroup='navigation' map={map}/>
-        <Select toggleGroup='navigation' map={map}/>
-        <Login />
+        <Geocoding />
         <Navigation toggleGroup='navigation' secondary={true} />
         <DrawFeature toggleGroup='navigation' map={map} />
+        <Measure toggleGroup='navigation' map={map}/>
+        <Select toggleGroup='navigation' map={map}/>
         <MapConfig map={map}/>
-        <Geocoding />
+        <Login />
       </Header>);
     return (
       <BoundlessSdk>
