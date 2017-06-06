@@ -15,6 +15,7 @@ import DrawFeature from '@boundlessgeo/sdk/components/DrawFeature';
 import LeftNav from '@boundlessgeo/sdk/components/LeftNav';
 import Geolocation from '@boundlessgeo/sdk/components/Geolocation';
 import Zoom from '@boundlessgeo/sdk/components/Zoom';
+import ZoomSlider from '@boundlessgeo/sdk/components/ZoomSlider';
 import Rotate from '@boundlessgeo/sdk/components/Rotate';
 import HomeButton from '@boundlessgeo/sdk/components/HomeButton';
 import InfoPopup from '@boundlessgeo/sdk/components/InfoPopup';
@@ -206,7 +207,7 @@ class QuickView extends React.Component {
         <Login />
       </Header>);
     return (
-      <BoundlessSdk>
+      <BoundlessSdk map={map}>
         <div id='content'>
           <LeftNav width={leftNavWidth} tabList={tabList} open={this.state.leftNavOpen} onRequestClose={this.leftNavClose.bind(this)}/>
           <div>
@@ -220,6 +221,7 @@ class QuickView extends React.Component {
               <div id='geolocation-control'><Geolocation map={map} /></div>
               <div id='home-button'><HomeButton map={map} /></div>
               <div id='zoom-buttons'><Zoom map={map} /></div>
+              <div id='zoom-buttons'><ZoomSlider map={map} /></div>
               <div id='rotate-button'><Rotate map={map} /></div>
               <GeocodingResults/>
             </div>
