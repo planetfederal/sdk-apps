@@ -8,6 +8,8 @@ import enLocaleData from 'react-intl/locale-data/en';
 import enMessages from '@boundlessgeo/sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import BoundlessSDK from '@boundlessgeo/sdk/components/BoundlessSDK';
+import ZoomToLatLon from '@boundlessgeo/sdk/components/ZoomToLatLon';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -78,11 +80,13 @@ class BookmarkApp extends React.Component {
   }
   render() {
     return (
-      <MapPanel id='content' map={map}>
-        <div>
-          <div id='bookmarks-panel'><Bookmarks menu={true} bookmarks={bookmarks}/></div>
-        </div>
-      </MapPanel>
+      <BoundlessSDK>
+        <MapPanel id='content' map={map}>
+          <div>
+            <div id='zoom-to-lat-lon'><ZoomToLatLon /></div>
+          </div>
+        </MapPanel>
+      </BoundlessSDK>
     );
   }
 }
