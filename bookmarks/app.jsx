@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
+import Map from '@boundlessgeo/sdk/components/Map';
 import Bookmarks from '@boundlessgeo/sdk/components/Bookmarks';
 import enLocaleData from 'react-intl/locale-data/en';
 import enMessages from '@boundlessgeo/sdk/locale/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import BoundlessSDK from '@boundlessgeo/sdk/components/BoundlessSDK';
-import ZoomToLatLon from '@boundlessgeo/sdk/components/ZoomToLatLon';
+import BoundlessSdk from '@boundlessgeo/sdk/components/BoundlessSdk';
+//import ZoomToLatLon from '@boundlessgeo/sdk/components/ZoomToLatLon';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -80,13 +80,13 @@ class BookmarkApp extends React.Component {
   }
   render() {
     return (
-      <BoundlessSDK>
-        <MapPanel id='content' map={map}>
+      <BoundlessSdk>
+        <Map id='content' map={map}>
           <div>
-            <div id='zoom-to-lat-lon'><ZoomToLatLon /></div>
+            <div id='bookmarks'><Bookmarks bookmarks={bookmarks} map={map}/></div>
           </div>
-        </MapPanel>
-      </BoundlessSDK>
+        </Map>
+      </BoundlessSdk>
     );
   }
 }

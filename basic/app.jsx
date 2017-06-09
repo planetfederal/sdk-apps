@@ -3,23 +3,23 @@ import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
+import Map from '@boundlessgeo/sdk/components/Map';
 import LayerList from '@boundlessgeo/sdk/components/LayerList';
-//import Geocoding from '@boundlessgeo/sdk/components/Geocoding';
-//import GeocodingResults from '@boundlessgeo/sdk/components/GeocodingResults';
-//import Navigation from '@boundlessgeo/sdk/components/Navigation';
-//import Select from '@boundlessgeo/sdk/components/Select';
-//import QueryBuilder from '@boundlessgeo/sdk/components/QueryBuilder';
-//import FeatureTable from '@boundlessgeo/sdk/components/FeatureTable';
-//import Chart from '@boundlessgeo/sdk/components/Chart';
-//import MapConfig from '@boundlessgeo/sdk/components/MapConfig';
-//import Header from '@boundlessgeo/sdk/components/Header';
-//import Button from '@boundlessgeo/sdk/components/Button';
-//import DrawFeature from '@boundlessgeo/sdk/components/DrawFeature';
-//import Globe from '@boundlessgeo/sdk/components/Globe';
+import Geocoding from '@boundlessgeo/sdk/components/Geocoding';
+import GeocodingResults from '@boundlessgeo/sdk/components/GeocodingResults';
+import Navigation from '@boundlessgeo/sdk/components/Navigation';
+import Select from '@boundlessgeo/sdk/components/Select';
+import QueryBuilder from '@boundlessgeo/sdk/components/QueryBuilder';
+import FeatureTable from '@boundlessgeo/sdk/components/FeatureTable';
+import Chart from '@boundlessgeo/sdk/components/Chart';
+import MapConfig from '@boundlessgeo/sdk/components/MapConfig';
+import Header from '@boundlessgeo/sdk/components/Header';
+import Button from '@boundlessgeo/sdk/components/Button';
+import DrawFeature from '@boundlessgeo/sdk/components/DrawFeature';
+import Globe from '@boundlessgeo/sdk/components/Globe';
 import Zoom from '@boundlessgeo/sdk/components/Zoom';
-//import InfoPopup from '@boundlessgeo/sdk/components/InfoPopup';
-//import EditPopup from '@boundlessgeo/sdk/components/EditPopup';
+import InfoPopup from '@boundlessgeo/sdk/components/InfoPopup';
+import EditPopup from '@boundlessgeo/sdk/components/EditPopup';
 import enLocaleData from 'react-intl/locale-data/en';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import enMessages from '@boundlessgeo/sdk/locale/en';
@@ -237,9 +237,27 @@ class BasicApp extends React.Component {
     return (
       <BoundlessSdk>
         <div id='content'>
-          <MapPanel id='map' map={map}>
+          <Header showLeftIcon={false} title='Boundless SDK Basic Application'>
+            <MapConfig map={map}/>
+            <Button toggleGroup='navigation' buttonType='Icon' iconClassName='headerIcons ms ms-table' tooltip='Table' onTouchTap={this._toggleTable.bind(this)}/>
+            <Button toggleGroup='navigation' buttonType='Icon' iconClassName='headerIcons fa fa-filter' tooltip='Query' onTouchTap={this._toggleQuery.bind(this)}/>
+            <Button toggleGroup='navigation' buttonType='Icon' iconClassName='headerIcons ms ms-bar-chart' tooltip='Chart' onTouchTap={this._toggleChart.bind(this)}/>
+            <DrawFeature toggleGroup='navigation' map={map} />
+            <Select toggleGroup='navigation' map={map}/>
+            <Navigation secondary={true} toggleGroup='navigation' map={map}/>
+            <Geocoding />
+          </Header>
+          <Map id='map' map={map}>
+            <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
+            {/*<div id='geocoding-results' className='geocoding-results-panel'><GeocodingResults map={map} /></div>*/}
+            <div id='globe-button'><Globe map={map} /></div>
+            <div id='zoom-buttons'><Zoom /></div>
             <div id='layerlist'><LayerList allowFiltering={true} showOpacity={true} showDownload={true} showGroupContent={true} showZoomTo={true} allowReordering={true} map={map} /></div>
-          </MapPanel >
+            <div ref='tablePanel' id='table-panel' className='attributes-table'><FeatureTable toggleGroup='navigation' ref='table' map={map} /></div>
+            <div id='editpopup' className='ol-popup'><EditPopup toggleGroup='navigation' map={map} /></div>
+            <div id='popup' className='ol-popup'><InfoPopup toggleGroup='navigation' map={map} /></div>
+            <div ref='chartPanel' className='chart-panel'><Chart charts={charts} onClose={this._toggleChart.bind(this)}/></div>
+          </Map >
         </div>
       </BoundlessSdk>
     );
