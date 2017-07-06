@@ -45,9 +45,9 @@ html, body {
 }
 #map {
   width: 100%;
-  top: 56px;
+  top: 64px;
   position: absolute;
-  height: calc(100% - 56px);
+  height: calc(100% - 64px);
 }
 #content {
   width: 100%;

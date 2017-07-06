@@ -237,7 +237,8 @@ class BasicApp extends React.Component {
     return (
       <BoundlessSdk>
         <div id='content'>
-          <Header showLeftIcon={false} title='Boundless SDK Basic Application'>
+          <Header showLeftIcon={false} title='Boundless SDK Basic Application' logo="img/boundless-logo.png">
+            <Geocoding />
             <MapConfig map={map}/>
             <Button toggleGroup='navigation' buttonType='Icon' iconClassName='headerIcons ms ms-table' tooltip='Table' onTouchTap={this._toggleTable.bind(this)}/>
             <Button toggleGroup='navigation' buttonType='Icon' iconClassName='headerIcons fa fa-filter' tooltip='Query' onTouchTap={this._toggleQuery.bind(this)}/>
@@ -245,7 +246,6 @@ class BasicApp extends React.Component {
             <DrawFeature toggleGroup='navigation' map={map} />
             <Select toggleGroup='navigation' map={map}/>
             <Navigation secondary={true} toggleGroup='navigation' map={map}/>
-            <Geocoding />
           </Header>
           <Map id='map' map={map}>
             <div ref='queryPanel' className='query-panel'><QueryBuilder map={map} /></div>
