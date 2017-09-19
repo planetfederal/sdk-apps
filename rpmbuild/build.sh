@@ -1,6 +1,13 @@
 #!/bin/sh
 # Run from repo root level
 
+# Verify proper command use
+if [ "$1" == "" ]; then
+  echo "No arguements provided."
+  echo "Proper use is: build.sh dev/test/master"
+  exit 1
+fi
+
 mkdir -p archive/tmp/doc
 
 # Quickview:
@@ -37,8 +44,23 @@ mv $COMPONENT/SRC/opt/boundless/suite/quickview/doc $COMPONENT/SRC/usr/share/doc
 mkdir -p $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
 cp tomcat-context/quickview.xml $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
 
-sed -i "s/REPLACE_VERSION/$MINOR_VERSION/" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
+# Do versioning
+if [ "$1" == "dev" ]; then
+  sed -i "s/REPLACE_VERSION/`date +%Y%m%d%H%M`/" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
+elif [ "$1" == "test" ];  then
+  sed -i "s:REPLACE_VERSION:`cat $WORKSPACE/version.txt`rc:" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
+elif [ "$1" == "master" ]; then
+  sed -i "s/REPLACE_VERSION/`cat $WORKSPACE/version.txt`/" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
+else
+  echo "Improper arguement provided."
+  echo "Proper use is: build.sh dev/test/master"
+  exit 1
+fi
 sed -i "s/REPLACE_RELEASE/$BUILD_NUMBER/" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
+
+
+#sed -i "s/REPLACE_VERSION/$MINOR_VERSION/" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
+
 sed -i "s|REPLACE_RPMDIR|${WORKSPACE}/archive|" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
 find $WORKSPACE/rpmbuild/$COMPONENT/SRC/ -type f | sed "s|$WORKSPACE/rpmbuild/$COMPONENT/SRC||" | awk -F\\ '{print "\""$1"\""}' >> $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
 
