@@ -10,7 +10,7 @@ URL: http://boundlessgeo.com/
 BuildRoot: %{_WORKSPACE}/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
-Requires:  unzip, suite-geoserver >= 4.10, suite-geoserver < 4.11
+Requires:  unzip, suite-geoserver >= CURRENT_VER, suite-geoserver < NEXT_VER
 AutoReqProv: no
 
 #%define _rpmdir /var/jenkins/workspace/sdkApps-quickview/archive/

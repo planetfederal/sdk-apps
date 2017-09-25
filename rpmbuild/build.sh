@@ -46,17 +46,27 @@ cp tomcat-context/quickview.xml $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
 
 # Do versioning
 if [ "$1" == "dev" ]; then
-  sed -i "s/REPLACE_VERSION/`date +%Y%m%d%H%M`/" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
+  CURRENT_VER=${DATE_TIME_STAMP}
 elif [ "$1" == "test" ];  then
-  sed -i "s:REPLACE_VERSION:`cat $WORKSPACE/version.txt`rc:" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
+  CURRENT_VER=`cat $WORKSPACE/version.txt`rc
 elif [ "$1" == "master" ]; then
-  sed -i "s/REPLACE_VERSION/`cat $WORKSPACE/version.txt`/" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
+  CURRENT_VER=`cat $WORKSPACE/version.txt`
 else
   echo "Improper arguement provided."
   echo "Proper use is: build.sh dev/test/master"
   exit 1
 fi
+sed -i "s/REPLACE_VERSION/${CURRENT_VER}/" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
 sed -i "s/REPLACE_RELEASE/$BUILD_NUMBER/" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
+sed -i "s/CURRENT_VER/${CURRENT_VER}/g" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
+
+if [[ "$CURRENT_VER" =~ (.*[^0-9])([0-9]+)$ ]]; then
+  NEXT_VER="${BASH_REMATCH[1]}$((${BASH_REMATCH[2]} + 1))"
+else
+  NEXT_VER="${VERSION}.1"
+fi
+
+sed -i "s/NEXT_VER/${NEXT_VER}/g" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
 
 
 #sed -i "s/REPLACE_VERSION/$MINOR_VERSION/" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
