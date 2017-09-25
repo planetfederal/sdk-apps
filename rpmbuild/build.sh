@@ -63,7 +63,7 @@ sed -i "s/CURRENT_VER/${CURRENT_VER}/g" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$CO
 if [[ "$CURRENT_VER" =~ (.*[^0-9])([0-9]+)$ ]]; then
   NEXT_VER="${BASH_REMATCH[1]}$((${BASH_REMATCH[2]} + 1))"
 else
-  NEXT_VER="${VERSION}.1"
+  NEXT_VER="${CURRENT_VER}.1"
 fi
 
 sed -i "s/NEXT_VER/${NEXT_VER}/g" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
