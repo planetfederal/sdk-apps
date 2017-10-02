@@ -22,7 +22,7 @@
     "@boundlessgeo/sdk": "^1.0.0",
     "react": "15.3.2",
     "react-dom": "15.3.2",
-    "openlayers": "4.0.1",
+    "openlayers": "4.2.0",
     "react-intl": "^2.1.5",
     "react-tap-event-plugin": "^1.0.0"
   },
