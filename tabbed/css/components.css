@@ -1,6 +1,6 @@
-/*! Hint.css - v2.4.1 - 2016-11-08
+/*! Hint.css - v2.5.0 - 2017-04-23
 * http://kushagragour.in/lab/hint/
-* Copyright (c) 2016 Kushagra Gour */
+* Copyright (c) 2017 Kushagra Gour */
 
 /*-------------------------------------*	HINT.css - A CSS tooltip library
 \*-------------------------------------*/
@@ -9,8 +9,6 @@
  *
  * Source: https://github.com/chinchang/hint.css
  * Demo: http://kushagragour.in/lab/hint/
- *
- * Release under The MIT License
  *
  */
 /**
@@ -684,16 +682,32 @@
 .ol-unsupported {
   display: none;
 }
-.ol-viewport .ol-unselectable {
+.ol-viewport, .ol-unselectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-
+.ol-selectable {
+  -webkit-touch-callout: default;
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+}
+.ol-grabbing {
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: grabbing;
+}
+.ol-grab {
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
+}
 .ol-control {
   position: absolute;
   background-color: rgba(255,255,255,0.4);
@@ -888,6 +902,10 @@
 }
 .ol-overviewmap-box {
   border: 2px dotted rgba(0,60,136,0.7);
+}
+
+.ol-overviewmap .ol-overviewmap-box:hover {
+  cursor: move;
 }
 /* HACK Base64 encoding the fonts, need to script this with webpack or a npm task */
 /*!
