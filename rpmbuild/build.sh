@@ -12,7 +12,7 @@ mkdir -p archive/tmp/doc
 
 # Quickview:
 # Build quickview war
-COMPONENT=suite-quickview
+COMPONENT=boundless-server-quickview
 
 source ~/.bashrc
 
@@ -37,10 +37,10 @@ do
   mkdir -p $WORKSPACE/rpmbuild/$COMPONENT/$dir
 done
 cp SPECS/${COMPONENT}.spec $COMPONENT/SPECS
-mkdir -p $COMPONENT/SRC/opt/boundless/suite/quickview
-unzip ../archive/quickview.war -d $COMPONENT/SRC/opt/boundless/suite/quickview/
+mkdir -p $COMPONENT/SRC/opt/boundless/server/quickview
+unzip ../archive/quickview.war -d $COMPONENT/SRC/opt/boundless/server/quickview/
 mkdir -p $COMPONENT/SRC/usr/share/doc/
-mv $COMPONENT/SRC/opt/boundless/suite/quickview/doc $COMPONENT/SRC/usr/share/doc/$COMPONENT
+mv $COMPONENT/SRC/opt/boundless/server/quickview/doc $COMPONENT/SRC/usr/share/doc/$COMPONENT
 mkdir -p $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
 cp tomcat-context/quickview.xml $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
 

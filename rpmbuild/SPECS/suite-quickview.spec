@@ -1,6 +1,6 @@
 %define __spec_install_pre /bin/true
 
-Name: suite-quickview
+Name: boundless-server-quickview
 Version: REPLACE_VERSION
 Release: REPLACE_RELEASE
 Summary: Boundless WebSDK demo application
@@ -10,7 +10,7 @@ URL: http://boundlessgeo.com/
 BuildRoot: %{_WORKSPACE}/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
-Requires:  unzip, suite-geoserver >= CURRENT_VER, suite-geoserver < NEXT_VER
+Requires:  unzip, boundless-server-geoserver >= CURRENT_VER, boundless-server-geoserver < NEXT_VER
 AutoReqProv: no
 
 #%define _rpmdir /var/jenkins/workspace/sdkApps-quickview/archive/
@@ -22,7 +22,7 @@ AutoReqProv: no
 
 
 %description
-Boundless Spatial WebSDK demo application
+Boundless Server WebSDK demo application
 
 %prep
 
@@ -44,8 +44,8 @@ if [ "$1" = "0" ] || [ "$1" = "remove" ]; then
   if [ -f /etc/tomcat8/Catalina/localhost/quickview.xml ]; then
     rm -f /etc/tomcat8/Catalina/localhost/quickview.xml
   fi
-  if [ -d /opt/boundless/suite/quickview ]; then
-    for dir in `find /opt/boundless/suite/quickview -type d -exec bash -c '[ "x\`find "{}" -maxdepth 1 -type f\`" = x ] && echo "{}"' \; | sort -r`; do
+  if [ -d /opt/boundless/server/quickview ]; then
+    for dir in `find /opt/boundless/server/quickview -type d -exec bash -c '[ "x\`find "{}" -maxdepth 1 -type f\`" = x ] && echo "{}"' \; | sort -r`; do
       rm -rf $dir
     done
   fi
