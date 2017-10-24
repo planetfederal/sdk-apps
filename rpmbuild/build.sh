@@ -43,6 +43,7 @@ mkdir -p $COMPONENT/SRC/usr/share/doc/
 mv $COMPONENT/SRC/opt/boundless/server/quickview/doc $COMPONENT/SRC/usr/share/doc/$COMPONENT
 mkdir -p $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
 cp tomcat-context/quickview.xml $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
+cp tomcat-context/quickview.xml $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/quickview.xml.new
 
 # Do versioning
 if [ "$1" == "dev" ]; then

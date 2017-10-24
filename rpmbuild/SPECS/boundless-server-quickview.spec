@@ -11,6 +11,8 @@ BuildRoot: %{_WORKSPACE}/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
 Requires:  unzip, boundless-server-geoserver >= CURRENT_VER, boundless-server-geoserver < NEXT_VER
+Obsoletes: suite-quickview
+Conflicts: suite-quickview
 AutoReqProv: no
 
 #%define _rpmdir /var/jenkins/workspace/sdkApps-quickview/archive/
