@@ -33,7 +33,7 @@ mv %{_WORKSPACE}/SRC/* %{_WORKSPACE}/BUILDROOT/
 
 %pre
 if [ -f /etc/tomcat8/Catalina/localhost/quickview.xml ]; then
-  cp -pf /etc/tomcat8/Catalina/localhost/quickview.xml /etc/tomcat8/Catalina/localhost/quickview.xml.rpmsave
+  cp -pf /etc/tomcat8/Catalina/localhost/quickview.xml /etc/tomcat8/Catalina/localhost/quickview.xml.orig
 fi
 
 %post
@@ -55,3 +55,5 @@ fi
 
 %files
 %defattr(-,root,root,-)
+%config(noreplace) /etc/tomcat8/Catalina/localhost/quickview.xml
+
