@@ -51,6 +51,7 @@ if [ "$1" = "0" ] || [ "$1" = "remove" ]; then
       rm -rf $dir
     done
   fi
+  rm -f /var/lib/dpkg/info/boundless-server-quickview.* 2>&1 > /dev/null
 fi
 
 %files
