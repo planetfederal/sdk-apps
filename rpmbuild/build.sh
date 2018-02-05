@@ -26,8 +26,9 @@ cd $WORKSPACE/archive/tmp
 jar -xvf ../quickview-orig.war 
 cp $WORKSPACE/sdk-apps/rpmbuild/LICENSE.txt doc/
 cp $WORKSPACE/sdk-apps/rpmbuild/EULA doc/
-jar -cvf ../quickview.war .
+jar -cvf ../war/quickview.war .
 rm -f ../quickview-orig.war
+rm -rf $WORKSPACE/archive/tmp
 
 # Build quickview RPM
 cd $WORKSPACE/sdk-apps/rpmbuild
@@ -38,7 +39,7 @@ do
 done
 cp SPECS/${COMPONENT}.spec $COMPONENT/SPECS
 mkdir -p $COMPONENT/SRC/opt/boundless/server/quickview
-unzip $WORKSPACE/archive/quickview.war -d $COMPONENT/SRC/opt/boundless/server/quickview/
+unzip $WORKSPACE/archive/war/quickview.war -d $COMPONENT/SRC/opt/boundless/server/quickview/
 mkdir -p $COMPONENT/SRC/usr/share/doc/
 mv $COMPONENT/SRC/opt/boundless/server/quickview/doc $COMPONENT/SRC/usr/share/doc/$COMPONENT
 mkdir -p $COMPONENT/SRC/etc/tomcat8/Catalina/localhost/
@@ -51,7 +52,7 @@ if [ "$1" == "master" ]; then
 #elif [ "$1" == "test" ];  then
 #  CURRENT_VER=`cat $WORKSPACE/version.txt`rc
 elif [ "$1" == "stable" ]; then
-#  CURRENT_VER=`cat $WORKSPACE/version.txt`
+  #CURRENT_VER=`cat $WORKSPACE/version.txt`
   CURRENT_VER=${VER}
 else
   echo "Improper arguement provided."
@@ -62,11 +63,11 @@ sed -i "s/REPLACE_VERSION/${CURRENT_VER}/" $WORKSPACE/sdk-apps/rpmbuild/$COMPONE
 sed -i "s/REPLACE_RELEASE/$BUILD_NUMBER/" $WORKSPACE/sdk-apps/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
 sed -i "s/CURRENT_VER/${CURRENT_VER}/g" $WORKSPACE/sdk-apps/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
 
-if [[ "$CURRENT_VER" =~ (.*[^0-9])([0-9]+)$ ]]; then
-  NEXT_VER="${BASH_REMATCH[1]}$((${BASH_REMATCH[2]} + 1))"
-else
-  NEXT_VER="${CURRENT_VER}.1"
-fi
+#if [[ "$CURRENT_VER" =~ (.*[^0-9])([0-9]+)$ ]]; then
+#  NEXT_VER="${BASH_REMATCH[1]}$((${BASH_REMATCH[2]} + 1))"
+#else
+#  NEXT_VER="${CURRENT_VER}.1"
+#fi
 
 sed -i "s/NEXT_VER/${NEXT_VER}/g" $WORKSPACE/sdk-apps/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
 
