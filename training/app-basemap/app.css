@@ -30,7 +30,19 @@ body {
   position: absolute;
   top: 90px;
 }
+#layerlist {
+  position: absolute;
+  right: 20px;
+  top: 86px;
+}
+.layerlistbutton {
+  position: absolute !important;
+  right: 10px;
+  top: 84px;
+}
 .layer-switcher {
   top: 84px !important;
 }
-
+.layer-tree-panel {
+  margin-right: 50px;
+}

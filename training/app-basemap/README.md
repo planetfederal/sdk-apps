@@ -24,6 +24,5 @@ Edit package.json and change ```-p 4000```.
 
 # Creating a war file
 
-    npm run package
-
-Specify an output file name when prompted, e.g. /tmp/app-basemap.war
+    npm run build
+    npm run createzip -- --output-file=/tmp/app-basemap.war

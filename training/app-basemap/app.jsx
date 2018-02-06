@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ol from 'openlayers';
 import {addLocaleData, IntlProvider} from 'react-intl';
-import MapPanel from 'boundless-sdk/components/MapPanel';
-import HomeButton from 'boundless-sdk/components/HomeButton';
-import Zoom from 'boundless-sdk/components/Zoom';
-import LayerList from 'boundless-sdk/components/LayerList';
+import MapPanel from '@boundlessgeo/sdk/components/MapPanel';
+import HomeButton from '@boundlessgeo/sdk/components/HomeButton';
+import Zoom from '@boundlessgeo/sdk/components/Zoom';
+import LayerList from '@boundlessgeo/sdk/components/LayerList';
 import AppBar from 'material-ui/AppBar';
 import enLocaleData from 'react-intl/locale-data/en';
-import enMessages from 'boundless-sdk/locale/en';
+import enMessages from '@boundlessgeo/sdk/locale/en';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -67,7 +67,7 @@ class MyApp extends React.Component {
       <div id='content'>
         <AppBar iconElementLeft={<img style={{marginTop: '10px'}} src="resources/logo.svg" width="30" height="30" />} title="Basemaps" />
         <MapPanel id='map' map={map} useHistory={false}/>
-        <div><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} addLayer={{sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}} expandOnHover={false} map={map} /></div>
+        <div id='layerlist'><LayerList showOnStart={true} showZoomTo={true} allowReordering={true} addLayer={{sources: [{url: '/geoserver/wms', type: 'WMS', title: 'Local GeoServer'}]}} expandOnHover={false} map={map} /></div>
         <div id='home-button'><HomeButton map={map} /></div>
         <div id='zoom-buttons'><Zoom map={map} /></div>
       </div>
