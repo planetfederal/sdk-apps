@@ -74,7 +74,7 @@ sed -i "s/NEXT_VER/${NEXT_VER}/g" $WORKSPACE/sdk-apps/rpmbuild/$COMPONENT/SPECS/
 
 #sed -i "s/REPLACE_VERSION/$MINOR_VERSION/" $WORKSPACE/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
 
-sed -i "s|REPLACE_RPMDIR|${WORKSPACE}/archive/el/6|" $WORKSPACE/sdk-apps/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
+sed -i "s|REPLACE_RPMDIR|${WORKSPACE}/archive/el/7|" $WORKSPACE/sdk-apps/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
 find $WORKSPACE/sdk-apps/rpmbuild/$COMPONENT/SRC/ -type f | sed "s|$WORKSPACE/sdk-apps/rpmbuild/$COMPONENT/SRC||" | awk -F\\ '{print "\""$1"\""}' >> $WORKSPACE/sdk-apps/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
 
 rpmbuild -ba --define "_topdir $WORKSPACE/sdk-apps/rpmbuild/$COMPONENT" --define "_WORKSPACE $WORKSPACE/sdk-apps/rpmbuild/$COMPONENT" --buildroot $WORKSPACE/sdk-apps/rpmbuild/$COMPONENT/BUILDROOT/ $WORKSPACE/sdk-apps/rpmbuild/$COMPONENT/SPECS/$COMPONENT.spec
